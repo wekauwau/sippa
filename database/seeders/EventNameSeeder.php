@@ -11,7 +11,7 @@ class EventNameSeeder extends Seeder
     {
         $data = [
             ['name' => 'Pesantren'],
-            ['name' => 'Idul Adha 2022M/1443H'],
+            ['name' => 'Idul Adha'],
         ];
 
         foreach ($data as $val) {
