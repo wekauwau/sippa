@@ -10,7 +10,9 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('role_types_id')->constrained();
+            $table->foreignId('users_id')->constrained();
+            $table->foreignId('divisions_id')->constrained();
             $table->timestamps();
         });
     }
