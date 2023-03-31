@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             DivisionSeeder::class,
             DataSeeder::class,
+            OpenDataSeeder::class,
         ]);
     }
 }
