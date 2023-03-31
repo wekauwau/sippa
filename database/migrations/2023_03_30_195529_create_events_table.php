@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('event_names_id')->constrained();
-            $table->string('description')->nullable();
+            $table->string('desc')->nullable();
             // * Idul Adha 2022H/1443M
             $table->date('date')->nullable();
             $table->timestamps();
