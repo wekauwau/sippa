@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             EventNameSeeder::class,
             EventSeeder::class,
+            DivisionSeeder::class,
         ]);
     }
 }
