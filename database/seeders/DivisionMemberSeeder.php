@@ -10,129 +10,78 @@ class DivisionMemberSeeder extends Seeder
     public function run()
     {
         $data = [
+            // --------- Pesantren ---------
             [
                 'divisions_id' => 1,
                 'users_id' => 2,
+                // Ketua Nizar
             ],
             [
                 'divisions_id' => 1,
                 'users_id' => 3,
-            ],
-            [
-                'divisions_id' => 1,
-                'users_id' => 4,
-            ],
-            [
-                'divisions_id' => 1,
-                'users_id' => 5,
+                // Isna
             ],
             [
                 'divisions_id' => 2,
+                'users_id' => 4,
+                // Bendahara Handika
+            ],
+            [
+                'divisions_id' => 3,
+                'users_id' => 5,
+                // Kebersihan Taufiq
+            ],
+            [
+                'divisions_id' => 4,
                 'users_id' => 6,
+                // Humas Ikhsanun
             ],
             [
-                'divisions_id' => 3,
+                'divisions_id' => 4,
                 'users_id' => 7,
+                // Zulfa
             ],
             [
-                'divisions_id' => 3,
+                'divisions_id' => 5,
                 'users_id' => 8,
+                // PMBS Hanifian
             ],
             [
-                'divisions_id' => 3,
+                'divisions_id' => 6,
                 'users_id' => 9,
+                // Keamanan Wahyu Eka
             ],
-            [
-                'divisions_id' => 4,
-                'users_id' => 10,
-            ],
-            [
-                'divisions_id' => 4,
-                'users_id' => 11,
-            ],
-            [
-                'divisions_id' => 5,
-                'users_id' => 12,
-            ],
-            [
-                'divisions_id' => 5,
-                'users_id' => 13,
-            ],
-            [
-                'divisions_id' => 6,
-                'users_id' => 14,
-            ],
-            [
-                'divisions_id' => 6,
-                'users_id' => 15,
-            ],
+
+            // --------- Idul Adha 2022 ---------
             [
                 'divisions_id' => 7,
-                'users_id' => 16,
-            ],
-            [
-                'divisions_id' => 7,
-                'users_id' => 17,
-            ],
-            [
-                'divisions_id' => 7,
-                'users_id' => 18,
+                'users_id' => 9,
+                // Ketua Wahyu Eka
             ],
             [
                 'divisions_id' => 8,
-                'users_id' => 19,
-            ],
-            [
-                'divisions_id' => 8,
-                'users_id' => 20,
+                'users_id' => 4,
+                // Sekben Handika
             ],
             [
                 'divisions_id' => 9,
-                'users_id' => 21,
-            ],
-            [
-                'divisions_id' => 9,
-                'users_id' => 22,
-            ],
-            [
-                'divisions_id' => 9,
-                'users_id' => 23,
-            ],
-            [
-                'divisions_id' => 10,
-                'users_id' => 24,
-            ],
-            [
-                'divisions_id' => 10,
-                'users_id' => 25,
-            ],
-            [
-                'divisions_id' => 11,
-                'users_id' => 26,
-            ],
-            [
-                'divisions_id' => 11,
-                'users_id' => 27,
-            ],
-            [
-                'divisions_id' => 12,
-                'users_id' => 14,
-            ],
-            [
-                'divisions_id' => 13,
                 'users_id' => 8,
+                // Perkap Hanifian
             ],
             [
-                'divisions_id' => 14,
-                'users_id' => 17,
+                'divisions_id' => 10,
+                'users_id' => 5,
+                // Humas Taufiq
             ],
             [
-                'divisions_id' => 14,
-                'users_id' => 23,
+                'divisions_id' => 10,
+                'users_id' => 7,
+                // Humas Zulfa
             ],
             [
-                'divisions_id' => 15,
-                'users_id' => 28,
+                'divisions_id' => 11,
+                'users_id' => 10,
+                // KRT Husnul Muadiba
             ],
         ];
 
