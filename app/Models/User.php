@@ -15,6 +15,7 @@ class User extends Authenticatable
         'name',
         'phone',
         'password',
+        'role_pesantrens_id',
     ];
 
     /**
