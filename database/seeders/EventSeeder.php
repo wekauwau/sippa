@@ -13,12 +13,12 @@ class EventSeeder extends Seeder
         $data = [
             [
                 'event_names_id' => 1,
-                'description' => null,
+                'desc' => null,
                 'date' => null,
             ],
             [
                 'event_names_id' => 2,
-                'description' => '2022M/1443H',
+                'desc' => '2022M/1443H',
                 'date' => Carbon::parse('2022-07-10'),
             ],
         ];
