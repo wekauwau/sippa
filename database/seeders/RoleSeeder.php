@@ -10,13 +10,9 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['name' => 'Pengasuh'],
-            ['name' => 'Lurah'],
-            ['name' => 'Pengurus'],
             ['name' => 'Ketua'],
-            ['name' => 'Panitia'],
-            // TODO: masukkan laporan
-            ['name' => 'Santri'],
+            ['name' => 'Koordinator'],
+            ['name' => 'Anggota'],
         ];
 
         foreach ($data as $val) {
