@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             DivisionSeeder::class,
             DataSeeder::class,
             OpenDataSeeder::class,
+            RolePesantrenSeeder::class,
         ]);
     }
 }
