@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             GradeSeeder::class,
             StudentSeeder::class,
             DivisionSeeder::class,
+            ManagerSeeder::class,
         ]);
     }
 }
