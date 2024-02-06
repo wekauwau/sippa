@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             GradeSeeder::class,
             StudentSeeder::class,
+            DivisionSeeder::class,
         ]);
     }
 }
