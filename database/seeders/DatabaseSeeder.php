@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             DivisionSeeder::class,
             ManagerSeeder::class,
+            SemesterSeeder::class,
         ]);
     }
 }
