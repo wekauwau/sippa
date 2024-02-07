@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ManagerSeeder::class,
             SemesterSeeder::class,
             MadinRoomSeeder::class,
+            LessonSeeder::class,
         ]);
     }
 }
