@@ -14,7 +14,7 @@ class RoomGroupSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Al-Munjiyat',
+                'name' => 'Al-Munjiyyat',
                 'gender' => 1,
             ],
             [
@@ -30,11 +30,11 @@ class RoomGroupSeeder extends Seeder
                 'gender' => 0,
             ],
             [
-                'name' => 'Elhawa',
+                'name' => 'El-Hawa',
                 'gender' => 0,
             ],
             [
-                'name' => 'Ad-Duroh',
+                'name' => 'Ad-Durroh',
                 'gender' => 0,
             ],
         ];
