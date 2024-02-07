@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             DivisionSeeder::class,
             ManagerSeeder::class,
             SemesterSeeder::class,
+            MadinRoomSeeder::class,
         ]);
     }
 }
