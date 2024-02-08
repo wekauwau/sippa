@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             LessonSeeder::class,
             TeacherSeeder::class,
             MadinSeeder::class,
+            ViolationSeeder::class,
         ]);
     }
 }
