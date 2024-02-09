@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('phone');
             $table->string('password');
+            $table->boolean('gender');
             $table->boolean('active');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
