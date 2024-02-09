@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             TeacherSeeder::class,
             MadinSeeder::class,
             ViolationSeeder::class,
+            SickSeeder::class,
         ]);
     }
 }
