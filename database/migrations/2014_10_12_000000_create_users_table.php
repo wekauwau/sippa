@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
+            $table->string('username');
             $table->string('password');
             $table->boolean('gender');
             $table->boolean('active');
