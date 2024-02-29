@@ -21,4 +21,8 @@ Route::middleware([
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('madin', function () {
+        return view('madin');
+    })->name('madin');
 });
