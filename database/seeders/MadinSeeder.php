@@ -272,7 +272,7 @@ class MadinSeeder extends Seeder
                 'day' => 'Senin',
                 'grade_id' => 6,
                 'madin_room_id' => 6,
-                'lesson_id' => 29,
+                'lesson_id' => 20,
                 'teacher_user_id' => 43,
             ],
             [
@@ -665,3 +665,4 @@ class MadinSeeder extends Seeder
         }
     }
 }
+
