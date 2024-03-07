@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Division;
 use App\Models\Manager;
 use Illuminate\Database\Seeder;
 
@@ -12,16 +13,30 @@ class ManagerSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [
-            [
-                'user_id' => 6,
-                'division_id' => 1,
-            ],
-            [
-                'user_id' => 8,
-                'division_id' => 2,
-            ],
-        ];
+        /* see plan/sippa/users */
+        $data = [];
+
+        $j = 1;
+        for ($i = 42; $i <= 49; $i++) {
+            $data[] = [
+                'user_id' => $i,
+                'division_id' => $j,
+            ];
+
+            $data[] = [
+                'user_id' => ++$i,
+                'division_id' => $j,
+            ];
+
+            $j++;
+        }
+
+        for ($i = 12; $i <= 21; $i++) {
+            $data[] = [
+                'user_id' => $i,
+                'division_id' => get_ids(Division::class),
+            ];
+        }
 
         foreach ($data as $record) {
             Manager::create($record);

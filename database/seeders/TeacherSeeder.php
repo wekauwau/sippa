@@ -12,14 +12,10 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [
-            ['user_id' => 7],
-            ['user_id' => 8],
-            ['user_id' => 9],
-        ];
-
-        foreach ($data as $record) {
-            Teacher::create($record);
+        for ($i = 22; $i <= 51; $i++) {
+            Teacher::create([
+                'user_id' => strval($i),
+            ]);
         }
     }
 }

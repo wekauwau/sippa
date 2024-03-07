@@ -14,6 +14,6 @@ class UserSeeder extends Seeder
     {
         /* 7 for student which is required by grades.leader_user_id */
         /* 2 for pengasuh and teacher */
-        User::factory(9)->create();
+        User::factory(51)->create();
     }
 }

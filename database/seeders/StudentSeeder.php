@@ -14,7 +14,7 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 2; $i <= 8; $i++) {
+        for ($i = 2; $i <= 26; $i++) {
             Student::create([
                 'user_id' => strval($i),
                 'room_id' => get_ids(Room::class),
