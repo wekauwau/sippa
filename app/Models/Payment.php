@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tagihan extends Model
+class Payment extends Model
 {
     protected $fillable = [
-        'name',
-        'info',
-        'deadline',
-        'amount',
+        'bill_id',
+        'user_id',
+        'status',
     ];
 }

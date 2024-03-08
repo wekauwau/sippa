@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             ViolationSeeder::class,
             SickSeeder::class,
             StudentDataSeeder::class,
-            TagihanSeeder::class,
+            BillSeeder::class,
+            PaymentSeeder::class,
         ]);
     }
 }

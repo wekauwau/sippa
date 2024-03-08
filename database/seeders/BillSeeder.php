@@ -2,11 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tagihan;
+use App\Models\Bill;
 use Illuminate\Database\Seeder;
 
-class TagihanSeeder extends Seeder
+class BillSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
         $data = [
@@ -38,7 +41,7 @@ class TagihanSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            Tagihan::create([
+            Bill::create([
                 'name' => $item[0],
                 'info' => $item[1],
                 'deadline' => $item[2],
