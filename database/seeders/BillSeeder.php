@@ -21,8 +21,9 @@ class BillSeeder extends Seeder
             ],
             [
                 'Iuran Ramadhan',
-                'Santri di pondok: Rp110.000\n
-                Santri di rumah (uzur): Rp85.000',
+                'Santri di pondok: Rp110.000' .
+                    "\r\n" .
+                    'Santri di rumah (uzur): Rp85.000',
                 date_create('2024-03-06'),
                 null,
             ],
