@@ -26,7 +26,7 @@ Route::middleware([
         return view('madin');
     })->name('madin');
 
-    Route::get('keuangan', function () {
-        return view('keuangan');
-    })->name('keuangan');
+    Route::get('finance', function () {
+        return view('finance');
+    })->name('finance');
 });
