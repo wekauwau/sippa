@@ -21,6 +21,9 @@
                     <x-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
                         Keuangan
                     </x-nav-link>
+                    <x-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
+                        Kesehatan
+                    </x-nav-link>
                 </div>
             </div>
 

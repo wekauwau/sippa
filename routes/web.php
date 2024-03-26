@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SickController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,9 @@ Route::middleware([
     Route::get('finance', function () {
         return view('finance');
     })->name('finance');
+
+    Route::get(
+        'health',
+        [SickController::class, 'index']
+    )->name('health');
 });
