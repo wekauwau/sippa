@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class SickDataTable extends DataTable
@@ -22,8 +19,7 @@ class SickDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addIndexColumn()
-            ->addColumn('aksi', 'test');
+            ->addIndexColumn();
     }
 
     /**
@@ -74,14 +70,9 @@ class SickDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('start'),
-            Column::make('end'),
-            Column::make('info'),
-            Column::computed('aksi')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
+            ['name' => 'start', 'title' => 'Mulai', 'data' => 'start'],
+            ['name' => 'end', 'title' => 'Sembuh', 'data' => 'end'],
+            ['name' => 'info', 'title' => 'Keterangan', 'data' => 'info'],
         ];
     }
 
