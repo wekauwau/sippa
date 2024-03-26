@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Sick;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -27,7 +28,7 @@ class SickDataTable extends DataTable
      */
     public function query(Sick $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('student_user_id', Auth::id());
     }
 
     /**
