@@ -8,14 +8,13 @@
     @endpush
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="container text-dark">
-                <div class="card">
-                    <div class="card-header text-xl">Kesehatan</div>
-                    <div class="card-body">
-                        {{ $dataTable->table() }}
-                    </div>
-                </div>
-            </div>
+            <x-header>
+                <x-slot:title>
+                    Riwayat Sakit
+                    </x-slot>
+
+                    {{ $dataTable->table() }}
+            </x-header>
         </div>
     </div>
     @push('scripts')
