@@ -19,7 +19,7 @@ return new class extends Migration
             );
             $table->date('date');
             $table->string('info');
-            $table->string('punishment');
+            $table->string('punishment')->nullable();
             $table->timestamps();
         });
     }

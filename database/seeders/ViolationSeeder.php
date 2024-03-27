@@ -7,11 +7,20 @@ use Illuminate\Database\Seeder;
 
 class ViolationSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Violation::factory(2)->create();
+        $data = [
+            [42, date_create('2024-01-11'), 'Meninggalkan mujahadah', null],
+            [42, date_create('2024-02-01'), 'Meninggalkan madin', null],
+        ];
+
+        foreach ($data as $record) {
+            Violation::create([
+                'student_user_id' => $record[0],
+                'date' => $record[1],
+                'info' => $record[2],
+                'punishment' => $record[3],
+            ]);
+        }
     }
 }
