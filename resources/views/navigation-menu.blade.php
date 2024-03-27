@@ -24,6 +24,9 @@
                     <x-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
                         Kesehatan
                     </x-nav-link>
+                    <x-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
+                        Pelanggaran
+                    </x-nav-link>
                 </div>
             </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SickController;
+use App\Http\Controllers\ViolationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +36,9 @@ Route::middleware([
         'health',
         [SickController::class, 'index']
     )->name('health');
+
+    Route::get(
+        'violation',
+        [ViolationController::class, 'index']
+    )->name('violation');
 });
