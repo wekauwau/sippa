@@ -7,7 +7,7 @@
                         Tagihan
                         </x-slot>
 
-                        <x-my-bill :userid="Auth::id()" />
+                        <x-payment status="0" />
                 </x-header>
 
                 <x-header>
@@ -15,7 +15,7 @@
                         Riwayat Pembayaran
                         </x-slot>
 
-                        <x-my-payment :userid="Auth::id()" />
+                        <x-payment status="1" />
                 </x-header>
             </div>
         </div>

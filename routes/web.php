@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SickController;
 use App\Http\Controllers\ViolationController;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +29,15 @@ Route::middleware([
         return view('madin');
     })->name('madin');
 
-    Route::get('finance', function () {
-        return view('finance');
-    })->name('finance');
+    Route::get(
+        'finance',
+        [PaymentController::class, 'index']
+    )->name('finance');
+
+    Route::get(
+        'payment/{status}',
+        [PaymentController::class, 'getPayments'],
+    )->name('ajax.payment');
 
     Route::get(
         'health',
