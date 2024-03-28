@@ -52,7 +52,7 @@ class ViolationDataTable extends DataTable
                 'printable'      => true,
                 'footer'         => '',
             ])
-            ->minifiedAjax()
+            ->minifiedAjax(route('violation'))
             //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()

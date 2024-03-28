@@ -51,7 +51,7 @@ class SickDataTable extends DataTable
                 'printable'      => true,
                 'footer'         => '',
             ])
-            ->minifiedAjax()
+            ->minifiedAjax(route('health'))
             //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
