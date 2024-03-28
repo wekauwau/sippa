@@ -74,10 +74,10 @@ class PaymentDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            ['name' => 'name', 'title' => 'Nama', 'data' => 'name'],
-            ['name' => 'deadline', 'title' => 'Batas', 'data' => 'deadline'],
-            ['name' => 'amount', 'title' => 'Jumlah', 'data' => 'amount'],
-            ['name' => 'info', 'title' => 'Keterangan', 'data' => 'info'],
+            ['name' => 'bills.name', 'title' => 'Nama', 'data' => 'name'],
+            ['name' => 'bills.deadline', 'title' => 'Batas', 'data' => 'deadline'],
+            ['name' => 'bills.amount', 'title' => 'Jumlah', 'data' => 'amount'],
+            ['name' => 'bills.info', 'title' => 'Keterangan', 'data' => 'info'],
         ];
     }
 
