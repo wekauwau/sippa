@@ -18,6 +18,9 @@
                     <x-nav-link href="{{ route('madin') }}" :active="request()->routeIs('madin')">
                         Madin
                     </x-nav-link>
+                    <x-nav-link href="{{ route('attendance') }}" :active="request()->routeIs('attendance')">
+                        Kehadiran
+                    </x-nav-link>
                     <x-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
                         Keuangan
                     </x-nav-link>

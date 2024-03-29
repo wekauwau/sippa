@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SickController;
 use App\Http\Controllers\ViolationController;
@@ -28,6 +29,11 @@ Route::middleware([
     Route::get('madin', function () {
         return view('madin');
     })->name('madin');
+
+    Route::get(
+        'attendance',
+        [AbsentController::class, 'index']
+    )->name('attendance');
 
     Route::get(
         'finance',
