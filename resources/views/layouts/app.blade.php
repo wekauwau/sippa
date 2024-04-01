@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     @livewireStyles
+    @filamentStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -47,6 +48,7 @@
     @stack('modals')
 
     @livewireScripts
+    @filamentScripts
 </body>
 
 @stack('scripts')
