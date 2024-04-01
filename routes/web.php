@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AbsentController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\SickController;
 use App\Http\Controllers\ViolationController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,10 +44,9 @@ Route::middleware([
         [PaymentController::class, 'getPayments'],
     )->name('ajax.payment');
 
-    Route::get(
-        'health',
-        [SickController::class, 'index']
-    )->name('health');
+    Route::get('health', function () {
+        return view('health');
+    })->name('health');
 
     Route::get(
         'violation',
