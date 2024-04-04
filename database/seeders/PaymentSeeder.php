@@ -10,28 +10,50 @@ class PaymentSeeder extends Seeder
 {
     public function run(): void
     {
-        # paid bill (id: 1-4)
-        for ($j = 1; $j <= 4; $j++) {
-            for ($i = 1; $i <= 43; $i++) {
+        # create paid bills (id: 1 - 4)
+        for ($i = 1; $i <= 4; $i++) {
+            for ($j = 1; $j <= 43; $j++) {
+                $bill = DB::table('bills')
+                    ->where('id', $i)
+                    ->first(['created_at', 'deadline']);
+
                 Payment::create([
-                    'bill_id' => $j,
-                    'user_id' => $i,
-                    'status' => 1,
+                    'bill_id' => $i,
+                    'user_id' => $j,
+                    'paid' => fake()->dateTimeBetween(
+                        $bill->created_at,
+                        $bill->deadline,
+                    )
                 ]);
             }
         }
 
-        for ($i = 1; $i <= 43; $i++) {
+        for ($j = 1; $j <= 43; $j++) {
+            # roll the dice
+            $paid = fake()->boolean();
+            if ($paid) {
+                $bill = DB::table('bills')
+                    ->where('id', 5)
+                    ->first(['created_at', 'deadline']);
+
+                $val = fake()->dateTimeBetween(
+                    $bill->created_at,
+                    $bill->deadline,
+                );
+            } else {
+                $val = null;
+            }
+
             Payment::create([
-                'bill_id' => 5,  # syahriah Mar
-                'user_id' => $i,
-                'status' => fake()->boolean(),
+                'bill_id' => 5,
+                'user_id' => $j,
+                'paid' => $val,
             ]);
         }
 
         DB::table('payments')
             ->where('user_id', 42)
             ->where('bill_id', 5)
-            ->update(['status' => 0]);
+            ->update(['paid' => null]);
     }
 }

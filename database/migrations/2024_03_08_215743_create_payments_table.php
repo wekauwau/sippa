@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('bill_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->boolean('status');
+            $table->date('paid')->nullable();
             $table->timestamps();
         });
     }

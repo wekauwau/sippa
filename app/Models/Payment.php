@@ -9,6 +9,6 @@ class Payment extends Model
     protected $fillable = [
         'bill_id',
         'user_id',
-        'status',
+        'paid',
     ];
 }
