@@ -10,7 +10,6 @@
         "@tailwindcss/typography": "^0.5.12",
         "autoprefixer": "^10.4.19",
         "axios": "^1.6.4",
-        "laravel-datatables-vite": "^0.5.2",
         "laravel-vite-plugin": "^1.0.0",
         "postcss": "^8.4.38",
         "postcss-nesting": "^12.1.1",
@@ -20,6 +19,6 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^6.5.1",
+        "@fortawesome/fontawesome-free": "^6.5.1"
     }
 }
