@@ -23,7 +23,7 @@ class PaymentTable extends Component implements HasTable, HasForms
         $query = Payment::query()
             ->join('bills', 'bill_id', '=', 'bills.id')
             ->where('payments.user_id', Auth::id())
-            ->where('payments.status', 1);
+            ->whereNotNull('paid');
 
         return $table
             ->query($query)
@@ -40,20 +40,12 @@ class PaymentTable extends Component implements HasTable, HasForms
                     ->label('Jumlah')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('info')
-                    ->label('Keterangan')
+                TextColumn::make('paid')
+                    ->label('Dibayar')
                     ->sortable()
                     ->searchable(isIndividual: true),
             ])
-            ->filters([
-                // ...
-            ])
-            ->actions([
-                // ...
-            ])
-            ->bulkActions([
-                // ...
-            ]);
+            ->defaultSort('paid', 'desc');
     }
 
     public function render(): View

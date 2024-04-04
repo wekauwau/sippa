@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Bill;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BillSeeder extends Seeder
 {
@@ -53,5 +54,21 @@ class BillSeeder extends Seeder
                 'amount' => $item[3],
             ]);
         }
+
+        for ($i = 1; $i <= 5; $i++) {
+            DB::table('bills')
+                ->where('id', $i)
+                ->update(['created_at' => "2024-0{$i}-01 00:00:00"]);
+        }
+
+        DB::table('bills')
+            ->where('id', 3)
+            ->update(['created_at' => '2024-02-20 00:00:00']);
+        DB::table('bills')
+            ->where('id', 4)
+            ->update(['created_at' => '2024-02-25 00:00:00']);
+        DB::table('bills')
+            ->where('id', 5)
+            ->update(['created_at' => '2024-03-01 00:00:00']);
     }
 }
