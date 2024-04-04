@@ -40,19 +40,6 @@ class BillTable extends Component implements HasTable, HasForms
                     ->label('Jumlah')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('info')
-                    ->label('Keterangan')
-                    ->sortable()
-                    ->searchable(isIndividual: true),
-            ])
-            ->filters([
-                // ...
-            ])
-            ->actions([
-                // ...
-            ])
-            ->bulkActions([
-                // ...
             ]);
     }
 
