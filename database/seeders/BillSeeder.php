@@ -14,30 +14,34 @@ class BillSeeder extends Seeder
     {
         $data = [
             [
+                'Syahriah bulan Januari',
+                null,
+                date_create('2024-01-10'),
+                '300.000',
+            ],
+            [
+                'Syahriah bulan Februari',
+                null,
+                date_create('2024-02-10'),
+                '300.000',
+            ],
+            [
                 'Ziarah',
                 null,
                 date_create('2024-02-29'),
-                '310.000'
+                '310.000',
             ],
             [
                 'Iuran Ramadhan',
-                'Santri di pondok: Rp110.000' .
-                    "\r\n" .
-                    'Santri di rumah (uzur): Rp85.000',
+                null,
                 date_create('2024-03-06'),
-                null,
-            ],
-            [
-                'Pembayaran kitab Ramadhan',
-                'Jumlah pembayaran sesuai kitab yang dipesan',
-                date_create('2024-03-07'),
-                null,
+                '110.000',
             ],
             [
                 'Syahriah bulan Maret',
                 null,
                 date_create('2024-03-10'),
-                '330.000',
+                '300.000',
             ],
         ];
 
