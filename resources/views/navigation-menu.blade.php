@@ -156,7 +156,22 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                Beranda
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('madin') }}" :active="request()->routeIs('madin')">
+                Madin
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('attendance') }}" :active="request()->routeIs('attendance')">
+                Kehadiran
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
+                Keuangan
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
+                Kesehatan
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
+                Pelanggaran
             </x-responsive-nav-link>
         </div>
 

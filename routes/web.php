@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\AbsentController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ViolationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,22 +32,15 @@ Route::middleware([
         [AbsentController::class, 'index']
     )->name('attendance');
 
-    Route::get(
-        'finance',
-        [PaymentController::class, 'index']
-    )->name('finance');
-
-    Route::get(
-        'payment/{status}',
-        [PaymentController::class, 'getPayments'],
-    )->name('ajax.payment');
+    Route::get('finance', function () {
+        return view('finance');
+    })->name('finance');
 
     Route::get('health', function () {
         return view('health');
     })->name('health');
 
-    Route::get(
-        'violation',
-        [ViolationController::class, 'index']
-    )->name('violation');
+    Route::get('violation', function () {
+        return view('violation');
+    })->name('violation');
 });

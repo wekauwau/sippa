@@ -7,7 +7,7 @@
                         Tagihan
                         </x-slot>
 
-                        <x-payment status="0" />
+                        <livewire:bill-table />
                 </x-header>
 
                 <x-header>
@@ -15,7 +15,7 @@
                         Riwayat Pembayaran
                         </x-slot>
 
-                        <x-payment status="1" />
+                        <livewire:payment-table />
                 </x-header>
             </div>
         </div>

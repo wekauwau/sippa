@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Sick;
+use App\Models\Violation;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Columns\TextColumn;
@@ -12,28 +12,28 @@ use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class SickTable extends Component implements HasTable, HasForms
+class ViolationTable extends Component implements HasTable, HasForms
 {
     use InteractsWithTable;
     use InteractsWithForms;
 
     public function table(Table $table): Table
     {
-        $query = Sick::query();
+        $query = Violation::query();
 
         return $table
             ->query($query)
             ->columns([
-                TextColumn::make('start')
-                    ->label('Mulai')
-                    ->sortable()
-                    ->searchable(isIndividual: true),
-                TextColumn::make('end')
-                    ->label('Sembuh')
+                TextColumn::make('date')
+                    ->label('Tanggal')
                     ->sortable()
                     ->searchable(isIndividual: true),
                 TextColumn::make('info')
                     ->label('Keterangan')
+                    ->sortable()
+                    ->searchable(isIndividual: true),
+                TextColumn::make('punishment')
+                    ->label('Takzir')
                     ->sortable()
                     ->searchable(isIndividual: true),
             ])
@@ -50,6 +50,6 @@ class SickTable extends Component implements HasTable, HasForms
 
     public function render(): View
     {
-        return view('livewire.sick-table');
+        return view('livewire.violation-table');
     }
 }
