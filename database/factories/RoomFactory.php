@@ -10,15 +10,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class RoomFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'name' => $this->faker->colorName(),
+            'name' => fake()->colorName(),
             'room_group_id' => get_ids(RoomGroup::class),
         ];
     }
