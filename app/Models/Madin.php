@@ -13,6 +13,5 @@ class Madin extends Model
         'madin_room_id',
         'lesson_id',
         'teacher_user_id',
-        'ssssss',
     ];
 }
