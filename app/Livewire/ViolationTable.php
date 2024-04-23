@@ -32,10 +32,6 @@ class ViolationTable extends Component implements HasTable, HasForms
                     ->label('Keterangan')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('punishment')
-                    ->label('Takzir')
-                    ->sortable()
-                    ->searchable(isIndividual: true),
             ])
             ->filters([
                 // ...

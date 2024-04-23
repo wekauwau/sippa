@@ -10,6 +10,5 @@ class Violation extends Model
         'student_user_id',
         'date',
         'info',
-        'punishment',
     ];
 }

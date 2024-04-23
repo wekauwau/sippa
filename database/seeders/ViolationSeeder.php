@@ -10,8 +10,8 @@ class ViolationSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            [42, date_create('2024-01-11'), 'Meninggalkan mujahadah', null],
-            [42, date_create('2024-02-01'), 'Meninggalkan madin', null],
+            [14, date_create('2024-01-11'), 'Meninggalkan mujahadah'],
+            [14, date_create('2024-02-01'), 'Meninggalkan madin'],
         ];
 
         foreach ($data as $record) {
@@ -19,8 +19,9 @@ class ViolationSeeder extends Seeder
                 'student_user_id' => $record[0],
                 'date' => $record[1],
                 'info' => $record[2],
-                'punishment' => $record[3],
             ]);
         }
+
+        Violation::factory(18)->create();
     }
 }
