@@ -10,6 +10,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class SickTable extends Component implements HasTable, HasForms
@@ -19,7 +20,8 @@ class SickTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Sick::query();
+        $query = Sick::query()
+            ->where('student_user_id', Auth::id());
 
         return $table
             ->query($query)
