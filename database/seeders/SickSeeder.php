@@ -7,14 +7,11 @@ use Illuminate\Database\Seeder;
 
 class SickSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $data = [
-            [42, date_create('2024-03-02'), date_create('2024-03-03'), 'Demam'],
-            [42, date_create('2024-3-15'), date_create('2024-03-18'), 'Radang dan batuk/pilek'],
+            [20, date_create('2024-03-02'), date_create('2024-03-03'), 'Demam'],
+            [20, date_create('2024-3-15'), date_create('2024-03-18'), 'Pusing'],
         ];
 
         foreach ($data as $record) {
@@ -25,5 +22,7 @@ class SickSeeder extends Seeder
                 'info' => $record[3],
             ]);
         }
+
+        Sick::factory(18)->create();
     }
 }

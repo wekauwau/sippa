@@ -52,7 +52,7 @@ class PaymentSeeder extends Seeder
         }
 
         DB::table('payments')
-            ->where('user_id', 42)
+            ->where('user_id', 20)
             ->where('bill_id', 5)
             ->update(['paid' => null]);
     }

@@ -11,31 +11,29 @@ class AbsentSeeder extends Seeder
     {
         $data = [
             [
-                42,
+                20,
                 '2024-02-15',
                 37,
                 'a',
-                'Mengikuti kegiatan di luar tanpa izin',
+                null,
             ],
             [
-                42,
+                20,
                 '2024-02-21',
                 39,
                 'i',
-                'Kegiatan di luar',
+                'Rapat di kampus',
             ],
         ];
 
         foreach ($data as $record) {
-            Absent::create(
-                [
-                    'user_id' => $record[0],
-                    'when' => $record[1],
-                    'madin_id' => $record[2],
-                    'status' => $record[3],
-                    'info' => $record[4],
-                ]
-            );
+            Absent::create([
+                'user_id' => $record[0],
+                'when' => $record[1],
+                'madin_id' => $record[2],
+                'status' => $record[3],
+                'info' => $record[4],
+            ]);
         }
     }
 }

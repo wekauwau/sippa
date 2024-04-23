@@ -7,44 +7,40 @@ use Illuminate\Database\Seeder;
 
 class GradeSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
+        $first_student_id = 4;
         $data = [
             [
-                'name' => '1 I\'dadiyah Putra',
-                'leader_user_id' => 2,
+                '1 I\'dadiyah Putra',
             ],
             [
-                'name' => '1 I\'dadiyah Putri',
-                'leader_user_id' => 3,
+                '1 I\'dadiyah Putri',
             ],
             [
-                'name' => '2 Awaliyah Putra',
-                'leader_user_id' => 4,
+                '2 Awaliyah Putra',
             ],
             [
-                'name' => '2 Awaliyah Putri',
-                'leader_user_id' => 5,
+                '2 Awaliyah Putri',
             ],
             [
-                'name' => '3 Wustho',
-                'leader_user_id' => 6,
+                '3 Wustho',
             ],
             [
-                'name' => '4 \'Ulya',
-                'leader_user_id' => 7,
+                '4 \'Ulya',
             ],
             [
-                'name' => '5 Takhasus',
-                'leader_user_id' => 8,
+                '5 Takhasus',
             ],
         ];
 
         foreach ($data as $record) {
-            Grade::create($record);
+            Grade::create(
+                [
+                    'name' => $record[0],
+                    'leader_user_id' => $first_student_id++,
+                ]
+            );
         }
     }
 }

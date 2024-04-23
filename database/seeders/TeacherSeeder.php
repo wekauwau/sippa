@@ -7,14 +7,11 @@ use Illuminate\Database\Seeder;
 
 class TeacherSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        for ($i = 22; $i <= 51; $i++) {
+        for ($i = 14; $i <= 43; $i++) {
             Teacher::create([
-                'user_id' => strval($i),
+                'user_id' => $i,
             ]);
         }
     }

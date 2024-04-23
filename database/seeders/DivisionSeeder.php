@@ -13,20 +13,22 @@ class DivisionSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['name' => 'Ketua'],
-            ['name' => 'Sekretaris'],
-            ['name' => 'Bendahara'],
-            ['name' => 'Kerumahtanggaan'],
-            ['name' => 'Pendidikan'],
-            ['name' => 'Kebersihan'],
-            ['name' => 'Kesehatan'],
-            ['name' => 'Keamanan'],
-            ['name' => 'Humas'],
-            ['name' => 'PMBS'],
+            'Ketua',
+            'Sekretaris',
+            'Bendahara',
+            'Kerumahtanggaan',
+            'Pendidikan',
+            'Kebersihan',
+            'Kesehatan',
+            'Keamanan',
+            'Humas',
+            'PMBS',
         ];
 
         foreach ($data as $record) {
-            Division::create($record);
+            Division::create([
+                'name' => $record,
+            ]);
         }
     }
 }

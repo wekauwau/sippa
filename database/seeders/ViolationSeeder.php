@@ -10,8 +10,8 @@ class ViolationSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            [14, date_create('2024-01-11'), 'Meninggalkan mujahadah'],
-            [14, date_create('2024-02-01'), 'Meninggalkan madin'],
+            [20, date_create('2024-01-11'), 'Meninggalkan mujahadah'],
+            [20, date_create('2024-02-01'), 'Meninggalkan madin'],
         ];
 
         foreach ($data as $record) {

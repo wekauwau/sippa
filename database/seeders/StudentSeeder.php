@@ -9,29 +9,34 @@ use Illuminate\Database\Seeder;
 
 class StudentSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        for ($i = 2; $i <= 26; $i++) {
+        $first_student_id = 4;
+
+        // grade leader (7)
+        for ($i = 1; $i <= 7; $i++) {
             Student::create([
-                'user_id' => strval($i),
+                'user_id' => $first_student_id++,
+                'room_id' => get_ids(Room::class),
+                'grade_id' => $i,
+            ]);
+        }
+
+        for ($i = $first_student_id; $i <= 51; $i++) {
+            if ($i > 23 && $i < 34) {
+                continue;
+            }
+
+            Student::create([
+                'user_id' => $i,
                 'room_id' => get_ids(Room::class),
                 'grade_id' => get_ids(Grade::class),
             ]);
         }
 
-        for ($i = 42; $i <= 49; $i++) {
-            Student::create([
-                'user_id' => strval($i),
-                'room_id' => get_ids(Room::class),
-                'grade_id' => get_ids(Grade::class),
-            ]);
-        }
-
+        // user with role: student, manager, teacher
         Student::query()
-            ->where('user_id', 42)
+            ->where('user_id', 20)
             ->update(['grade_id' => 7]);
     }
 }
