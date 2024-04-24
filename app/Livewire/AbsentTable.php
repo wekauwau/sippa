@@ -41,6 +41,6 @@ class AbsentTable extends Component implements HasTable, HasForms
 
     public function render()
     {
-        return view('livewire.absent-table');
+        return view('livewire.filament-table');
     }
 }

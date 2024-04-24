@@ -48,6 +48,6 @@ class ViolationTable extends Component implements HasTable, HasForms
 
     public function render(): View
     {
-        return view('livewire.violation-table');
+        return view('livewire.filament-table');
     }
 }

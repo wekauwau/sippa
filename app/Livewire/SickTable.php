@@ -52,6 +52,6 @@ class SickTable extends Component implements HasTable, HasForms
 
     public function render(): View
     {
-        return view('livewire.sick-table');
+        return view('livewire.filament-table');
     }
 }

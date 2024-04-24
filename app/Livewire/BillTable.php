@@ -45,6 +45,6 @@ class BillTable extends Component implements HasTable, HasForms
 
     public function render(): View
     {
-        return view('livewire.bill-table');
+        return view('livewire.filament-table');
     }
 }
