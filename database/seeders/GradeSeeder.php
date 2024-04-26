@@ -42,5 +42,8 @@ class GradeSeeder extends Seeder
                 ]
             );
         }
+
+        Grade::where('id', 7)
+            ->update(['leader_user_id' => 20]);
     }
 }
