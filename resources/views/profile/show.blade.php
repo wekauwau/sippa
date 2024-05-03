@@ -13,13 +13,7 @@
             <div class="mt-10 sm:mt-0">
                 @livewire('profile.update-password-form')
             </div>
-
-            <x-section-border />
             @endif
-
-            <div class="mt-10 sm:mt-0">
-                @livewire('profile.logout-other-browser-sessions-form')
-            </div>
         </div>
     </div>
 </x-app-layout>
