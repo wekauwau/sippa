@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('student_data', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_user_id')->constrained(
+            $table->foreignId('user_id')->constrained(
                 table: 'users',
-                indexName: 'student_data_student_user_id',
+                indexName: 'student_data_user_id',
             );
             $table->date('birth_date');
             $table->string('address');

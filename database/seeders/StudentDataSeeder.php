@@ -15,7 +15,7 @@ class StudentDataSeeder extends Seeder
             }
 
             StudentData::create([
-                'student_user_id' => $i,
+                'user_id' => $i,
                 'birth_date' => fake()
                     ->dateTimeBetween(
                         '- 30 years',
