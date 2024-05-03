@@ -43,9 +43,8 @@ class Profile extends Component
         }
 
         $roles = [$teacher, $student, $manager];
-        $this->
-            // remove false values
-            $roles = array_diff($roles, [null]);
+        // remove false values
+        $roles = array_diff($roles, [null]);
         // uppercase first letter
         $roles = array_map(
             fn ($v) => ucfirst($v),
