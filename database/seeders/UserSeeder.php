@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -11,31 +10,39 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // principal
-        User::factory(1)
+        User::factory()
             ->create([
                 'name' => fake()->name('female'),
                 'gender' => 0,
             ]);
-        User::factory(2)
-            ->create([
-                'name' => fake()->name('male'),
-                'gender' => 1,
-            ]);
+        for ($i = 0; $i < 2; $i++) {
+            User::factory()
+                ->create([
+                    'name' => fake()->name('male'),
+                    'gender' => 1,
+                ]);
+        }
 
         // student, manager
         // student, manager, teacher
-        User::factory(20)
-            ->state(new Sequence(
-                [
+        $odd = true;
+        for ($i = 0; $i < 20; $i++) {
+            $state = null;
+            if ($odd) {
+                $state = [
                     'name' => fake()->name('female'),
                     'gender' => 0,
-                ],
-                [
+                ];
+            } else {
+                $state = [
                     'name' => fake()->name('male'),
                     'gender' => 1,
-                ],
-            ))
-            ->create();
+                ];
+            }
+
+            User::factory()->create($state);
+            $odd = !$odd;
+        }
 
         // teacher
         // student, teacher
@@ -44,9 +51,8 @@ class UserSeeder extends Seeder
 
         // student (alumni)
         User::factory(10)
-            ->state([
+            ->create([
                 'active' => 0,
-            ])
-            ->create();
+            ]);
     }
 }
