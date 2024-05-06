@@ -15,6 +15,7 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         Beranda
                     </x-nav-link>
+                    @if (Auth::user())
                     <x-nav-link href="{{ route('madin') }}" :active="request()->routeIs('madin')">
                         Madin
                     </x-nav-link>
@@ -30,6 +31,7 @@
                     <x-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
                         Pelanggaran
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
 
