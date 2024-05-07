@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Lesson extends Model
 {
@@ -10,4 +11,9 @@ class Lesson extends Model
         'name',
         'info',
     ];
+
+    public function madins(): HasMany
+    {
+        return $this->hasMany(Madin::class);
+    }
 }

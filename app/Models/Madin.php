@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Madin extends Model
 {
@@ -14,4 +16,19 @@ class Madin extends Model
         'lesson_id',
         'teacher_user_id',
     ];
+
+    public function madin_room(): BelongsTo
+    {
+        return $this->belongsTo(MadinRoom::class);
+    }
+
+    public function lesson(): BelongsTo
+    {
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function teacher(): BelongsTo
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_user_id', 'user_id');
+    }
 }
