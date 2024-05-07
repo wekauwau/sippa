@@ -16,6 +16,7 @@
                         </x-slot>
 
                         <img class="w-full px-20" src="images/jadwal-madin.jpg">
+                        <livewire:madin-table />
                 </x-header>
             </div>
         </div>
