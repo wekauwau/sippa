@@ -13,7 +13,6 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use phpDocumentor\Reflection\Types\ArrayKey;
 
 class MadinTable extends Component implements HasTable, HasForms
 {
