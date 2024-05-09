@@ -17,6 +17,14 @@
 
                         <livewire:madin-table />
                 </x-header>
+
+                <x-header>
+                    <x-slot:title>
+                        Ketidakhadiran
+                        </x-slot>
+
+                        <livewire:absent-table />
+                </x-header>
             </div>
         </div>
     </div>
