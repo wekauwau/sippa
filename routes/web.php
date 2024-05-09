@@ -20,11 +20,6 @@ Route::middleware([
         return view('madin');
     })->name('madin');
 
-    Route::get(
-        'attendance',
-        [AbsentController::class, 'index']
-    )->name('attendance');
-
     Route::get('finance', function () {
         return view('finance');
     })->name('finance');
