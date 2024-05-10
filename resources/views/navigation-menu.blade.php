@@ -28,6 +28,9 @@
                     <x-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
                         Pelanggaran
                     </x-nav-link>
+                    <x-nav-link href="{{ route('secretary') }}" :active="request()->routeIs('secretary')">
+                        Sekretaris
+                    </x-nav-link>
                     @endif
                 </div>
             </div>
