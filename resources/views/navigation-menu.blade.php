@@ -28,9 +28,11 @@
                     <x-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
                         Pelanggaran
                     </x-nav-link>
+                    @if (Auth::user()->manager->division->name == 'Sekretaris')
                     <x-nav-link href="{{ route('secretary') }}" :active="request()->routeIs('secretary')">
                         Sekretaris
                     </x-nav-link>
+                    @endif
                     @endif
                 </div>
             </div>
