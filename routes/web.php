@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsentController;
+use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 
 // assets
@@ -31,4 +32,9 @@ Route::middleware([
     Route::get('violation', function () {
         return view('violation');
     })->name('violation');
+
+    Route::get('secretary', function () {
+        return view('secretary');
+    })->middleware(CheckRole::class)
+        ->name('secretary');
 });
