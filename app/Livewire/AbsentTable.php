@@ -9,6 +9,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AbsentTable extends Component implements HasTable, HasForms
@@ -18,7 +19,8 @@ class AbsentTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Absent::query();
+        $query = Absent::query()
+            ->where('user_id', Auth::id());
 
         return $table
             ->query($query)
