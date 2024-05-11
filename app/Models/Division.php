@@ -11,7 +11,7 @@ class Division extends Model
         'name',
     ];
 
-    public function manager(): HasMany
+    public function managers(): HasMany
     {
         return $this->hasMany(Manager::class);
     }
