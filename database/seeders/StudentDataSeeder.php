@@ -14,17 +14,10 @@ class StudentDataSeeder extends Seeder
                 continue;
             }
 
-            StudentData::create([
-                'user_id' => $i,
-                'birth_date' => fake()
-                    ->dateTimeBetween(
-                        '- 30 years',
-                        '- 17 years',
-                    ),
-                'address' => fake()->address(),
-                'father_name' => fake()->name('male'),
-                'mother_name' => fake()->name('female'),
-            ]);
+            StudentData::factory()
+                ->create([
+                    'user_id' => $i,
+                ]);
         }
     }
 }

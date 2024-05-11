@@ -3,17 +3,28 @@
 namespace App\Models;
 
 use App\Traits\HasMyFind;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StudentData extends Model
 {
+    use HasFactory;
     use HasMyFind;
 
     protected $fillable = [
         'user_id',
+        'phone_number',
         'birth_date',
         'address',
         'father_name',
+        'father_phone_number',
         'mother_name',
+        'mother_phone_number',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
