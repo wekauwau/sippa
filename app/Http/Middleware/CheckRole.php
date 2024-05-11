@@ -16,8 +16,10 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->manager->division->name == 'Sekretaris') {
-            return $next($request);
+        if (Auth::user()->manager) {
+            if (Auth::user()->manager->division->name == 'Sekretaris') {
+                return $next($request);
+            }
         }
 
         return redirect()->back();
