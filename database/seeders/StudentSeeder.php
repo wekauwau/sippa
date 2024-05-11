@@ -22,7 +22,7 @@ class StudentSeeder extends Seeder
             ]);
         }
 
-        for ($i = $first_student_id; $i <= 51; $i++) {
+        for ($i = $first_student_id; $i <= 60; $i++) {
             if ($i > 23 && $i < 34) {
                 continue;
             }

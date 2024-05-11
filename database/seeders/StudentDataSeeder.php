@@ -9,7 +9,7 @@ class StudentDataSeeder extends Seeder
 {
     public function run(): void
     {
-        for ($i = 4; $i <= 50; $i++) {
+        for ($i = 4; $i <= 60; $i++) {
             if ($i > 23 && $i < 34) {
                 continue;
             }
