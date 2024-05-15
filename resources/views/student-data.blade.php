@@ -1,7 +1,7 @@
 <x-views.table>
     <x-header>
         <x-slot:title>
-            Sekretaris
+            Data Santri
             </x-slot>
 
             <livewire:student-data-table />

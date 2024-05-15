@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbsentController;
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\RedirectIfAManager;
 use Illuminate\Support\Facades\Route;
 
 // assets
@@ -33,8 +34,8 @@ Route::middleware([
         return view('violation');
     })->name('violation');
 
-    Route::get('secretary', function () {
-        return view('secretary');
-    })->middleware(CheckRole::class)
-        ->name('secretary');
+    Route::get('student-data', function () {
+        return view('student-data');
+    })->middleware(RedirectIfAManager::class)
+        ->name('student-data');
 });

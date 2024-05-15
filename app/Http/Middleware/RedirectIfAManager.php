@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckRole
+class RedirectIfAManager
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,7 @@ class CheckRole
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()->manager) {
-            if (Auth::user()->manager->division->name == 'Sekretaris') {
-                return $next($request);
-            }
+            return $next($request);
         }
 
         return redirect()->back();

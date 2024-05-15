@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\StudentData;
+use App\Traits\StudentDataTable\Actions;
+use App\Traits\StudentDataTable\Columns;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Columns\Layout\Grid;
@@ -21,50 +23,8 @@ class StudentDataTable extends Component implements HasTable, HasForms
 {
     use InteractsWithTable;
     use InteractsWithForms;
-
-    private function getPhoneNumber(): TextColumn
-    {
-        return TextColumn::make('phone_number')
-            ->label('Nomor')
-            ->sortable()
-            ->searchable();
-    }
-
-    private function getBirthDate(): TextColumn
-    {
-        return TextColumn::make('birth_date')
-            ->label('Tanggal Lahir')
-            ->sortable()
-            ->searchable();
-    }
-
-    private function getFather(): Stack
-    {
-        return Stack::make([
-            TextColumn::make('father_name')
-                ->label('Nama Ayah')
-                ->sortable()
-                ->searchable(),
-            TextColumn::make('father_phone_number')
-                ->label('Nomor Ayah')
-                ->sortable()
-                ->searchable(),
-        ]);
-    }
-
-    private function getMother(): Stack
-    {
-        return Stack::make([
-            TextColumn::make('mother_name')
-                ->label('Nama Ibu')
-                ->sortable()
-                ->searchable(),
-            TextColumn::make('mother_phone_number',)
-                ->label('Nomor Ibu')
-                ->sortable()
-                ->searchable(),
-        ]);
-    }
+    use Columns;
+    use Actions;
 
     public function table(Table $table): Table
     {
@@ -74,22 +34,13 @@ class StudentDataTable extends Component implements HasTable, HasForms
                 $query->where('active', 1);
             });
 
-        $student = Stack::make([
-            TextColumn::make('user.name')
-                ->label('Nama')
-                ->sortable()
-                ->searchable(),
-            TextColumn::make('user.username')
-                ->label('Username')
-                ->sortable()
-                ->searchable(),
-            $this->getPhoneNumber()
-                ->hiddenFrom('xl'),
-            $this->getBirthDate()
-                ->hiddenFrom('xl'),
-        ]);
-
         return $table
+            ->actions([
+                $this->getCreate(),
+            ])
+            ->headerActions([
+                $this->getCreate(),
+            ])
             ->query($query)
             ->columns([
                 Grid::make([
@@ -97,7 +48,7 @@ class StudentDataTable extends Component implements HasTable, HasForms
                     'lg' => 4,
                     'xl' => 16,
                 ])->schema([
-                    $student
+                    $this->getStudent()
                         ->columnSpan([
                             'xl' => 3,
                         ]),

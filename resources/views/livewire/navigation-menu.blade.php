@@ -51,8 +51,8 @@
                     @if (Auth::user())
                     <!-- Is a manager -->
                     @if ($division_name)
-                    <x-nav-link href="{{ route('secretary') }}" :active="request()->routeIs('secretary')">
-                        Sekretaris
+                    <x-nav-link href="{{ route('student-data') }}" :active="request()->routeIs('student-data')">
+                        Data Santri
                     </x-nav-link>
                     @endif
                     @endif
