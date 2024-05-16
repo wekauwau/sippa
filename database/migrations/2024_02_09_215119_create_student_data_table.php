@@ -15,7 +15,6 @@ return new class extends Migration
                     table: 'users',
                     indexName: 'student_data_user_id',
                 );
-            $table->string('phone_number');
             $table->date('birth_date');
             $table->string('address');
             $table->string('father_name');

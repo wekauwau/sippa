@@ -13,7 +13,6 @@ class StudentDataFactory extends Factory
     {
         return [
             'user_id' => 0,
-            'phone_number' => fake()->phoneNumber(),
             'birth_date' => fake()
                 ->dateTimeBetween(
                     '- 30 years',

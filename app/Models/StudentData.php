@@ -14,7 +14,6 @@ class StudentData extends Model
 
     protected $fillable = [
         'user_id',
-        'phone_number',
         'birth_date',
         'address',
         'father_name',

@@ -9,7 +9,7 @@ trait Columns
 {
     private function getPhoneNumber(): TextColumn
     {
-        return TextColumn::make('phone_number')
+        return TextColumn::make('user.phone')
             ->label('Nomor')
             ->sortable()
             ->searchable();
