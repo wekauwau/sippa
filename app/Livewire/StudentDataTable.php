@@ -16,7 +16,6 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class StudentDataTable extends Component implements HasTable, HasForms
@@ -35,9 +34,6 @@ class StudentDataTable extends Component implements HasTable, HasForms
             });
 
         return $table
-            ->actions([
-                $this->getCreate(),
-            ])
             ->headerActions([
                 $this->getCreate(),
             ])
