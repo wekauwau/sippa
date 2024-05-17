@@ -9,6 +9,8 @@ class Student extends Model
 {
     use HasMyFind;
 
+    protected $primaryKey = 'user_id';
+
     protected $fillable = [
         'user_id',
         'room_id',
