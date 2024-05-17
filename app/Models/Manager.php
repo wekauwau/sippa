@@ -10,8 +10,10 @@ class Manager extends Model
 {
     use HasMyFind;
 
+    protected $primaryKey = 'student_id';
+
     protected $fillable = [
-        'user_id',
+        'student_id',
         'division_id',
     ];
 
