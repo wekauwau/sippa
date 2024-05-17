@@ -12,8 +12,10 @@ class StudentData extends Model
     use HasFactory;
     use HasMyFind;
 
+    protected $primaryKey = 'student_id';
+
     protected $fillable = [
-        'user_id',
+        'student_id',
         'birth_date',
         'address',
         'father_name',

@@ -9,12 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('student_data', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')
-                ->constrained(
-                    table: 'users',
-                    indexName: 'student_data_user_id',
-                );
+            $table->foreignId('student_id')
+                ->primary()
+                ->constrained();
             $table->date('birth_date');
             $table->string('address');
             $table->string('father_name');
