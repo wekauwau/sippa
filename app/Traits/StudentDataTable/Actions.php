@@ -2,9 +2,11 @@
 
 namespace App\Traits\StudentDataTable;
 
+use App\Models\Room;
 use App\Models\StudentData;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables\Actions\CreateAction;
@@ -61,6 +63,19 @@ trait Actions
         ];
 
         $student = [
+            Select::make('room_id')
+                ->label('Kamar')
+                ->searchable()
+                ->getSearchResultsUsing(function (): array {
+                    $a = Room::all()->pluck('name_with_room_group')->toArray();
+                    error_log(json_encode($a));
+                    return $a;
+                }),
+            // ->getSearchResultsUsing(fn (string $search): array => User::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray())
+            // ->getOptionLabelUsing(fn ($value): ?string => User::find($value)?->name),
+        ];
+
+        $student_data = [
             DatePicker::make('birth_date')
                 ->label('Tanggal Lahir')
                 ->native(false)
@@ -88,6 +103,7 @@ trait Actions
             ->label('Tambah')
             ->form([
                 ...$user,
+                ...$student_data,
                 ...$student,
             ])
             ->modalHeading('Tambah Santri')
@@ -99,7 +115,6 @@ trait Actions
                 $data['phone'] = "0{$data['phone']}";
                 $data['password'] = Hash::make($data['password']);
 
-                $data['phone_number'] = ''; // TODO: remove
                 $data['address'] = trim($data['address']);
                 $data['father_name'] = trim($data['father_name']);
                 $data['mother_name'] = trim($data['mother_name']);
