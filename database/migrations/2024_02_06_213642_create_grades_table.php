@@ -11,10 +11,11 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('leader_user_id')->constrained(
-                table: 'users',
-                indexName: 'grades_leader_user_id',
-            );
+            $table->foreignId('leader_user_id')
+                ->constrained(
+                    table: 'users',
+                    indexName: 'grades_leader_user_id',
+                );
             $table->timestamps();
         });
     }
