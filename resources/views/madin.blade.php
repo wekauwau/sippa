@@ -8,7 +8,7 @@
                         Jadwal Mengajar Saya
                         </x-slot>
 
-                        <x-my-madin-schedule :userid="Auth::id()" />
+                        <x-my-madin-schedule />
                 </x-header>
                 @endif
 
