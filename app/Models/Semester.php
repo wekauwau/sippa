@@ -10,5 +10,6 @@ class Semester extends Model
         'start',
         'end',
         'isEven',
+        'active',
     ];
 }

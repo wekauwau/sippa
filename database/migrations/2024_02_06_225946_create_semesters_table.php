@@ -13,6 +13,7 @@ return new class extends Migration
             $table->year('start');
             $table->year('end');
             $table->boolean('isEven');
+            $table->boolean('active');
             $table->timestamps();
         });
     }
