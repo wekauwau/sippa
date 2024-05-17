@@ -12,19 +12,13 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class MadinTable extends Component implements HasTable, HasForms
 {
     use InteractsWithTable;
     use InteractsWithForms;
-
-    private function getGrades()
-    {
-        return Grade::all()
-            ->pluck('name', 'id')
-            ->toArray();
-    }
 
     public function table(Table $table): Table
     {
@@ -34,6 +28,8 @@ class MadinTable extends Component implements HasTable, HasForms
             ->with('lesson')
             ->with('teacher')
             ->where('semester_id', 1);
+
+        $student = Auth::user()->student;
 
         return $table
             ->query($query)
@@ -50,8 +46,14 @@ class MadinTable extends Component implements HasTable, HasForms
             ->filters([
                 SelectFilter::make('grade_id')
                     ->label('Kelas')
-                    ->options($this->getGrades())
-                    ->default(7)
+                    ->options(
+                        Grade::all()
+                            ->pluck('name', 'id')
+                            ->toArray(),
+                    )
+                    ->default(
+                        $student ? $student->grade_id : 1
+                    )
                     ->selectablePlaceholder(false)
             ]);
     }
