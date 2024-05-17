@@ -16,7 +16,7 @@ class StudentDataSeeder extends Seeder
 
             StudentData::factory()
                 ->create([
-                    'user_id' => $i,
+                    'student_user_id' => $i,
                 ]);
         }
     }

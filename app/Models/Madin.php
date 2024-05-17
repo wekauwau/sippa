@@ -16,6 +16,11 @@ class Madin extends Model
         'teacher_user_id',
     ];
 
+    public function grade(): BelongsTo
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
     public function madin_room(): BelongsTo
     {
         return $this->belongsTo(MadinRoom::class);

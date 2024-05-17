@@ -29,10 +29,10 @@ class MadinTable extends Component implements HasTable, HasForms
     public function table(Table $table): Table
     {
         $query = Madin::query()
-            ->join('grades', 'grade_id', '=', 'grades.id')
-            ->join('madin_rooms', 'madin_room_id', '=', 'madin_rooms.id')
-            ->join('lessons', 'lesson_id', '=', 'lessons.id')
-            ->join('teachers', 'teacher_user_id', '=', 'teachers.user_id')
+            ->with('grade')
+            ->with('madin_room')
+            ->with('lesson')
+            ->with('teacher')
             ->where('semester_id', 1);
 
         return $table
@@ -48,8 +48,8 @@ class MadinTable extends Component implements HasTable, HasForms
                     ->label('Tempat'),
             ])
             ->filters([
-                SelectFilter::make('kelas')
-                    ->attribute('grade_id')
+                SelectFilter::make('grade_id')
+                    ->label('Kelas')
                     ->options($this->getGrades())
                     ->default(7)
                     ->selectablePlaceholder(false)

@@ -28,7 +28,7 @@ class AbsentSeeder extends Seeder
 
         foreach ($data as $record) {
             Absent::create([
-                'user_id' => $record[0],
+                'student_user_id' => $record[0],
                 'when' => $record[1],
                 'madin_id' => $record[2],
                 'status' => $record[3],
