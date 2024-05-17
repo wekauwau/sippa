@@ -11,6 +11,8 @@ class Teacher extends Model
 {
     use HasMyFind;
 
+    protected $primaryKey = 'user_id';
+
     protected $fillable = [
         'user_id',
     ];
