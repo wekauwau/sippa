@@ -7,11 +7,8 @@ use Illuminate\Database\Seeder;
 
 class RoomSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Room::factory(10)->create();
+        Room::factory(30)->create();
     }
 }
