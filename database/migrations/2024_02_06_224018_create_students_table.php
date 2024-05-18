@@ -12,8 +12,12 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->primary()
                 ->constrained();
-            $table->foreignId('room_id')->constrained();
-            $table->foreignId('grade_id')->constrained();
+            $table->foreignId('room_id')
+                ->nullable()
+                ->constrained();
+            $table->foreignId('grade_id')
+                ->nullable()
+                ->constrained();
             $table->timestamps();
         });
     }

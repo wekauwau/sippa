@@ -2,7 +2,9 @@
 
 namespace App\Traits\StudentDataTable;
 
+use App\Models\Grade;
 use App\Models\Room;
+use App\Models\Student;
 use App\Models\StudentData;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
@@ -11,7 +13,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables\Actions\CreateAction;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Hash;
 
 trait Actions
@@ -63,30 +64,36 @@ trait Actions
                 ->grouped(),
         ];
 
+        $room_options = Room::all()->pluck('name_with_room_group', 'id');
+        $grade_options = Grade::all()->pluck('name', 'id');
+
         $student = [
             Select::make('room_id')
                 ->label('Kamar')
+                ->native(false)
+                ->options($room_options)
                 ->searchable()
                 ->getSearchResultsUsing(
-                    function (string $search): array {
-                        return Room::where('name', 'like', "%{$search}%")
-                            ->orWhereHas(
-                                'room_group',
-                                function (Builder $query) use ($search) {
-                                    $query->where('name', 'like', "%{$search}%");
-                                }
-                            )
-                            ->limit(10)
-                            ->get()
-                            ->pluck('name_with_room_group', 'id')
+                    function (string $search) use ($room_options): array {
+                        return $room_options
+                            ->filter(function ($item) use ($search) {
+                                return false !== stripos(
+                                    $item,
+                                    $search
+                                );
+                            })
                             ->toArray();
                     }
                 )
                 ->getOptionLabelUsing(
-                    function ($value): string {
-                        return Room::find($value)->name_with_room_group;
+                    function ($value) use ($room_options): string {
+                        return $room_options[$value];
                     }
                 ),
+            Select::make('grade_id')
+                ->label('Kelas')
+                ->native(false)
+                ->options($grade_options),
         ];
 
         $student_data = [
@@ -100,7 +107,8 @@ trait Actions
                 ->minDate(now()->subYears(30))
                 ->maxDate(now()->subYears(15)),
             $this->getTextInput('address')
-                ->label('Alamat'),
+                ->label('Alamat')
+                ->required(),
             $this->getTextInput('father_name')
                 ->label('Nama Ayah')
                 ->required(),
@@ -139,6 +147,9 @@ trait Actions
                 $user = User::create($data);
 
                 $data['user_id'] = intval($user->id);
+                Student::create($data);
+
+                $data['student_user_id'] = intval($user->id);
                 StudentData::create($data);
 
                 return $user;
