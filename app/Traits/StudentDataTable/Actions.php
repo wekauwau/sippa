@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables\Actions\CreateAction;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Hash;
 
 trait Actions
@@ -66,13 +67,26 @@ trait Actions
             Select::make('room_id')
                 ->label('Kamar')
                 ->searchable()
-                ->getSearchResultsUsing(function (): array {
-                    $a = Room::all()->pluck('name_with_room_group')->toArray();
-                    error_log(json_encode($a));
-                    return $a;
-                }),
-            // ->getSearchResultsUsing(fn (string $search): array => User::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray())
-            // ->getOptionLabelUsing(fn ($value): ?string => User::find($value)?->name),
+                ->getSearchResultsUsing(
+                    function (string $search): array {
+                        return Room::where('name', 'like', "%{$search}%")
+                            ->orWhereHas(
+                                'room_group',
+                                function (Builder $query) use ($search) {
+                                    $query->where('name', 'like', "%{$search}%");
+                                }
+                            )
+                            ->limit(10)
+                            ->get()
+                            ->pluck('name_with_room_group', 'id')
+                            ->toArray();
+                    }
+                )
+                ->getOptionLabelUsing(
+                    function ($value): string {
+                        return Room::find($value)->name_with_room_group;
+                    }
+                ),
         ];
 
         $student_data = [

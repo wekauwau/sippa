@@ -22,6 +22,7 @@ class StudentDataTable extends Component implements HasTable, HasForms
 {
     use InteractsWithTable;
     use InteractsWithForms;
+
     use Columns;
     use Actions;
 
