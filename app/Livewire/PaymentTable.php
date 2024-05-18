@@ -21,22 +21,22 @@ class PaymentTable extends Component implements HasTable, HasForms
     public function table(Table $table): Table
     {
         $query = Payment::query()
-            ->join('bills', 'bill_id', '=', 'bills.id')
-            ->where('payments.user_id', Auth::id())
+            ->with('bill')
+            ->where('student_user_id', Auth::id())
             ->whereNotNull('paid');
 
         return $table
             ->query($query)
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('bill.name')
                     ->label('Nama')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('deadline')
+                TextColumn::make('bill.deadline')
                     ->label('Batas')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('amount')
+                TextColumn::make('bill.amount')
                     ->label('Jumlah')
                     ->sortable()
                     ->searchable(isIndividual: true),
