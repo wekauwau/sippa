@@ -2,12 +2,6 @@
 
 namespace App\View\Components\Cards;
 
-use App\Models\Division;
-use App\Models\Grade;
-use App\Models\Manager;
-use App\Models\Student;
-use App\Models\StudentData;
-use App\Models\Teacher;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -16,29 +10,26 @@ use Illuminate\View\Component;
 class Profile extends Component
 {
     public object $user;
-    private ?object $student;
-    private ?object $student_data;
 
     public string $pfpUrl;
     public string $name;
     public string $roles;
-    public string $madin;
+    public ?string $grade = null;
     public string $phone;
-    public string $address;
+    public ?string $address = null;
 
     private function getRoles(): void
     {
-        $teacher = Teacher::my_find($this->user->id) ? 'ustaz' : null;
-        $this->student = Student::my_find($this->user->id);
-        $student = $this->student ? 'santri' : null;
+        $teacher = $this->user->teacher ? 'ustaz' : null;
+        $student = $this->user->student ? 'santri' : null;
         $manager = null;
 
         if ($student) {
-            $manager = Manager::my_find($this->user->id);
+            $manager = $this->user->manager;
 
             if ($manager) {
-                $division = Division::find($manager->division_id);
-                $manager = "pengurus ({$division->name})";
+                $division_name = $manager->division->name;
+                $manager = "pengurus ({$division_name})";
             }
         }
 
@@ -55,11 +46,11 @@ class Profile extends Component
 
     private function getMadin(): void
     {
-        $grade = Grade::find($this->student->grade_id);
-        $this->madin = $grade->name;
+        $grade = $this->user->student->grade;
+        $this->grade = $grade->name;
 
         if ($grade->leader_user_id == $this->user->id)
-            $this->madin .= " (ketua)";
+            $this->grade .= " (ketua)";
     }
 
     public function __construct()
@@ -71,11 +62,12 @@ class Profile extends Component
         );
         $this->name = $this->user->name;
         $this->getRoles();
-        if ($this->student) {
+        $this->phone = $this->user->phone;
+
+        if ($this->user->student) {
             $this->getMadin();
-            $this->student_data = StudentData::my_find($this->user->id);
-            $this->address = $this->student_data->address;
-            $this->phone = $this->user->phone;
+            $student_data = $this->user->student_data;
+            $this->address = $student_data->address;
         }
     }
 
