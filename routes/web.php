@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\AbsentController;
-use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\RedirectIfAManager;
 use Illuminate\Support\Facades\Route;
 
