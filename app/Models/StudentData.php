@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\HasMyFind;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class StudentData extends Model
 {
     use HasFactory;
-    use HasMyFind;
 
     protected $primaryKey = 'student_user_id';
 
