@@ -20,9 +20,9 @@ class StudentDataFactory extends Factory
                 ),
             'address' => fake()->address(),
             'father_name' => fake()->name('male'),
-            'father_phone_number' => fake()->phoneNumber(),
+            'father_phone_number' => fake()->numerify('08##########'),
             'mother_name' => fake()->name('female'),
-            'mother_phone_number' => fake()->phoneNumber(),
+            'mother_phone_number' => fake()->numerify('08##########'),
         ];
     }
 }
