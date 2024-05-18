@@ -16,6 +16,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class StudentDataTable extends Component implements HasTable, HasForms
@@ -34,10 +35,12 @@ class StudentDataTable extends Component implements HasTable, HasForms
                 $query->where('active', 1);
             });
 
+        // Add header actions for secretary
+        if (Auth::user()->manager->division->name == 'Sekretaris') {
+            $table->headerActions([$this->getCreate()]);
+        }
+
         return $table
-            ->headerActions([
-                $this->getCreate(),
-            ])
             ->query($query)
             ->columns([
                 Grid::make([
