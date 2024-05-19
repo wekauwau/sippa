@@ -12,6 +12,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,7 +35,14 @@ trait Actions
             ->maxLength(13);
     }
 
-    private function getCreate()
+    private function getActions(): array
+    {
+        return [
+            DeleteAction::make(),
+        ];
+    }
+
+    private function getHeaderActions(): array
     {
         $user = [
             $this->getTextInput('name')
@@ -121,38 +129,40 @@ trait Actions
                 ->label('Nomor HP Ibu'),
         ];
 
-        return CreateAction::make()
-            ->label('Tambah')
-            ->form([
-                ...$user,
-                ...$student_data,
-                ...$student,
-            ])
-            ->modalHeading('Tambah Santri')
-            ->mutateFormDataUsing(function (array $data): array {
-                $data['name'] = trim($data['name']);
-                $data['username'] = trim($data['username']);
-                // Remove whitespaces
-                $data['phone'] = preg_replace('/\s+/', '', $data['phone']);
-                $data['phone'] = "0{$data['phone']}";
-                $data['password'] = Hash::make($data['password']);
+        return [
+            CreateAction::make()
+                ->label('Tambah')
+                ->form([
+                    ...$user,
+                    ...$student_data,
+                    ...$student,
+                ])
+                ->modalHeading('Tambah Santri')
+                ->mutateFormDataUsing(function (array $data): array {
+                    $data['name'] = trim($data['name']);
+                    $data['username'] = trim($data['username']);
+                    // Remove whitespaces
+                    $data['phone'] = preg_replace('/\s+/', '', $data['phone']);
+                    $data['phone'] = "0{$data['phone']}";
+                    $data['password'] = Hash::make($data['password']);
 
-                $data['address'] = trim($data['address']);
-                $data['father_name'] = trim($data['father_name']);
-                $data['mother_name'] = trim($data['mother_name']);
+                    $data['address'] = trim($data['address']);
+                    $data['father_name'] = trim($data['father_name']);
+                    $data['mother_name'] = trim($data['mother_name']);
 
-                return $data;
-            })
-            ->using(function (array $data): Model {
-                $user = User::create($data);
+                    return $data;
+                })
+                ->using(function (array $data): Model {
+                    $user = User::create($data);
 
-                $data['user_id'] = intval($user->id);
-                Student::create($data);
+                    $data['user_id'] = intval($user->id);
+                    Student::create($data);
 
-                $data['student_user_id'] = intval($user->id);
-                StudentData::create($data);
+                    $data['student_user_id'] = intval($user->id);
+                    StudentData::create($data);
 
-                return $user;
-            });
+                    return $user;
+                })
+        ];
     }
 }

@@ -37,7 +37,9 @@ class StudentDataTable extends Component implements HasTable, HasForms
 
         // Add header actions for secretary
         if (Auth::user()->manager->division->name == 'Sekretaris') {
-            $table->headerActions([$this->getCreate()]);
+            $table
+                ->headerActions($this->getHeaderActions())
+                ->actions($this->getActions());
         }
 
         return $table
@@ -97,7 +99,8 @@ class StudentDataTable extends Component implements HasTable, HasForms
                             'xl' => 3,
                         ]),
                 ]),
-            ]);
+            ])
+            ->defaultSort('student_user_id', 'desc');
     }
 
     public function render(): View

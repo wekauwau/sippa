@@ -22,6 +22,18 @@ class StudentData extends Model
         'mother_phone_number',
     ];
 
+    protected static function booted(): void
+    {
+        static::deleted(
+            function (StudentData $attributes) {
+                $id = $attributes->student_user_id;
+
+                Student::destroy($id);
+                User::destroy($id);
+            }
+        );
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'student_user_id');
