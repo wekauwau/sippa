@@ -13,19 +13,15 @@ class ViolationFactory extends Factory
         'Tidak melaksanakan piket hari Minggu',
     ];
 
-    private function getRandomInfos()
-    {
-        $random_index = random_int(0, count($this->infos) - 1);
-        return $this->infos[$random_index];
-    }
-
     public function definition(): array
     {
+        $random_index = random_int(0, count($this->infos) - 1);
+        $random_info = $this->infos[$random_index];
 
         return [
             'student_user_id' => get_random_user_id(Student::class),
             'date' => fake()->dateTimeThisYear('yesterday'),
-            'info' => $this->getRandomInfos(),
+            'info' => $random_info,
         ];
     }
 }
