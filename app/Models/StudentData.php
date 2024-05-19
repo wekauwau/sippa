@@ -34,11 +34,11 @@ class StudentData extends Model
                 Violation::where('student_user_id', $id)
                     ->delete();
                 Student::destroy($id);
+                Absent::where('student_user_id', $id)
+                    ->delete();
                 Madin::where('teacher_user_id', $id)
                     ->delete();
                 Teacher::destroy($id);
-                Absent::where('student_user_id', $id)
-                    ->delete();
                 Grade::where('leader_user_id', $id)
                     ->update(['leader_user_id' => null]);
                 Payment::where('student_user_id', $id)
