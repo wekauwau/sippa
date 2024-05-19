@@ -28,7 +28,22 @@ class StudentData extends Model
             function (StudentData $attributes) {
                 $id = $attributes->student_user_id;
 
+                Manager::destroy($id);
+                Sick::where('student_user_id', $id)
+                    ->delete();
+                Violation::where('student_user_id', $id)
+                    ->delete();
                 Student::destroy($id);
+                Madin::where('teacher_user_id', $id)
+                    ->delete();
+                Teacher::destroy($id);
+                Absent::where('student_user_id', $id)
+                    ->delete();
+                Grade::where('leader_user_id', $id)
+                    ->update(['leader_user_id' => null]);
+                Payment::where('student_user_id', $id)
+                    ->delete();
+
                 User::destroy($id);
             }
         );
