@@ -17,6 +17,7 @@
 
     <!-- Styles -->
     @livewireStyles
+    @filamentStyles
 </head>
 
 <body>
@@ -25,6 +26,9 @@
     </div>
 
     @livewireScripts
+    @filamentScripts
 </body>
+
+@stack('scripts')
 
 </html>
