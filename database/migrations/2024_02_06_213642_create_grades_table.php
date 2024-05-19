@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('leader_user_id')
+                ->nullable()
                 ->constrained(
                     table: 'users',
                     indexName: 'grades_leader_user_id',
