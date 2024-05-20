@@ -9,7 +9,7 @@ class ManagerSeeder extends Seeder
 {
     public function run(): void
     {
-        $first_manager = 4;
+        $first_manager = 1;
         $divisions_total = 10;
 
         // 2 manager for each division

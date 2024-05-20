@@ -50,24 +50,21 @@ class User extends Authenticatable
     protected static function booted(): void
     {
         static::deleting(
-            function (User $record) {
-                $id = $record->getKey();
+            function (User $user) {
+                $student = $user->student;
 
-                $record->student->delete();
-                $record->manager->delete();
-                $record->payments->delete();
-                $record->sicks->delete();
-                $record->violations->delete();
-                $record->absents->delete();
-
-                $record->teach_madins->delete();
-                $record->teacher->delete();
-
-                $grade = $record->grade_leader_of;
-                if ($grade) {
-                    $grade->leader_user_id = null;
-                    $grade->save();
-                }
+                $student->absents()->delete();
+                $student->payments()->delete();
+                $student->sicks()->delete();
+                $student->violations()->delete();
+                $user->teacher->madins()
+                    ->update(['teacher_id' => null]);
+                $user->teacher()->delete();
+                $student->manager()->delete();
+                $student->student_data()->delete();
+                $user->grade_leader()
+                    ->update(['leader_user_id' => null]);
+                $user->student()->delete();
             }
         );
     }

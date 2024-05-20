@@ -11,8 +11,10 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,13 +35,6 @@ trait Actions
             ->mask('999 9999 9999')
             ->minLength(12)
             ->maxLength(13);
-    }
-
-    private function getActions(): array
-    {
-        return [
-            DeleteAction::make(),
-        ];
     }
 
     private function getHeaderActions(): array
@@ -162,6 +157,23 @@ trait Actions
                     StudentData::create($data);
 
                     return $user;
+                })
+        ];
+    }
+
+    private function getBulkActions(): array
+    {
+        return [
+            DeleteBulkAction::make()
+        ];
+    }
+
+    private function getActions(): array
+    {
+        return [
+            DeleteAction::make()
+                ->after(function ($record) {
+                    User::destroy($record->getKey());
                 })
         ];
     }

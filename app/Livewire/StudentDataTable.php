@@ -39,6 +39,7 @@ class StudentDataTable extends Component implements HasTable, HasForms
         if (Auth::user()->manager->division->name == 'Sekretaris') {
             $table
                 ->headerActions($this->getHeaderActions())
+                ->bulkActions($this->getBulkActions())
                 ->actions($this->getActions());
         }
 
