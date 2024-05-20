@@ -21,7 +21,7 @@ class ViolationTable extends Component implements HasTable, HasForms
     public function table(Table $table): Table
     {
         $query = Violation::query()
-            ->where('student_user_id', Auth::id());
+            ->where('student_id', Auth::id());
 
         return $table
             ->query($query)

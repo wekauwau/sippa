@@ -22,9 +22,8 @@ class BillTable extends Component implements HasTable, HasForms
     {
         $query = Payment::query()
             ->with('bill')
-            ->where('student_user_id', Auth::id())
+            ->where('student_id', Auth::id())
             ->whereNull('paid');
-        error_log(json_encode($query->get()));
 
         return $table
             ->query($query)

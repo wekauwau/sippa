@@ -22,7 +22,7 @@ class PaymentTable extends Component implements HasTable, HasForms
     {
         $query = Payment::query()
             ->with('bill')
-            ->where('student_user_id', Auth::id())
+            ->where('student_id', Auth::id())
             ->whereNotNull('paid');
 
         return $table
