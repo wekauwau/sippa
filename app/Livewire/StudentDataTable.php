@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\StudentData;
+use App\Models\User;
 use App\Traits\StudentDataTable\Actions;
 use App\Traits\StudentDataTable\Columns;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -15,7 +15,6 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -30,13 +29,20 @@ class StudentDataTable extends Component implements HasTable, HasForms
     public function table(Table $table): Table
     {
         // Querying active students
-        $query = StudentData::query()
-            ->whereHas('user', function (Builder $query) {
-                $query->where('active', 1);
-            });
+        // $query = StudentData::query()
+        //     ->whereHas('user', function (Builder $query) {
+        //         $query->where('active', 1);
+        //     });
+        $query = User::where('active', 1)
+            ->withWhereHas('student.student_data')
+            ->get()
+            ->toQuery();
 
         // Add header actions for secretary
-        if (Auth::user()->manager->division->name == 'Sekretaris') {
+        if (
+            Auth::user()->student
+            ?->manager?->division?->name == 'Sekretaris'
+        ) {
             $table
                 ->headerActions($this->getHeaderActions())
                 ->bulkActions($this->getBulkActions())
@@ -65,7 +71,7 @@ class StudentDataTable extends Component implements HasTable, HasForms
                         ->columnSpan([
                             'xl' => 2,
                         ]),
-                    TextColumn::make('address')
+                    TextColumn::make('student.student_data.address')
                         ->label('Alamat')
                         ->sortable()
                         ->searchable()
@@ -101,7 +107,7 @@ class StudentDataTable extends Component implements HasTable, HasForms
                         ]),
                 ]),
             ])
-            ->defaultSort('student_user_id', 'desc');
+            ->defaultSort('id', 'desc');
     }
 
     public function render(): View

@@ -53,18 +53,22 @@ class User extends Authenticatable
             function (User $user) {
                 $student = $user->student;
 
-                $student->absents()->delete();
-                $student->payments()->delete();
-                $student->sicks()->delete();
-                $student->violations()->delete();
-                $user->teacher->madins()
-                    ->update(['teacher_id' => null]);
-                $user->teacher()->delete();
-                $student->manager()->delete();
-                $student->student_data()->delete();
+                if ($student) {
+                    $student->student_data()->delete();
+                    $student?->manager()?->delete();
+                    $student?->absents()?->delete();
+                    $student?->payments()?->delete();
+                    $student?->sicks()?->delete();
+                    $student?->violations()?->delete();
+                    $user->student()->delete();
+                }
+
                 $user->grade_leader()
-                    ->update(['leader_user_id' => null]);
-                $user->student()->delete();
+                    ?->update(['leader_user_id' => null]);
+
+                $user->teacher?->madins()
+                    ?->update(['teacher_id' => null]);
+                $user?->teacher()?->delete();
             }
         );
     }
@@ -76,7 +80,7 @@ class User extends Authenticatable
 
     public function grade_leader(): HasOne
     {
-        return $this->hasOne(Grade::class);
+        return $this->hasOne(Grade::class, 'leader_user_id');
     }
 
     public function teacher(): HasOne

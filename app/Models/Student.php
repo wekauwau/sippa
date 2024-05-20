@@ -23,11 +23,6 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function student_data(): HasOne
-    {
-        return $this->hasOne(StudentData::class);
-    }
-
     public function room(): BelongsTo
     {
         return $this->belongsTo(Room::class);
@@ -38,14 +33,19 @@ class Student extends Model
         return $this->belongsTo(Grade::class);
     }
 
-    public function absents(): HasMany
+    public function student_data(): HasOne
     {
-        return $this->hasMany(Absent::class);
+        return $this->hasOne(StudentData::class);
     }
 
     public function manager(): HasOne
     {
         return $this->hasOne(Manager::class);
+    }
+
+    public function absents(): HasMany
+    {
+        return $this->hasMany(Absent::class);
     }
 
     public function payments(): HasMany

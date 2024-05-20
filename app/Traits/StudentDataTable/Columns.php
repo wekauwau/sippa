@@ -9,7 +9,7 @@ trait Columns
 {
     private function getPhoneNumber(): TextColumn
     {
-        return TextColumn::make('user.phone')
+        return TextColumn::make('phone')
             ->label('Nomor')
             ->sortable()
             ->searchable();
@@ -17,7 +17,7 @@ trait Columns
 
     private function getBirthDate(): TextColumn
     {
-        return TextColumn::make('birth_date')
+        return TextColumn::make('student.student_data.birth_date')
             ->label('Tanggal Lahir')
             ->sortable()
             ->searchable();
@@ -26,11 +26,11 @@ trait Columns
     private function getFather(): Stack
     {
         return Stack::make([
-            TextColumn::make('father_name')
+            TextColumn::make('student.student_data.father_name')
                 ->label('Nama Ayah')
                 ->sortable()
                 ->searchable(),
-            TextColumn::make('father_phone_number')
+            TextColumn::make('student.student_data.father_phone_number')
                 ->label('Nomor Ayah')
                 ->sortable()
                 ->searchable(),
@@ -40,11 +40,11 @@ trait Columns
     private function getMother(): Stack
     {
         return Stack::make([
-            TextColumn::make('mother_name')
+            TextColumn::make('student.student_data.mother_name')
                 ->label('Nama Ibu')
                 ->sortable()
                 ->searchable(),
-            TextColumn::make('mother_phone_number',)
+            TextColumn::make('student.student_data.mother_phone_number',)
                 ->label('Nomor Ibu')
                 ->sortable()
                 ->searchable(),
@@ -54,11 +54,11 @@ trait Columns
     private function getStudent(): Stack
     {
         return Stack::make([
-            TextColumn::make('user.name')
+            TextColumn::make('name')
                 ->label('Nama')
                 ->sortable()
                 ->searchable(),
-            TextColumn::make('user.username')
+            TextColumn::make('username')
                 ->label('Username')
                 ->sortable()
                 ->searchable(),

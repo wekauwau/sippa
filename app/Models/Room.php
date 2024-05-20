@@ -20,6 +20,11 @@ class Room extends Model
 
     protected $appends = ['name_with_room_group'];
 
+    public function getNameWithRoomGroupAttribute()
+    {
+        return "$this->name ({$this->room_group->name})";
+    }
+
     public function room_group(): BelongsTo
     {
         return $this->belongsTo(RoomGroup::class);

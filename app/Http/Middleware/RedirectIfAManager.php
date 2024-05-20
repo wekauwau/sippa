@@ -16,7 +16,7 @@ class RedirectIfAManager
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->manager) {
+        if (Auth::user()->student?->manager) {
             return $next($request);
         }
 
