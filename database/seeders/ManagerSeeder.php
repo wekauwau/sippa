@@ -17,7 +17,7 @@ class ManagerSeeder extends Seeder
 
             for ($k = 0; $k < 2; $k++) {
                 Manager::create([
-                    'user_id' => $first_manager++,
+                    'student_id' => $first_manager++,
                     'division_id' => $j,
                 ]);
             }

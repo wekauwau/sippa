@@ -19,7 +19,7 @@ class PaymentSeeder extends Seeder
 
                 Payment::create([
                     'bill_id' => $i,
-                    'student_user_id' => $j,
+                    'student_id' => $j,
                     'paid' => fake()->dateTimeBetween(
                         $bill->created_at,
                         $bill->deadline,
@@ -46,13 +46,13 @@ class PaymentSeeder extends Seeder
 
             Payment::create([
                 'bill_id' => 5,
-                'student_user_id' => $j,
+                'student_id' => $j,
                 'paid' => $val,
             ]);
         }
 
         DB::table('payments')
-            ->where('student_user_id', 20)
+            ->where('student_id', 20)
             ->where('bill_id', 5)
             ->update(['paid' => null]);
     }

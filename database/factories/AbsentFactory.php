@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Madin;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,11 +13,13 @@ class AbsentFactory extends Factory
     public function definition(): array
     {
         $student = Student::all()->random();
-        $madins = Madin::where('grade_id', $student->grade_id)->get();
+        $madins = $student->grade->madins()
+            ->whereRelation('semester', 'active', 1)
+            ->get();
         $statuses = collect(['i', 's', 'a']);
 
         return [
-            'student_user_id' => $student->user_id,
+            'student_id' => $student->id,
             'when' => fake()->dateTimeThisYear('last week'),
             'madin_id' => $madins->random()->id,
             'status' => $statuses->random(),

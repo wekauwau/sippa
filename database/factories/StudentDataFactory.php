@@ -11,8 +11,9 @@ class StudentDataFactory extends Factory
 {
     public function definition(): array
     {
+        // WARNING: must defined: student_id
         return [
-            'student_user_id' => 0,
+            'student_id' => null,
             'birth_date' => fake()
                 ->dateTimeBetween(
                     '- 30 years',

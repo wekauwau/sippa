@@ -9,14 +9,10 @@ class StudentDataSeeder extends Seeder
 {
     public function run(): void
     {
-        for ($i = 4; $i <= 60; $i++) {
-            if ($i > 23 && $i < 34) {
-                continue;
-            }
-
+        for ($i = 1; $i < 47; $i++) {
             StudentData::factory()
                 ->create([
-                    'student_user_id' => $i,
+                    'student_id' => $i,
                 ]);
         }
     }

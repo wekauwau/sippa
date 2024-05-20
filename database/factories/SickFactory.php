@@ -9,11 +9,6 @@ class SickFactory extends Factory
 {
     private string $last_start = '';
 
-    private $infos = [
-        'Demam',
-        'Pusing',
-    ];
-
     private function getRandomStart()
     {
         $this->last_start = fake()
@@ -33,19 +28,18 @@ class SickFactory extends Factory
         );
     }
 
-    private function getRandomInfos()
-    {
-        $random_index = random_int(0, count($this->infos) - 1);
-        return $this->infos[$random_index];
-    }
-
     public function definition(): array
     {
+        $infos = collect([
+            'Demam',
+            'Pusing',
+        ]);
+
         return [
-            'student_user_id' => get_random_user_id(Student::class),
+            'student_id' => Student::all('id')->random(),
             'start' => $this->getRandomStart(),
             'end' => $this->getRandomEnd(),
-            'info' => $this->getRandomInfos(),
+            'info' => $infos->random(),
         ];
     }
 }

@@ -9,11 +9,18 @@ class SemesterSeeder extends Seeder
 {
     public function run(): void
     {
-        Semester::create([
-            'start' => 2024,
-            'end' => 2025,
-            'isEven' => 0,
-            'active' => 1,
-        ]);
+        $records = [
+            [2024, 2025, 0, 1],
+            [2024, 2025, 1, 0],
+        ];
+
+        foreach ($records as $record) {
+            Semester::create([
+                'start' => $record[0],
+                'end' => $record[1],
+                'isEven' => $record[2],
+                'active' => $record[3],
+            ]);
+        }
     }
 }

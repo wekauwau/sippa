@@ -10,7 +10,7 @@ class MadinSeeder extends Seeder
     public function run(): void
     {
         // first teacher
-        $i = 14;
+        $i = 1;
 
         $data = [
             /* grade.id = 1 */
@@ -149,7 +149,7 @@ class MadinSeeder extends Seeder
                 'grade_id' => $record[2],
                 'madin_room_id' => $record[3],
                 'lesson_id' => $record[4],
-                'teacher_user_id' => $record[5],
+                'teacher_id' => $record[5],
             ]);
         }
     }
