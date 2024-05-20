@@ -7,18 +7,13 @@ use Livewire\Component;
 
 class NavigationMenu extends Component
 {
-    public ?string $division_name;
+    public ?string $division_name = null;
 
     private function getDivisionName(): void
     {
         if (Auth::check()) {
-            if (Auth::user()->manager) {
-                $this->division_name = Auth::user()->manager->division->name;
-                return;
-            }
+            $this->division_name = Auth::user()->student?->manager?->division?->name;
         }
-
-        $this->division_name = null;
     }
 
     public function __construct()
