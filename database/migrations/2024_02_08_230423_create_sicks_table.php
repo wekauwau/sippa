@@ -10,10 +10,7 @@ return new class extends Migration
     {
         Schema::create('sicks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_user_id')->constrained(
-                table: 'users',
-                indexName: 'sicks_student_user_id',
-            );
+            $table->foreignId('student_id')->constrained();
             $table->date('start');
             $table->date('end');
             $table->string('info');

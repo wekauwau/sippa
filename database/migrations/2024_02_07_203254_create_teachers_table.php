@@ -9,9 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->foreignId('user_id')
-                ->primary()
-                ->constrained();
+            $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

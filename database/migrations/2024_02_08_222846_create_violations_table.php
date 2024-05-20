@@ -10,11 +10,7 @@ return new class extends Migration
     {
         Schema::create('violations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_user_id')
-                ->constrained(
-                    table: 'users',
-                    indexName: 'violations_student_user_id',
-                );
+            $table->foreignId('student_id')->constrained();
             $table->date('date');
             $table->string('info');
             $table->timestamps();

@@ -11,11 +11,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bill_id')->constrained();
-            $table->foreignId('student_user_id')
-                ->constrained(
-                    table: 'users',
-                    indexName: 'payments_student_user_id',
-                );
+            $table->foreignId('student_id')->constrained();
             $table->date('paid')->nullable();
             $table->timestamps();
         });
