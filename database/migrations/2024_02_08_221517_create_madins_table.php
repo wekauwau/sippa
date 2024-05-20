@@ -19,7 +19,9 @@ return new class extends Migration
             $table->foreignId('grade_id')->constrained();
             $table->foreignId('madin_room_id')->constrained();
             $table->foreignId('lesson_id')->constrained();
-            $table->foreignId('teacher_id')->constrained();
+            $table->foreignId('teacher_id')
+                ->nullable()
+                ->constrained();
             $table->timestamps();
         });
     }
