@@ -22,33 +22,6 @@ class StudentData extends Model
         'mother_phone_number',
     ];
 
-    protected static function booted(): void
-    {
-        static::deleted(
-            function (StudentData $attributes) {
-                $id = $attributes->student_user_id;
-
-                Manager::destroy($id);
-                Sick::where('student_user_id', $id)
-                    ->delete();
-                Violation::where('student_user_id', $id)
-                    ->delete();
-                Student::destroy($id);
-                Absent::where('student_user_id', $id)
-                    ->delete();
-                Madin::where('teacher_user_id', $id)
-                    ->delete();
-                Teacher::destroy($id);
-                Grade::where('leader_user_id', $id)
-                    ->update(['leader_user_id' => null]);
-                Payment::where('student_user_id', $id)
-                    ->delete();
-
-                User::destroy($id);
-            }
-        );
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'student_user_id');
