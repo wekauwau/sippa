@@ -10,8 +10,7 @@ return new class extends Migration
     {
         Schema::create('managers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
-                ->primary()
+            $table->foreignId('student_id')
                 ->constrained();
             $table->foreignId('division_id')
                 ->constrained();
