@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Teacher extends Model
 {
-    protected $primaryKey = 'user_id';
-
     protected $fillable = [
         'user_id',
     ];
@@ -21,6 +19,6 @@ class Teacher extends Model
 
     public function madins(): HasMany
     {
-        return $this->hasMany(Madin::class, 'teacher_user_id');
+        return $this->hasMany(Madin::class);
     }
 }

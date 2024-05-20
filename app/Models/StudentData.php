@@ -10,10 +10,8 @@ class StudentData extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'student_user_id';
-
     protected $fillable = [
-        'student_user_id',
+        'student_id',
         'birth_date',
         'address',
         'father_name',
@@ -22,8 +20,8 @@ class StudentData extends Model
         'mother_phone_number',
     ];
 
-    public function user(): BelongsTo
+    public function student(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'student_user_id');
+        return $this->belongsTo(Student::class);
     }
 }

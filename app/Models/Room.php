@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Room extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
@@ -22,8 +25,8 @@ class Room extends Model
         return $this->belongsTo(RoomGroup::class);
     }
 
-    public function getNameWithRoomGroupAttribute()
+    public function students(): HasMany
     {
-        return "$this->name ({$this->room_group->name})";
+        return $this->hasMany(Student::class);
     }
 }

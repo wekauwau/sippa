@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -78,48 +77,13 @@ class User extends Authenticatable
         return $this->hasOne(Student::class);
     }
 
-    public function student_data(): HasOne
+    public function grade_leader(): HasOne
     {
-        return $this->hasOne(StudentData::class, 'student_user_id');
-    }
-
-    public function grade_leader_of(): HasOne
-    {
-        return $this->hasOne(Grade::class, 'leader_user_id');
+        return $this->hasOne(Grade::class);
     }
 
     public function teacher(): HasOne
     {
         return $this->hasOne(Teacher::class);
-    }
-
-    public function teach_madins(): HasMany
-    {
-        return $this->hasMany(Madin::class, 'teacher_user_id');
-    }
-
-    public function manager(): HasOne
-    {
-        return $this->hasOne(Manager::class);
-    }
-
-    public function absents(): HasMany
-    {
-        return $this->hasMany(Absent::class);
-    }
-
-    public function payments(): HasMany
-    {
-        return $this->hasMany(Payment::class);
-    }
-
-    public function sicks(): HasMany
-    {
-        return $this->hasMany(Sick::class);
-    }
-
-    public function violations(): HasMany
-    {
-        return $this->hasMany(Violation::class);
     }
 }

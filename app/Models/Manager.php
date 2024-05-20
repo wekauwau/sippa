@@ -7,16 +7,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Manager extends Model
 {
-    protected $primaryKey = 'user_id';
-
     protected $fillable = [
-        'user_id',
+        'student_id',
         'division_id',
     ];
 
-    public function user(): BelongsTo
+    public function student(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Student::class);
     }
 
     public function division(): BelongsTo

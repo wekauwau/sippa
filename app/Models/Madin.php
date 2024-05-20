@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Madin extends Model
 {
@@ -13,8 +14,13 @@ class Madin extends Model
         'grade_id',
         'madin_room_id',
         'lesson_id',
-        'teacher_user_id',
+        'teacher_id',
     ];
+
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class);
+    }
 
     public function grade(): BelongsTo
     {
@@ -33,6 +39,11 @@ class Madin extends Model
 
     public function teacher(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class, 'teacher_user_id', 'user_id');
+        return $this->belongsTo(Teacher::class);
+    }
+
+    public function absents(): HasMany
+    {
+        return $this->hasMany(Absent::class);
     }
 }

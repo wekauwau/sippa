@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RoomGroup extends Model
 {
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'gender',
