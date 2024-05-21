@@ -15,6 +15,7 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 
 trait Actions
@@ -130,6 +131,12 @@ trait Actions
         ];
     }
 
+    private function getPhoneData(string $number): string
+    {
+        $no_whitespaces = preg_replace('/\s+/', '', $number);
+        return "0{$no_whitespaces}";
+    }
+
     private function getHeaderActions(): array
     {
         return [
@@ -140,14 +147,18 @@ trait Actions
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['name'] = trim($data['name']);
                     $data['username'] = trim($data['username']);
-                    // Remove whitespaces
-                    $data['phone'] = preg_replace('/\s+/', '', $data['phone']);
-                    $data['phone'] = "0{$data['phone']}";
+                    $data['phone'] = $this->getPhoneData($data['phone']);
                     $data['password'] = Hash::make($data['password']);
 
-                    $data['address'] = trim($data['address']);
-                    $data['father_name'] = trim($data['father_name']);
-                    $data['mother_name'] = trim($data['mother_name']);
+                    $data['birth_date'] = data_get($data, 'student.student_data.birth_date');
+                    $data['address'] = trim(data_get($data, 'student.student_data.address'));
+                    $data['father_name'] = trim(data_get($data, 'student.student_data.father_name'));
+                    $data['father_phone_number'] = $this->getPhoneData(data_get($data, 'student.student_data.father_phone_number'));
+                    $data['mother_name'] = trim(data_get($data, 'student.student_data.mother_name'));
+                    $data['mother_phone_number'] = $this->getPhoneData(data_get($data, 'student.student_data.mother_phone_number'));
+
+                    $data['room_id'] = data_get($data, 'student.room_id');
+                    $data['grade_id'] = data_get($data, 'student.grade_id');
 
                     return $data;
                 })
@@ -173,9 +184,65 @@ trait Actions
         return [
             EditAction::make()
                 ->mutateRecordDataUsing(function (User $user): array {
-                    return $user->toArray();
+                    $data = $user->toArray();
+
+                    // Remove first letter which is "0"
+                    $data['phone'] = substr($data['phone'], 1);
+                    data_set(
+                        $data,
+                        'student.student_data.father_phone_number',
+                        substr(
+                            data_get($data, 'student.student_data.father_phone_number'),
+                            1
+                        )
+                    );
+                    data_set(
+                        $data,
+                        'student.student_data.mother_phone_number',
+                        substr(
+                            data_get($data, 'student.student_data.mother_phone_number'),
+                            1
+                        )
+                    );
+
+                    return $data;
                 })
-                ->form($this->getFormInputs()),
+                ->form($this->getFormInputs())
+                ->mutateFormDataUsing(function (array $data): array {
+                    $data['name'] = trim($data['name']);
+                    $data['username'] = trim($data['username']);
+                    $data['phone'] = $this->getPhoneData($data['phone']);
+                    $data['password'] = Hash::make($data['password']);
+
+                    $data['birth_date'] = data_get($data, 'student.student_data.birth_date');
+                    $data['address'] = trim(data_get($data, 'student.student_data.address'));
+                    $data['father_name'] = trim(data_get($data, 'student.student_data.father_name'));
+                    $data['father_phone_number'] = $this->getPhoneData(data_get($data, 'student.student_data.father_phone_number'));
+                    $data['mother_name'] = trim(data_get($data, 'student.student_data.mother_name'));
+                    $data['mother_phone_number'] = $this->getPhoneData(data_get($data, 'student.student_data.mother_phone_number'));
+
+                    $data['room_id'] = data_get($data, 'student.room_id');
+                    $data['grade_id'] = data_get($data, 'student.grade_id');
+
+                    return $data;
+                })
+                ->after(function (array $data, User $user) {
+                    $student = Arr::only($data, [
+                        'room_id',
+                        'grade_id',
+                    ]);
+                    $user->student()->update($student);
+
+                    $student_data = Arr::only($data, [
+                        'birth_date',
+                        'address',
+                        'father_name',
+                        'father_phone_number',
+                        'mother_name',
+                        'mother_phone_number',
+                    ]);
+                    $user->student->student_data()->update($student_data);
+                }),
             DeleteAction::make(),
         ];
     }
