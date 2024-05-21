@@ -14,6 +14,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Illuminate\Support\Facades\Hash;
 
 trait Actions
@@ -35,7 +36,7 @@ trait Actions
             ->maxLength(13);
     }
 
-    private function getHeaderActions(): array
+    private function getFormInputs(): array
     {
         $user = [
             $this->getTextInput('name')
@@ -69,7 +70,7 @@ trait Actions
         $grade_options = Grade::all()->pluck('name', 'id');
 
         $student = [
-            Select::make('room_id')
+            Select::make('student.room_id')
                 ->label('Kamar')
                 ->native(false)
                 ->options($room_options)
@@ -91,14 +92,14 @@ trait Actions
                         return $room_options[$value];
                     }
                 ),
-            Select::make('grade_id')
+            Select::make('student.grade_id')
                 ->label('Kelas')
                 ->native(false)
                 ->options($grade_options),
         ];
 
         $student_data = [
-            DatePicker::make('birth_date')
+            DatePicker::make('student.student_data.birth_date')
                 ->label('Tanggal Lahir')
                 ->native(false)
                 ->required()
@@ -107,29 +108,34 @@ trait Actions
                 ->closeOnDateSelection()
                 ->minDate(now()->subYears(30))
                 ->maxDate(now()->subYears(15)),
-            $this->getTextInput('address')
+            $this->getTextInput('student.student_data.address')
                 ->label('Alamat')
                 ->required(),
-            $this->getTextInput('father_name')
+            $this->getTextInput('student.student_data.father_name')
                 ->label('Nama Ayah')
                 ->required(),
-            $this->getPhoneInput('father_phone_number')
+            $this->getPhoneInput('student.student_data.father_phone_number')
                 ->label('Nomor HP Ayah'),
-            $this->getTextInput('mother_name')
+            $this->getTextInput('student.student_data.mother_name')
                 ->label('Nama Ibu')
                 ->required(),
-            $this->getPhoneInput('mother_phone_number')
+            $this->getPhoneInput('student.student_data.mother_phone_number')
                 ->label('Nomor HP Ibu'),
         ];
 
         return [
+            ...$user,
+            ...$student_data,
+            ...$student,
+        ];
+    }
+
+    private function getHeaderActions(): array
+    {
+        return [
             CreateAction::make()
                 ->label('Tambah')
-                ->form([
-                    ...$user,
-                    ...$student_data,
-                    ...$student,
-                ])
+                ->form($this->getFormInputs())
                 ->modalHeading('Tambah Santri')
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['name'] = trim($data['name']);
@@ -165,6 +171,11 @@ trait Actions
     private function getActions(): array
     {
         return [
+            EditAction::make()
+                ->mutateRecordDataUsing(function (User $user): array {
+                    return $user->toArray();
+                })
+                ->form($this->getFormInputs()),
             DeleteAction::make(),
         ];
     }

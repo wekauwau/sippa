@@ -1,3 +1,7 @@
+EditAction:
+    hash password
+    also update: Student, StudentData
+
 change PaymentSeeder to match all user
 
 Check is Stack()->visibleFrom()->hideFrom work now
