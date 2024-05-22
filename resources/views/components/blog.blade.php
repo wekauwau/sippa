@@ -56,7 +56,7 @@
             </a>
         </div>
         <div class="flex justify-center">
-            <button type="button" class="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-900 dark:text-gray-400">Lihat lebih banyak</button>
+            <a href="{{ route('blogs') }}" class="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-900 dark:text-gray-400">Lihat lebih banyak</a>
         </div>
     </div>
 </section>
