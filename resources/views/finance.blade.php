@@ -2,16 +2,16 @@
     <x-header>
         <x-slot:title>
             Tagihan
-            </x-slot>
+        </x-slot>
 
-            <livewire:bill-table />
+        <livewire:bill-table />
     </x-header>
 
     <x-header>
         <x-slot:title>
             Riwayat Pembayaran
-            </x-slot>
+        </x-slot>
 
-            <livewire:payment-table />
+        <livewire:payment-table />
     </x-header>
 </x-views.table>

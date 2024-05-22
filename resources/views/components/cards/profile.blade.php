@@ -12,20 +12,20 @@
                 <table class="text-sm my-3">
                     <tbody>
                         @if ($grade)
-                        <tr>
-                            <td class="px-2 py-2 text-gray-500 font-semibold">Madin</td>
-                            <td class="px-2 py-2">{{ $grade }}</td>
-                        </tr>
+                            <tr>
+                                <td class="px-2 py-2 text-gray-500 font-semibold">Madin</td>
+                                <td class="px-2 py-2">{{ $grade }}</td>
+                            </tr>
                         @endif
                         <tr>
                             <td class="px-2 py-2 text-gray-500 font-semibold">Nomor</td>
                             <td class="px-2 py-2">{{ $phone }}</td>
                         </tr>
                         @if ($address)
-                        <tr>
-                            <td class="px-2 py-2 text-gray-500 font-semibold">Alamat</td>
-                            <td class="px-2 py-2">{{ $address }}</td>
-                        </tr>
+                            <tr>
+                                <td class="px-2 py-2 text-gray-500 font-semibold">Alamat</td>
+                                <td class="px-2 py-2">{{ $address }}</td>
+                            </tr>
                         @endif
                     </tbody>
                 </table>
