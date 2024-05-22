@@ -1,7 +1,3 @@
-page:student-data
-    delete notification
-        warn "this will delete all related data payments, sicks, ..."
-
 change PaymentSeeder to match all user
 
 Check is Stack()->visibleFrom()->hideFrom work now

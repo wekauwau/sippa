@@ -243,7 +243,10 @@ trait Actions
                     ]);
                     $user->student->student_data()->update($student_data);
                 }),
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->modalHeading("Hapus Data Santri")
+                ->modalDescription("Apakah Anda yakin? Data terkait (pembayaran, presensi, dll.) juga akan dihapus.")
+                ->modalSubmitActionLabel("Ya, hapus"),
         ];
     }
 }
