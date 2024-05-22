@@ -25,7 +25,7 @@ class Profile extends Component
         $manager = null;
 
         if ($student) {
-            $manager = $this->user->manager;
+            $manager = $this->user->student->manager;
 
             if ($manager) {
                 $division_name = $manager->division->name;
@@ -46,10 +46,9 @@ class Profile extends Component
 
     private function getMadin(): void
     {
-        $grade = $this->user->student->grade;
-        $this->grade = $grade->name;
+        $this->grade = $this->user->student->grade->name;
 
-        if ($grade->leader_user_id == $this->user->id)
+        if ($this->user->grade_leader)
             $this->grade .= " (ketua)";
     }
 
@@ -66,8 +65,7 @@ class Profile extends Component
 
         if ($this->user->student) {
             $this->getMadin();
-            $student_data = $this->user->student_data;
-            $this->address = $student_data->address;
+            $this->address = $this->user->student->student_data->address;
         }
     }
 
