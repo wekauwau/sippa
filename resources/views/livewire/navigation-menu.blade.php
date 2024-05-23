@@ -15,6 +15,9 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         Beranda
                     </x-nav-link>
+                    <x-nav-link href="{{ route('blogs') }}" :active="request()->routeIs('blogs')">
+                        Warta
+                    </x-nav-link>
                     @if (Auth::check())
                         <x-nav-link class="hidden lg:inline-flex" href="{{ route('madin') }}" :active="request()->routeIs('madin')">
                             Madin
@@ -30,7 +33,7 @@
                         </x-nav-link>
                         <x-nav-dropdown class="text-left hidden sm:inline-flex lg:hidden">
                             <x-slot name="trigger">
-                                Dropdown
+                                Santri
                             </x-slot>
                             <x-slot name="content">
                                 <x-dropdown-link href="{{ route('madin') }}">
@@ -144,18 +147,28 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 Beranda
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('madin') }}" :active="request()->routeIs('madin')">
-                Madin
+            <x-responsive-nav-link href="{{ route('blogs') }}" :active="request()->routeIs('blogs')">
+                Warta
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
-                Keuangan
-            </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
-                Kesehatan
-            </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
-                Pelanggaran
-            </x-responsive-nav-link>
+            @if (Auth::check())
+                <x-responsive-nav-link href="{{ route('madin') }}" :active="request()->routeIs('madin')">
+                    Madin
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
+                    Keuangan
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
+                    Kesehatan
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
+                    Pelanggaran
+                </x-responsive-nav-link>
+                @if ($division_name)
+                    <x-responsive-nav-link href="{{ route('student-data') }}" :active="request()->routeIs('student-data')">
+                        Data Santri
+                    </x-responsive-nav-link>
+                @endif
+            @endif
         </div>
 
         @if (Auth::check())
