@@ -1,5 +1,8 @@
 add blogs page
 
+change title based on route
+    ? using component attribute
+
 finish home page
 
 change PaymentSeeder to match all user
