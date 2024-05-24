@@ -3,13 +3,11 @@ add more posts
     App\Livewire\Blog
         increase paginate
 
-integrate posts to /
-
 add post page to view post
 
 change title based on route
     ? using component attribute
 
-finish home page
+finish home page: UI, responsive
 
 change PaymentSeeder to match all user
