@@ -39,11 +39,20 @@ Wassalamualaikum Wr.Wb.',
             ]
         ];
 
-        foreach ($records as $record) {
+        // foreach ($records as $record) {
+        //     Post::create([
+        //         'image' => $record[0],
+        //         'title' => $record[1],
+        //         'content' => $record[2],
+        //     ]);
+        // }
+
+        // temporary seeder
+        for ($i = 0; $i < 10; $i++) {
             Post::create([
-                'image' => $record[0],
-                'title' => $record[1],
-                'content' => $record[2],
+                'image' => $records[0][0],
+                'title' => $records[0][1],
+                'content' => $records[0][2],
             ]);
         }
     }

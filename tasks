@@ -1,4 +1,11 @@
-add blogs page
+add more posts
+    delete temp seeder
+    App\Livewire\Blog
+        increase paginate
+
+integrate posts to /
+
+add post page to view post
 
 change title based on route
     ? using component attribute
