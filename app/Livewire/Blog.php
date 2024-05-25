@@ -13,7 +13,7 @@ class Blog extends Component
     public function render()
     {
         return view('livewire.blog', [
-            'posts' => Post::paginate(5),
+            'posts' => Post::orderBy('id', 'desc')->paginate(5),
         ]);
     }
 }
