@@ -15,7 +15,7 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         Beranda
                     </x-nav-link>
-                    <x-nav-link href="{{ route('blogs') }}" :active="request()->routeIs('blogs')">
+                    <x-nav-link href="{{ route('blog') }}" :active="request()->routeIs('blog')">
                         Warta
                     </x-nav-link>
                     @if (Auth::check())
@@ -147,7 +147,7 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 Beranda
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('blogs') }}" :active="request()->routeIs('blogs')">
+            <x-responsive-nav-link href="{{ route('blog') }}" :active="request()->routeIs('blog')">
                 Warta
             </x-responsive-nav-link>
             @if (Auth::check())

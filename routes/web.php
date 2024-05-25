@@ -12,8 +12,8 @@ Route::get('', function () {
 })->name('dashboard');
 
 Route::get('warta', function () {
-    return view('blogs');
-})->name('blogs');
+    return view('blog');
+})->name('blog');
 
 Route::middleware([
     'auth:sanctum',
