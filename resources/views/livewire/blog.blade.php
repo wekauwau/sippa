@@ -6,7 +6,7 @@
             <article class="flex flex-col shadow my-4">
                 <!-- Article Image -->
                 <a href="#" class="h-96 overflow-y-hidden hover:opacity-75">
-                    <img src="images/{{ $post->image }}">
+                    <img src="{{ route('image', [$post->image]) }}">
                 </a>
                 <div class="bg-white flex flex-col justify-start p-6">
                     <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">
@@ -25,6 +25,7 @@
         @endforeach
 
         {{ $posts->links() }}
+
     </section>
 
     <!-- Sidebar Section -->
