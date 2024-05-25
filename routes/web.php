@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('images/{name}')
     ->name('image');
 
-Route::get('/', function () {
+Route::get('', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/blogs', function () {
+Route::get('warta', function () {
     return view('blogs');
 })->name('blogs');
 
@@ -24,19 +24,19 @@ Route::middleware([
         return view('madin');
     })->name('madin');
 
-    Route::get('finance', function () {
+    Route::get('keuangan', function () {
         return view('finance');
     })->name('finance');
 
-    Route::get('health', function () {
+    Route::get('kesehatan', function () {
         return view('health');
     })->name('health');
 
-    Route::get('violation', function () {
+    Route::get('pelanggaran', function () {
         return view('violation');
     })->name('violation');
 
-    Route::get('student-data', function () {
+    Route::get('data-santri', function () {
         return view('student-data');
     })->middleware(RedirectIfAManager::class)
         ->name('student-data');
