@@ -2,8 +2,8 @@
     <x-header>
         <x-slot:title>
             Pelanggaran
-            </x-slot>
+        </x-slot>
 
-            <livewire:violation-table />
+        <livewire:violation-table />
     </x-header>
 </x-views.table>
