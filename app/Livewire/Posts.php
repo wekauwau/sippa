@@ -6,13 +6,13 @@ use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Blog extends Component
+class Posts extends Component
 {
     use WithPagination;
 
     public function render()
     {
-        return view('livewire.blog', [
+        return view('livewire.posts', [
             'posts' => Post::orderBy('id', 'desc')->paginate(5),
         ]);
     }
