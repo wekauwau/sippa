@@ -1,7 +1,4 @@
-add more posts
-    delete temp seeder
-    App\Livewire\Blog
-        increase paginate
+fix /blogs from latest post
 
 add post page to view post
 
