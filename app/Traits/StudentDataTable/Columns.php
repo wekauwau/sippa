@@ -17,7 +17,9 @@ trait Columns
 
     private function getBirthDate(): TextColumn
     {
-        return TextColumn::make('student.student_data.birth_date')
+        return TextColumn::make(
+            'student.student_data.birth_date'
+        )
             ->label('Tanggal Lahir')
             ->sortable()
             ->searchable();
@@ -30,7 +32,9 @@ trait Columns
                 ->label('Nama Ayah')
                 ->sortable()
                 ->searchable(),
-            TextColumn::make('student.student_data.father_phone_number')
+            TextColumn::make(
+                'student.student_data.father_phone_number'
+            )
                 ->label('Nomor Ayah')
                 ->sortable()
                 ->searchable(),
@@ -44,7 +48,9 @@ trait Columns
                 ->label('Nama Ibu')
                 ->sortable()
                 ->searchable(),
-            TextColumn::make('student.student_data.mother_phone_number',)
+            TextColumn::make(
+                'student.student_data.mother_phone_number',
+            )
                 ->label('Nomor Ibu')
                 ->sortable()
                 ->searchable(),

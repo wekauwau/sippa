@@ -2,8 +2,8 @@
     <x-header>
         <x-slot:title>
             Data Santri
-            </x-slot>
+        </x-slot>
 
-            <livewire:student-data-table />
+        <livewire:student-data-table />
     </x-header>
 </x-views.table>

@@ -67,8 +67,11 @@ trait Actions
                 ->grouped(),
         ];
 
-        $room_options = Room::all()->pluck('name_with_room_group', 'id');
-        $grade_options = Grade::all()->pluck('name', 'id');
+        $room_options = Room::pluck(
+            'name_with_room_group',
+            'id'
+        );
+        $grade_options = Grade::pluck('name', 'id');
 
         $student = [
             Select::make('student.room_id')
@@ -112,15 +115,23 @@ trait Actions
             $this->getTextInput('student.student_data.address')
                 ->label('Alamat')
                 ->required(),
-            $this->getTextInput('student.student_data.father_name')
+            $this->getTextInput(
+                'student.student_data.father_name'
+            )
                 ->label('Nama Ayah')
                 ->required(),
-            $this->getPhoneInput('student.student_data.father_phone_number')
+            $this->getPhoneInput(
+                'student.student_data.father_phone_number'
+            )
                 ->label('Nomor HP Ayah'),
-            $this->getTextInput('student.student_data.mother_name')
+            $this->getTextInput(
+                'student.student_data.mother_name'
+            )
                 ->label('Nama Ibu')
                 ->required(),
-            $this->getPhoneInput('student.student_data.mother_phone_number')
+            $this->getPhoneInput(
+                'student.student_data.mother_phone_number'
+            )
                 ->label('Nomor HP Ibu'),
         ];
 

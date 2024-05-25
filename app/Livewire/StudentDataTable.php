@@ -28,15 +28,8 @@ class StudentDataTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        // Querying active students
-        // $query = StudentData::query()
-        //     ->whereHas('user', function (Builder $query) {
-        //         $query->where('active', 1);
-        //     });
-        $query = User::where('active', 1)
-            ->withWhereHas('student.student_data')
-            ->get()
-            ->toQuery();
+        $query = User::withWhereHas('student.student_data')
+            ->where('active', 1);
 
         // Add header actions for secretary
         if (
@@ -49,64 +42,70 @@ class StudentDataTable extends Component implements HasTable, HasForms
                 ->actions($this->getActions());
         }
 
+        $columns = [
+            Grid::make([
+                'sm' => 2,
+                'lg' => 4,
+                'xl' => 16,
+            ])->schema([
+                $this->getStudent()
+                    ->columnSpan([
+                        'xl' => 3,
+                    ]),
+                $this->getPhoneNumber()
+                    ->visibleFrom('xl')
+                    ->columnSpan([
+                        'xl' => 2,
+                    ]),
+                $this->getBirthDate()
+                    ->visibleFrom('xl')
+                    ->columnSpan([
+                        'xl' => 2,
+                    ]),
+                TextColumn::make(
+                    'student.student_data.address'
+                )
+                    ->label('Alamat')
+                    ->sortable()
+                    ->searchable()
+                    ->columnSpan([
+                        'lg' => 2,
+                        'xl' => 3,
+                    ]),
+                LayoutView::make(
+                    'filament.table.custom-stack'
+                )
+                    ->components([
+                        Stack::make([
+                            $this->getFather(),
+                            $this->getMother(),
+                        ]),
+                    ])
+                    ->columnSpan([
+                        'sm' => 2,
+                        'lg' => 1,
+                    ])
+                    ->hiddenFrom('xl'),
+                LayoutView::make(
+                    'filament.table.custom-text-column'
+                )
+                    ->components([$this->getFather()])
+                    ->columnSpan([
+                        'xl' => 3,
+                    ]),
+                LayoutView::make(
+                    'filament.table.custom-text-column'
+                )
+                    ->components([$this->getMother()])
+                    ->columnSpan([
+                        'xl' => 3,
+                    ]),
+            ]),
+        ];
+
         return $table
             ->query($query)
-            ->columns([
-                Grid::make([
-                    'sm' => 2,
-                    'lg' => 4,
-                    'xl' => 16,
-                ])->schema([
-                    $this->getStudent()
-                        ->columnSpan([
-                            'xl' => 3,
-                        ]),
-                    $this->getPhoneNumber()
-                        ->visibleFrom('xl')
-                        ->columnSpan([
-                            'xl' => 2,
-                        ]),
-                    $this->getBirthDate()
-                        ->visibleFrom('xl')
-                        ->columnSpan([
-                            'xl' => 2,
-                        ]),
-                    TextColumn::make('student.student_data.address')
-                        ->label('Alamat')
-                        ->sortable()
-                        ->searchable()
-                        ->columnSpan([
-                            'lg' => 2,
-                            'xl' => 3,
-                        ]),
-                    LayoutView::make('filament.table.custom-stack')
-                        ->components([
-                            Stack::make([
-                                $this->getFather(),
-                                $this->getMother(),
-                            ]),
-                        ])
-                        ->columnSpan([
-                            'sm' => 2,
-                            'lg' => 1,
-                        ])
-                        ->hiddenFrom('xl'),
-                    LayoutView::make('filament.table.custom-text-column')
-                        ->components([
-                            $this->getFather()
-                        ])
-                        ->columnSpan([
-                            'xl' => 3,
-                        ]),
-                    LayoutView::make('filament.table.custom-text-column')
-                        ->components([
-                            $this->getMother()
-                        ])
-                        ->columnSpan([
-                            'xl' => 3,
-                        ]),
-                ]),
-            ])
+            ->columns($columns)
             ->defaultSort('id', 'desc');
     }
 
