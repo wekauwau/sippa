@@ -2,8 +2,8 @@
     <x-header>
         <x-slot:title>
             Riwayat Sakit
-            </x-slot>
+        </x-slot>
 
-            <livewire:sick-table />
+        <livewire:sick-table />
     </x-header>
 </x-views.table>
