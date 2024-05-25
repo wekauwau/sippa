@@ -67,10 +67,8 @@ trait Actions
                 ->grouped(),
         ];
 
-        $room_options = Room::pluck(
-            'name_with_room_group',
-            'id'
-        );
+        $room_options = Room::all()
+            ->pluck('name_with_room_group', 'id');
         $grade_options = Grade::pluck('name', 'id');
 
         $student = [
