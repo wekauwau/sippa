@@ -9,11 +9,11 @@ use Illuminate\View\Component;
 
 class MyMadinSchedule extends Component
 {
-    public $result;
+    public $madins;
 
     public function __construct()
     {
-        $this->result = Auth::user()->teacher?->madins;
+        $this->madins = Auth::user()->teacher?->madins;
     }
 
     public function render(): View|Closure|string

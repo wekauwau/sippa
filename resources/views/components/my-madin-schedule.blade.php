@@ -1,9 +1,9 @@
 <div>
-    @foreach ($result as $item)
-    <div class="mb-5">
-        <div class="text-lg font-semibold">{{ $item->day }}</div>
-        <div>{{ $item->grade->name }} - {{ $item->madin_room->name }}</div>
-        <div>{{ $item->lesson->name }}</div>
-    </div>
+    @foreach ($madins as $madin)
+        <div class="mb-5">
+            <div class="text-lg font-semibold">{{ $madin->day }}</div>
+            <div>{{ $madin->grade->name }} - {{ $madin->madin_room->name }}</div>
+            <div>{{ $madin->lesson->name }}</div>
+        </div>
     @endforeach
 </div>

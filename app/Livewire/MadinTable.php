@@ -22,13 +22,8 @@ class MadinTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Madin::query()
-            ->with('grade')
-            ->with('madin_room')
-            ->with('lesson')
-            ->with('teacher')
-            ->where('semester_id', 1);
-
+        $query = Madin::where('semester_id', 1)
+            ->with(['grade', 'madin_room', 'lesson', 'teacher']);
         $student = Auth::user()->student;
 
         return $table
@@ -47,13 +42,9 @@ class MadinTable extends Component implements HasTable, HasForms
                 SelectFilter::make('grade_id')
                     ->label('Kelas')
                     ->options(
-                        Grade::all()
-                            ->pluck('name', 'id')
-                            ->toArray(),
+                        Grade::pluck('name', 'id')->toArray(),
                     )
-                    ->default(
-                        $student ? $student->grade_id : 1
-                    )
+                    ->default($student ? $student->grade_id : 1)
                     ->selectablePlaceholder(false)
             ]);
     }

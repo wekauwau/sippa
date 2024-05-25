@@ -19,8 +19,7 @@ class AbsentTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Absent::query()
-            ->where('student_id', Auth::id());
+        $query = Absent::where('student_id', Auth::id());
 
         return $table
             ->query($query)
