@@ -14,7 +14,8 @@ class RoomFactory extends Factory
     {
         return [
             'name' => fake()->colorName(),
-            'room_group_id' => get_ids(RoomGroup::class),
+            'room_group_id' => RoomGroup::select('id')
+                ->inRandomOrder()->first()->id,
         ];
     }
 }
