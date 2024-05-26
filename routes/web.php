@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Middleware\RedirectIfAManager;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,11 @@ Route::get('', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('warta', function () {
-    return view('blog');
-})->name('blog');
+Route::get('warta', [PostController::class, 'index'])
+    ->name('blog');
+
+Route::get('warta/{id}', [PostController::class, 'show'])
+    ->name('post');
 
 Route::middleware([
     'auth:sanctum',
