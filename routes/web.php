@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use App\Http\Middleware\RedirectIfAManager;
+use App\Livewire\BlogPost;
 use Illuminate\Support\Facades\Route;
 
 // assets
@@ -12,10 +12,11 @@ Route::get('', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('warta', [PostController::class, 'index'])
-    ->name('blog');
+Route::get('warta', function () {
+    return view('blog');
+})->name('blog');
 
-Route::get('warta/{id}', [PostController::class, 'show'])
+Route::get('warta/{id}', BlogPost::class)
     ->name('post');
 
 Route::middleware([
