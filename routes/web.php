@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\RedirectIfAManager;
-use App\Livewire\BlogPost;
 use Illuminate\Support\Facades\Route;
 
 // assets
@@ -16,8 +15,9 @@ Route::get('warta', function () {
     return view('blog');
 })->name('blog');
 
-Route::get('warta/{id}', BlogPost::class)
-    ->name('post');
+Route::get('warta/post', function () {
+    return view('post');
+})->name('post');
 
 Route::middleware([
     'auth:sanctum',

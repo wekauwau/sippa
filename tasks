@@ -1,3 +1,5 @@
+make /blog using query parameter for pagination
+
 add gallery page
 
 make blog-posts as livewire
