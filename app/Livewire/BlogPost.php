@@ -9,8 +9,8 @@ use Livewire\Component;
 
 class BlogPost extends Component
 {
-    #[Url]
-    public int $id;
+    #[Url(history: true)]
+    public ?int $id = null;
 
     public function prev()
     {
