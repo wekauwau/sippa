@@ -17,7 +17,7 @@
     </article>
 
     <div class="w-full flex pt-6">
-        <div wire:click="prev"
+        <div x-data @click="window.scrollTo({top: 0, behavior: 'smooth'})" wire:click="prev"
             class="{{ $prev['class'] }} cursor-pointer w-1/2 bg-white shadow hover:shadow-md text-left p-6">
             <p class="text-lg text-blue-800 font-bold flex items-center">
                 <i class="fas fa-arrow-left pr-1"></i> Sebelumnya
@@ -26,7 +26,7 @@
                 {{ $prev['post']?->title }}
             </p>
         </div>
-        <div wire:click="next"
+        <div x-data @click="window.scrollTo({top: 0, behavior: 'smooth'})" wire:click="next"
             class="{{ $next['class'] }} cursor-pointer w-1/2 bg-white shadow hover:shadow-md text-right p-6">
             <p class="text-lg text-blue-800 font-bold flex items-center justify-end">
                 Selanjutnya <i class="fas fa-arrow-right pl-1"></i>
