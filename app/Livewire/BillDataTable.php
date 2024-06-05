@@ -40,7 +40,8 @@ class BillDataTable extends Component implements HasTable, HasForms
                     ->label('Jumlah')
                     ->sortable()
                     ->searchable(),
-            ]);
+            ])
+            ->defaultSort('id', 'desc');
     }
 
     public function render(): View
