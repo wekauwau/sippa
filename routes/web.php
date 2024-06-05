@@ -40,8 +40,14 @@ Route::middleware([
         return view('violation');
     })->name('violation');
 
+    // TODO: route group(middleware: RedirectIfAManager)
     Route::get('data-santri', function () {
         return view('student-data');
     })->middleware(RedirectIfAManager::class)
         ->name('student-data');
+
+    Route::get('data-keuangan', function () {
+        return view('finance-data');
+    })->middleware(RedirectIfAManager::class)
+        ->name('finance-data');
 });

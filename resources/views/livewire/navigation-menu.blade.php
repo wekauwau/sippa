@@ -53,9 +53,19 @@
 
                         <!-- Is a manager -->
                         @if ($division_name)
-                            <x-nav-link href="{{ route('student-data') }}" :active="request()->routeIs('student-data')">
-                                Data Santri
-                            </x-nav-link>
+                            <x-nav-dropdown class="text-left inline-flex">
+                                <x-slot name="trigger">
+                                    Pengurus
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link href="{{ route('student-data') }}">
+                                        Data Santri
+                                    </x-dropdown-link>
+                                    <x-dropdown-link href="{{ route('finance-data') }}">
+                                        Data Keuangan
+                                    </x-dropdown-link>
+                                </x-slot>
+                            </x-nav-dropdown>
                         @endif
                     @endif
                 </div>
@@ -166,6 +176,9 @@
                 @if ($division_name)
                     <x-responsive-nav-link href="{{ route('student-data') }}" :active="request()->routeIs('student-data')">
                         Data Santri
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('finance-data') }}" :active="request()->routeIs('student-data')">
+                        Data Keuangan
                     </x-responsive-nav-link>
                 @endif
             @endif
