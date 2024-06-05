@@ -1,8 +1,8 @@
-make /blog using query parameter for pagination
+edit student remove password change
+
+fix post content
 
 add gallery page
-
-make blog-posts as livewire
 
 change title based on route
     ? using component attribute

@@ -184,7 +184,10 @@ trait Actions
     private function getBulkActions(): array
     {
         return [
-            DeleteBulkAction::make(),
+            DeleteBulkAction::make()
+                ->modalHeading("Hapus Data yang Dipilih")
+                ->modalDescription("Apakah Anda yakin? Data terkait (pembayaran, presensi, dll.) juga akan dihapus.")
+                ->modalSubmitActionLabel("Ya, hapus"),
         ];
     }
 
