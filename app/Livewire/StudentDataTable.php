@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Traits\CheckUser;
 use App\Traits\StudentDataTable\Actions;
 use App\Traits\StudentDataTable\Columns;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -23,6 +24,8 @@ class StudentDataTable extends Component implements HasTable, HasForms
     use InteractsWithTable;
     use InteractsWithForms;
 
+    use CheckUser;
+
     use Columns;
     use Actions;
 
@@ -33,8 +36,7 @@ class StudentDataTable extends Component implements HasTable, HasForms
 
         // Add header actions for secretary
         if (
-            Auth::user()->student
-            ?->manager?->division?->name == 'Sekretaris'
+            $this->getDivisionName(Auth::user()) == 'Sekretaris'
         ) {
             $table
                 ->headerActions($this->getHeaderActions())
