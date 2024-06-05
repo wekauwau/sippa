@@ -1,7 +1,3 @@
-BillSeeder, PaymentSeeder:
-    match real data
-    difference student, manager
-
 route group inside route group for RedirectIfAManager middleware
 
 ?nav menu: route group: active indicator
