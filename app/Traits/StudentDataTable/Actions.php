@@ -46,13 +46,6 @@ trait Actions
             $this->getPhoneInput('phone')
                 ->label('Nomor HP')
                 ->required(),
-            $this->getTextInput('username')
-                ->required(),
-            TextInput::make('password')
-                ->password()
-                ->required()
-                ->revealable()
-                ->minLength(5),
             ToggleButtons::make('gender')
                 ->label('Jenis Kelamin')
                 ->options([
@@ -198,6 +191,10 @@ trait Actions
                 ->mutateRecordDataUsing(function (User $user): array {
                     $data = $user->toArray();
 
+                    // Remove username and password
+                    unset($data['username']);
+                    unset($data['password']);
+
                     // Remove first letter which is "0"
                     $data['phone'] = substr($data['phone'], 1);
                     data_set(
@@ -222,9 +219,7 @@ trait Actions
                 ->form($this->getFormInputs())
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['name'] = trim($data['name']);
-                    $data['username'] = trim($data['username']);
                     $data['phone'] = $this->getPhoneData($data['phone']);
-                    $data['password'] = Hash::make($data['password']);
 
                     $data['birth_date'] = data_get($data, 'student.student_data.birth_date');
                     $data['address'] = trim(data_get($data, 'student.student_data.address'));
