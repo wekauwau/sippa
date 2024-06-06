@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Bill;
+use App\Traits\BillDataTable\Actions;
+use App\Traits\CheckUser;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Columns\TextColumn;
@@ -10,6 +12,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class BillDataTable extends Component implements HasTable, HasForms
@@ -17,9 +20,19 @@ class BillDataTable extends Component implements HasTable, HasForms
     use InteractsWithTable;
     use InteractsWithForms;
 
+    use CheckUser;
+
+    use Actions;
+
     public function table(Table $table): Table
     {
         $query = Bill::query();
+
+        if (
+            $this->getDivisionName(Auth::user()) == 'Bendahara'
+        ) {
+            $table->headerActions($this->getHeaderActions());
+        }
 
         return $table
             ->query($query)
