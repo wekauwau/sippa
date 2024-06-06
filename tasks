@@ -1,4 +1,8 @@
+add servant
+
 create bill: assign payment to users
+
+R Bill: add toggle (syahriah, ...)
 
 ?nav menu: route group: active indicator
 
