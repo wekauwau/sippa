@@ -10,13 +10,13 @@ class ServantSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            [4, 1],
-            [5, 2],
-            [6, 3],
-            [7, 4],
-            [8, 5],
-            [9, 6],
-            [10, 7],
+            [7, 1],
+            [8, 2],
+            [9, 3],
+            [10, 4],
+            [35, 5],
+            [36, 6],
+            [37, 7],
         ];
 
         foreach ($data as $item) {
