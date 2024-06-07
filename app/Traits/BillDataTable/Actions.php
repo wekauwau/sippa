@@ -2,8 +2,12 @@
 
 namespace App\Traits\BillDataTable;
 
+use App\Models\Bill;
+use App\Models\Payment;
+use App\Models\Student;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Support\RawJs;
 use Filament\Tables\Actions\CreateAction;
 
@@ -36,6 +40,21 @@ trait Actions
                     $money($input,',','.',0)
                 JS))
                 ->required(),
+            ToggleButtons::make('recipient')
+                ->label("Penerima")
+                ->helperText(
+                    "Abdi: pengurus, ustaz, pegawai usaha pondok, pengajar MTs dan TPA."
+                )
+                ->options([
+                    'student' => "Santri",
+                    'servant' => "Abdi",
+                ])
+                ->default('student')
+                ->colors([
+                    'student' => 'info',
+                    'servant' => 'warning',
+                ])
+                ->grouped(),
         ];
     }
 
@@ -60,6 +79,29 @@ trait Actions
 
                     return $data;
                 })
+                ->after(function (array $data, Bill $bill) {
+                    if ($data['recipient'] == "student") {
+                        $recipient_ids = Student::doesntHave('manager')
+                            ->doesntHave('servant')
+                            ->doesntHave('user.teacher')
+                            ->whereRelation('user', 'active', 1)
+                            ->pluck('id');
+                    } elseif ($data['recipient'] == "servant") {
+                        $recipient_ids = Student::orHas('manager')
+                            ->orHas('servant')
+                            ->orHas('user.teacher')
+                            ->whereRelation('user', 'active', 1)
+                            ->pluck('id');
+                    }
+
+                    foreach ($recipient_ids as $id) {
+                        Payment::create([
+                            'bill_id' => $bill->id,
+                            'student_id' => $id,
+                            'paid' => null,
+                        ]);
+                    }
+                }),
         ];
     }
 }

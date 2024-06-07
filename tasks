@@ -1,5 +1,3 @@
-create bill: assign payment to users
-
 R Bill: add toggle (syahriah, ...)
 
 ?nav menu: route group: active indicator
@@ -21,5 +19,7 @@ finish home page: UI, responsive
 change PaymentSeeder to match all user
 
 remove username: login with phone, password
+
+move active from User to Student
 
 ?use real data
