@@ -43,6 +43,11 @@ class Student extends Model
         return $this->hasOne(Manager::class);
     }
 
+    public function servant(): HasOne
+    {
+        return $this->hasOne(Servant::class);
+    }
+
     public function absents(): HasMany
     {
         return $this->hasMany(Absent::class);
