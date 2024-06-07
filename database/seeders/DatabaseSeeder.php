@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             AbsentSeeder::class,
             PostSeeder::class,
             ImageSeeder::class,
+            ServiceSeeder::class,
+            ServantSeeder::class,
         ]);
     }
 }

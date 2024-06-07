@@ -1,5 +1,3 @@
-use real data
-
 create bill: assign payment to users
 
 R Bill: add toggle (syahriah, ...)
@@ -21,3 +19,7 @@ change title based on route
 finish home page: UI, responsive
 
 change PaymentSeeder to match all user
+
+remove username: login with phone, password
+
+?use real data
