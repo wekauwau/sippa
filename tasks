@@ -1,4 +1,4 @@
-add servant
+use real data
 
 create bill: assign payment to users
 
