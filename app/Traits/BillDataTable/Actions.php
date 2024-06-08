@@ -10,6 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Support\RawJs;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 
 trait Actions
@@ -120,6 +121,13 @@ trait Actions
         return [
             EditAction::make()
                 ->form($this->getFormInputs(false)),
+            DeleteAction::make()
+                ->modalHeading("Hapus Data Tagihan")
+                ->modalDescription("Apakah Anda yakin? Data terkait (tagihan tiap santri) juga akan dihapus.")
+                ->modalSubmitActionLabel("Ya, hapus")
+                ->before(function (Bill $bill) {
+                    Payment::where('bill_id', $bill->id)->delete();
+                }),
         ];
     }
 }
