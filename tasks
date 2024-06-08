@@ -1,3 +1,9 @@
+add D Bill
+
+fix(Stu...Action): getActions() EditAction mutateRecordDataUsing
+    closure parameter should: array $data
+    instead of: <Model> $<var>
+
 R Bill: add toggle (syahriah, ...)
 
 ?nav menu: route group: active indicator
@@ -23,3 +29,5 @@ remove username: login with phone, password
 move active from User to Student
 
 ?use real data
+
+PaymentSeeder match BillSeeder

@@ -31,7 +31,8 @@ class BillDataTable extends Component implements HasTable, HasForms
         if (
             $this->getDivisionName(Auth::user()) == 'Bendahara'
         ) {
-            $table->headerActions($this->getHeaderActions());
+            $table->headerActions($this->getHeaderActions())
+                ->actions($this->getActions());
         }
 
         return $table

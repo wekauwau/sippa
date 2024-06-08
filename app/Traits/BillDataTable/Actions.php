@@ -10,12 +10,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Support\RawJs;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\EditAction;
 
 trait Actions
 {
-    private function getFormInputs(): array
+    private function getFormInputs(bool $with_recipient = true): array
     {
-        return [
+        $result = [
             TextInput::make('name')
                 ->label("Nama")
                 ->minLength(1)
@@ -40,22 +41,31 @@ trait Actions
                     $money($input,',','.',0)
                 JS))
                 ->required(),
-            ToggleButtons::make('recipient')
-                ->label("Penerima")
-                ->helperText(
-                    "Abdi: pengurus, ustaz, pegawai usaha pondok, pengajar MTs dan TPA."
-                )
-                ->options([
-                    'student' => "Santri",
-                    'servant' => "Abdi",
-                ])
-                ->default('student')
-                ->colors([
-                    'student' => 'info',
-                    'servant' => 'warning',
-                ])
-                ->grouped(),
         ];
+
+
+        if ($with_recipient) {
+            array_push(
+                $result,
+                ToggleButtons::make('recipient')
+                    ->label("Penerima")
+                    ->helperText(
+                        "Abdi: pengurus, ustaz, pegawai usaha pondok, pengajar MTs dan TPA."
+                    )
+                    ->options([
+                        'student' => "Santri",
+                        'servant' => "Abdi",
+                    ])
+                    ->default('student')
+                    ->colors([
+                        'student' => 'info',
+                        'servant' => 'warning',
+                    ])
+                    ->grouped()
+            );
+        }
+
+        return $result;
     }
 
     private function getHeaderActions(): array
@@ -102,6 +112,14 @@ trait Actions
                         ]);
                     }
                 }),
+        ];
+    }
+
+    private function getActions(): array
+    {
+        return [
+            EditAction::make()
+                ->form($this->getFormInputs(false)),
         ];
     }
 }
