@@ -14,6 +14,7 @@ return new class extends Migration
             $table->text('info')->nullable();
             $table->date('deadline');
             $table->string('amount')->nullable();
+            $table->boolean('servant')->nullable()->default(null);
             $table->timestamps();
         });
     }
