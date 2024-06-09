@@ -55,6 +55,18 @@ class BillDataTable extends Component implements HasTable, HasForms
                     ->label('Jumlah')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('servant')
+                    ->label('Penerima')
+                    ->default('null')  // handling null value
+                    ->formatStateUsing(function (string $state): string {
+                        if ($state == 'null') {
+                            return "Santri";
+                        } elseif ($state == 0) {
+                            return "Santri non-abdi";
+                        } elseif ($state == 1) {
+                            return "Santri abdi";
+                        }
+                    }),
             ])
             ->defaultSort('id', 'desc');
     }

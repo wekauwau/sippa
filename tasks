@@ -1,6 +1,6 @@
-?E Bill: E servant = all student, student only, servant only
+R Bill: add filter: servant: null, 0, 1
 
-R Bill: add toggle (syahriah, ...)
+?E Bill: E servant = all student, student only, servant only
 
 ?nav menu: route group: active indicator
 
