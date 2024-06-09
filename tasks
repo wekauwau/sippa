@@ -1,6 +1,3 @@
-/data-keuangan add bulk D Bill
-    D Bill->hasMany(Payment) first
-
 ?E Bill: E servant = all student, student only, servant only
 
 R Bill: add toggle (syahriah, ...)
