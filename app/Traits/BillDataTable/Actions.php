@@ -51,14 +51,16 @@ trait Actions
                 ToggleButtons::make('recipient')
                     ->label("Penerima")
                     ->helperText(
-                        "Abdi: pengurus, ustaz, pegawai usaha pondok, pengajar MTs dan TPA."
+                        "Santri abdi: pengurus, ustaz, pegawai usaha pondok, pengajar MTs dan TPA."
                     )
                     ->options([
-                        'student' => "Santri",
-                        'servant' => "Abdi",
+                        'all' => "Santri",
+                        'student' => "Santri non-abdi",
+                        'servant' => "Santri abdi",
                     ])
-                    ->default('student')
+                    ->default('all')
                     ->colors([
+                        'all' => 'success',
                         'student' => 'info',
                         'servant' => 'warning',
                     ])
@@ -88,10 +90,20 @@ trait Actions
                         "."
                     );
 
+                    $data['servant'] = null;
+                    if ($data['recipient'] == 'student') {
+                        $data['servant'] = 0;
+                    } elseif ($data['recipient'] == 'servant') {
+                        $data['servant'] = 1;
+                    }
+
                     return $data;
                 })
                 ->after(function (array $data, Bill $bill) {
-                    if ($data['recipient'] == "student") {
+                    if ($data['recipient'] == "all") {
+                        $recipient_ids = Student::whereRelation('user', 'active', 1)
+                            ->pluck('id');
+                    } elseif ($data['recipient'] == "student") {
                         $recipient_ids = Student::doesntHave('manager')
                             ->doesntHave('servant')
                             ->doesntHave('user.teacher')
