@@ -7,6 +7,8 @@ use App\Models\Student;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+use function Laravel\Prompts\error;
+
 class PaymentSeeder extends Seeder
 {
     public function run(): void
@@ -137,11 +139,26 @@ class PaymentSeeder extends Seeder
             }
 
             foreach ($recipient_ids as $r_id) {
+                $month = $bills[$id - 1][2]->format('m');
+
                 Payment::create([
                     'bill_id' => $id,
                     'student_id' => $r_id,
-                    'paid' => null,
+                    'paid' => date_create("2024-{$month}-10"),
                 ]);
+            }
+        }
+
+        // Randomize 'paid' for Jun
+        foreach ([13, 14] as $id) {
+            $payments = Payment::where('bill_id', $id)->get();
+
+            foreach ($payments as $payment) {
+                $unpaid = rand(0, 1);
+
+                if ($unpaid) {
+                    $payment->update(['paid' => null]);
+                }
             }
         }
 
