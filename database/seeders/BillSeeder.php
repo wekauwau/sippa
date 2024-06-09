@@ -43,6 +43,7 @@ class BillSeeder extends Seeder
                 null,
                 date_create('2024-02-29'),
                 '310.000',
+                null,
             ],
             [
                 'Syahriah bulan Maret',
@@ -63,6 +64,7 @@ class BillSeeder extends Seeder
                 null,
                 date_create('2024-03-06'),
                 '110.000',
+                null,
             ],
             [
                 'Syahriah bulan April',
