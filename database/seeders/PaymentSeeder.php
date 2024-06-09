@@ -162,6 +162,7 @@ class PaymentSeeder extends Seeder
             }
         }
 
+        // ziarah and iuran ramadhan
         foreach ($all_student as $id) {
             $recipient_ids = Student::whereRelation('user', 'active', 1)
                 ->pluck('id');
@@ -170,7 +171,7 @@ class PaymentSeeder extends Seeder
                 Payment::create([
                     'bill_id' => $id,
                     'student_id' => $r_id,
-                    'paid' => null,
+                    'paid' => $bills[$id - 1][2],
                 ]);
             }
         }
