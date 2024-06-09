@@ -9,9 +9,13 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Support\RawJs;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Illuminate\Database\Eloquent\Collection;
+use Livewire\Component;
 
 trait Actions
 {
@@ -123,6 +127,21 @@ trait Actions
                             'student_id' => $id,
                             'paid' => null,
                         ]);
+                    }
+                }),
+        ];
+    }
+
+    private function getBulkActions(): array
+    {
+        return [
+            DeleteBulkAction::make()
+                ->modalHeading("Hapus Data yang Dipilih")
+                ->modalDescription("Apakah Anda yakin? Data terkait (tagihan tiap santri) juga akan dihapus.")
+                ->modalSubmitActionLabel("Ya, hapus")
+                ->before(function (Component $livewire) {
+                    foreach ($livewire->getSelectedTableRecords() as $record) {
+                        Payment::where('bill_id', $record->id)->delete();
                     }
                 }),
         ];
