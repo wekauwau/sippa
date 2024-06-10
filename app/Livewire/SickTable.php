@@ -20,7 +20,7 @@ class SickTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Sick::where('student_id', Auth::id());
+        $query = Sick::where('student_id', Auth::user()->student->id);
 
         return $table
             ->query($query)
