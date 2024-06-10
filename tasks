@@ -1,10 +1,14 @@
-R Bill: add filter: servant: null, 0, 1
+add /data-madin
+add rights for Division = 'Pendidikan'
+
+?Simplify /data-[] blade view as component
+
+/data-keuangan: R Bill
+    filter: add active indicator
 
 ?E Bill: E servant = all student, student only, servant only
 
 ?nav menu: route group: active indicator
-
-roles for managers (bendahara)
 
 upload image
 
@@ -18,12 +22,6 @@ change title based on route
 
 finish home page: UI, responsive
 
-change PaymentSeeder to match all user
-
 remove username: login with phone, password
 
 move active from User to Student
-
-?use real data
-
-PaymentSeeder match BillSeeder

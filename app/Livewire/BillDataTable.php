@@ -5,13 +5,18 @@ namespace App\Livewire;
 use App\Models\Bill;
 use App\Traits\BillDataTable\Actions;
 use App\Traits\CheckUser;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -68,7 +73,26 @@ class BillDataTable extends Component implements HasTable, HasForms
                         }
                     }),
             ])
-            ->defaultSort('id', 'desc');
+            ->defaultSort('id', 'desc')
+            ->filters([
+                Filter::make('servant')
+                    ->form([
+                        ToggleButtons::make('recipient')
+                            ->label("Penerima")
+                            ->options([
+                                'null' => "Santri",
+                                0 => "Santri non-abdi",
+                                1 => "Santri abdi",
+                            ]),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        if ($data['recipient'] == null) return $query;
+                        if ($data['recipient'] == 'null') {
+                            $data['recipient'] = null;
+                        }
+                        return $query->where('servant', $data['recipient']);
+                    }),
+            ]);
     }
 
     public function render(): View
