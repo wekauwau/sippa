@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\RedirectIfAManager;
+use App\Http\Middleware\RedirectIfAStudent;
 use Illuminate\Support\Facades\Route;
 
 // assets
@@ -28,17 +29,21 @@ Route::middleware([
         return view('madin');
     })->name('madin');
 
-    Route::get('keuangan', function () {
-        return view('finance');
-    })->name('finance');
+    Route::middleware([
+        RedirectIfAStudent::class
+    ])->group(function () {
+        Route::get('keuangan', function () {
+            return view('finance');
+        })->name('finance');
 
-    Route::get('kesehatan', function () {
-        return view('health');
-    })->name('health');
+        Route::get('kesehatan', function () {
+            return view('health');
+        })->name('health');
 
-    Route::get('pelanggaran', function () {
-        return view('violation');
-    })->name('violation');
+        Route::get('pelanggaran', function () {
+            return view('violation');
+        })->name('violation');
+    });
 
     Route::middleware([
         RedirectIfAManager::class

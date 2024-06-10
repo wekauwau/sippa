@@ -2,23 +2,28 @@
 
 namespace App\Livewire;
 
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class NavigationMenu extends Component
 {
+    public bool $student = false;
     public ?string $division_name = null;
 
-    private function getDivisionName(): void
+    private function getDivisionName(Student $student): void
     {
-        if (Auth::check()) {
-            $this->division_name = Auth::user()->student?->manager?->division?->name;
-        }
+        $this->division_name = $student?->manager?->division?->name;
     }
 
     public function __construct()
     {
-        $this->getDivisionName();
+        $student = Auth::user()?->student;
+
+        if ($student) {
+            $this->student = true;
+            $this->getDivisionName($student);
+        }
     }
 
     // Copied from:

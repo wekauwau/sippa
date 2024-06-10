@@ -22,34 +22,44 @@
                         <x-nav-link class="hidden lg:inline-flex" href="{{ route('madin') }}" :active="request()->routeIs('madin')">
                             Madin
                         </x-nav-link>
-                        <x-nav-link class="hidden lg:inline-flex" href="{{ route('finance') }}" :active="request()->routeIs('finance')">
-                            Keuangan
-                        </x-nav-link>
-                        <x-nav-link class="hidden lg:inline-flex" href="{{ route('health') }}" :active="request()->routeIs('health')">
-                            Kesehatan
-                        </x-nav-link>
-                        <x-nav-link class="hidden lg:inline-flex" href="{{ route('violation') }}" :active="request()->routeIs('violation')">
-                            Pelanggaran
-                        </x-nav-link>
-                        <x-nav-dropdown class="text-left hidden sm:inline-flex lg:hidden">
-                            <x-slot name="trigger">
-                                Santri
-                            </x-slot>
-                            <x-slot name="content">
-                                <x-dropdown-link href="{{ route('madin') }}">
-                                    Madin
-                                </x-dropdown-link>
-                                <x-dropdown-link href="{{ route('finance') }}">
-                                    Keuangan
-                                </x-dropdown-link>
-                                <x-dropdown-link href="{{ route('health') }}">
-                                    Kesehatan
-                                </x-dropdown-link>
-                                <x-dropdown-link href="{{ route('violation') }}">
-                                    Pelanggaran
-                                </x-dropdown-link>
-                            </x-slot>
-                        </x-nav-dropdown>
+                        @if ($student)
+                            <x-nav-link class="hidden lg:inline-flex" href="{{ route('finance') }}" :active="request()->routeIs('finance')">
+                                Keuangan
+                            </x-nav-link>
+                            <x-nav-link class="hidden lg:inline-flex" href="{{ route('health') }}" :active="request()->routeIs('health')">
+                                Kesehatan
+                            </x-nav-link>
+                            <x-nav-link class="hidden lg:inline-flex" href="{{ route('violation') }}" :active="request()->routeIs('violation')">
+                                Pelanggaran
+                            </x-nav-link>
+                        @endif
+                        @if ($student)
+                            {{-- sm: show dropdown if student --}}
+                            <x-nav-dropdown class="text-left hidden sm:inline-flex lg:hidden">
+                                <x-slot name="trigger">
+                                    Santri
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link href="{{ route('madin') }}">
+                                        Madin
+                                    </x-dropdown-link>
+                                    <x-dropdown-link href="{{ route('finance') }}">
+                                        Keuangan
+                                    </x-dropdown-link>
+                                    <x-dropdown-link href="{{ route('health') }}">
+                                        Kesehatan
+                                    </x-dropdown-link>
+                                    <x-dropdown-link href="{{ route('violation') }}">
+                                        Pelanggaran
+                                    </x-dropdown-link>
+                                </x-slot>
+                            </x-nav-dropdown>
+                        @else
+                            {{-- sm: show Madin only instead of dropdown if not student --}}
+                            <x-nav-link class="inline-flex lg:hidden" href="{{ route('madin') }}" :active="request()->routeIs('madin')">
+                                Madin
+                            </x-nav-link>
+                        @endif
 
                         <!-- Is a manager -->
                         @if ($division_name)
@@ -164,15 +174,17 @@
                 <x-responsive-nav-link href="{{ route('madin') }}" :active="request()->routeIs('madin')">
                     Madin
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
-                    Keuangan
-                </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
-                    Kesehatan
-                </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
-                    Pelanggaran
-                </x-responsive-nav-link>
+                @if ($student)
+                    <x-responsive-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
+                        Keuangan
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
+                        Kesehatan
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
+                        Pelanggaran
+                    </x-responsive-nav-link>
+                @endif
                 @if ($division_name)
                     <x-responsive-nav-link href="{{ route('student-data') }}" :active="request()->routeIs('student-data')">
                         Data Santri
