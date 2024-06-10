@@ -37,8 +37,8 @@ Route::middleware([
         })->name('finance');
 
         Route::get('kesehatan', function () {
-            return view('health');
-        })->name('health');
+            return view('sick');
+        })->name('sick');
 
         Route::get('pelanggaran', function () {
             return view('violation');

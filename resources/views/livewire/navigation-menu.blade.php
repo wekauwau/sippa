@@ -26,7 +26,7 @@
                             <x-nav-link class="hidden lg:inline-flex" href="{{ route('finance') }}" :active="request()->routeIs('finance')">
                                 Keuangan
                             </x-nav-link>
-                            <x-nav-link class="hidden lg:inline-flex" href="{{ route('health') }}" :active="request()->routeIs('health')">
+                            <x-nav-link class="hidden lg:inline-flex" href="{{ route('sick') }}" :active="request()->routeIs('')">
                                 Kesehatan
                             </x-nav-link>
                             <x-nav-link class="hidden lg:inline-flex" href="{{ route('violation') }}" :active="request()->routeIs('violation')">
@@ -46,7 +46,7 @@
                                     <x-dropdown-link href="{{ route('finance') }}">
                                         Keuangan
                                     </x-dropdown-link>
-                                    <x-dropdown-link href="{{ route('health') }}">
+                                    <x-dropdown-link href="{{ route('sick') }}">
                                         Kesehatan
                                     </x-dropdown-link>
                                     <x-dropdown-link href="{{ route('violation') }}">
@@ -178,7 +178,7 @@
                     <x-responsive-nav-link href="{{ route('finance') }}" :active="request()->routeIs('finance')">
                         Keuangan
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
+                    <x-responsive-nav-link href="{{ route('sick') }}" :active="request()->routeIs('')">
                         Kesehatan
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="{{ route('violation') }}" :active="request()->routeIs('violation')">
