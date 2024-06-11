@@ -84,8 +84,8 @@ trait Actions
                 ->format('Y-m-d')
                 ->displayFormat('Y-m-d')
                 ->closeOnDateSelection()
-                ->default(now())
-                ->maxDate(now())
+                ->default(today())
+                ->maxDate(today())
                 // DatePicker('end')->minDate()
                 // is based on this field
                 ->live(),
@@ -98,7 +98,7 @@ trait Actions
                 ->minDate(
                     fn (Get $get): string => $get('start')
                 )
-                ->maxDate(now()),
+                ->maxDate(today()),
             TextInput::make('info')
                 ->label("Keterangan")
                 ->minLength(1)

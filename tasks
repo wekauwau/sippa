@@ -1,5 +1,3 @@
-fix(route:sick-data): C Sick can't input same day for "Mulai" and "Sembuh"
-
 route: finance-data check CRUD modal
 
 add /data-madin
