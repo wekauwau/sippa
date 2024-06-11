@@ -12,8 +12,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
@@ -85,6 +83,19 @@ class BillDataTable extends Component implements HasTable, HasForms
                                 1 => "Santri abdi",
                             ]),
                     ])
+                    ->indicateUsing(function (array $data): ?string {
+                        if ($data['recipient'] == null) return null;
+
+                        $prefix = "Penerima:";
+                        switch ($data['recipient']) {
+                            case 'null':
+                                return "$prefix Santri";
+                            case 0:
+                                return "$prefix Santri non-abdi";
+                            case 1;
+                                return "$prefix Santri abdi";
+                        }
+                    })
                     ->query(function (Builder $query, array $data): Builder {
                         if ($data['recipient'] == null) return $query;
                         if ($data['recipient'] == 'null') {

@@ -1,10 +1,6 @@
 add /data-madin
-add rights for Division = 'Pendidikan'
 
 ?Simplify /data-[] blade view as component
-
-/data-keuangan: R Bill
-    filter: add active indicator
 
 ?E Bill: E servant = all student, student only, servant only
 
