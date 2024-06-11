@@ -5,10 +5,12 @@ namespace App\Traits\SickTable;
 use App\Models\Student;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use PhpParser\Node\Stmt\Label;
 
 trait Actions
 {
@@ -44,7 +46,6 @@ trait Actions
         return [
             Select::make('student_id')
                 ->label("Santri")
-                ->placeholder("pl")
                 ->required()
                 ->native(false)
                 ->options(
@@ -79,6 +80,11 @@ trait Actions
                     fn (Get $get): string => $get('start')
                 )
                 ->maxDate(now()),
+            TextInput::make('info')
+                ->label("Keterangan")
+                ->minLength(1)
+                ->maxLength(255)
+                ->required(),
         ];
     }
 }
