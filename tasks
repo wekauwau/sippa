@@ -1,4 +1,4 @@
-/kesehatan R Sick: using SickData.Columns Trait
+fix(route:sick-data): C Sick can't input same day for "Mulai" and "Sembuh"
 
 route: finance-data check CRUD modal
 
