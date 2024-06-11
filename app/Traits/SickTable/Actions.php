@@ -10,7 +10,6 @@ use Filament\Forms\Get;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
-use PhpParser\Node\Stmt\Label;
 
 trait Actions
 {
@@ -43,13 +42,33 @@ trait Actions
 
     private function getFormCreate(): array
     {
+        $student_options = Student::whereRelation(
+            'user',
+            'active',
+            1
+        )->get()->pluck('name_with_room', 'id');
+
         return [
             Select::make('student_id')
                 ->label("Santri")
                 ->required()
                 ->native(false)
-                ->options(
-                    Student::all()->pluck('name_with_room', 'id')
+                ->options($student_options)
+                ->searchable()
+                ->getSearchResultsUsing(
+                    function (string $search) use ($student_options): array {
+                        if ($search == '') return $student_options;
+                        return $student_options
+                            ->filter(function ($item) use ($search) {
+                                return false !== stripos($item, $search);
+                            })
+                            ->toArray();
+                    }
+                )
+                ->getOptionLabelUsing(
+                    function ($value) use ($student_options): string {
+                        return $student_options[$value];
+                    }
                 ),
             ...$this->getFormEdit(),
         ];

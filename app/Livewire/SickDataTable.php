@@ -37,12 +37,9 @@ class SickDataTable extends Component implements HasTable, HasForms
         }
 
         return $table
-            ->query(
-                Sick::query()
-            )
-            ->columns(
-                $this->getColumnsForManager(),
-            );
+            ->query(Sick::query())
+            ->columns($this->getColumnsForManager(),)
+            ->defaultSort('id', 'desc');
     }
 
     public function render(): View
