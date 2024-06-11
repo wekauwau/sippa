@@ -149,6 +149,7 @@ trait Actions
     {
         return [
             EditAction::make()
+                ->modalHeading("Ubah Data Tagihan")
                 ->form($this->getFormInputs(false)),
             DeleteAction::make()
                 ->modalHeading("Hapus Data Tagihan")

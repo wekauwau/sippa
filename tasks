@@ -1,5 +1,3 @@
-route: finance-data check CRUD modal
-
 add /data-madin
 add rights for Division = 'Pendidikan'
 
