@@ -1,4 +1,8 @@
+route: sick-data CRUD Sick.info
+
 /kesehatan R Sick: using SickData.Columns Trait
+
+route: finance-data check CRUD modal
 
 add /data-madin
 add rights for Division = 'Pendidikan'

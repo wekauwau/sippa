@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Get;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 
 trait Actions
 {
@@ -16,11 +17,10 @@ trait Actions
         return [
             CreateAction::make()
                 ->label("Tambah")
-                ->form($this->getFormInputs()),
+                ->form($this->getFormCreate()),
         ];
     }
 
-    // TODO:
     private function getBulkActions(): array
     {
         return [
@@ -30,13 +30,16 @@ trait Actions
         ];
     }
 
-    // TODO:
     private function getActions(): array
     {
-        return [];
+        return [
+            EditAction::make()
+                ->modalHeading("Ubah Data Kesehatan")
+                ->form($this->getFormEdit()),
+        ];
     }
 
-    private function getFormInputs(): array
+    private function getFormCreate(): array
     {
         return [
             Select::make('student_id')
@@ -45,9 +48,15 @@ trait Actions
                 ->required()
                 ->native(false)
                 ->options(
-                    Student::all()
-                        ->pluck('name_with_room', 'id')
+                    Student::all()->pluck('name_with_room', 'id')
                 ),
+            ...$this->getFormEdit(),
+        ];
+    }
+
+    private function getFormEdit(): array
+    {
+        return [
             DatePicker::make('start')
                 ->label("Mulai")
                 ->required()
