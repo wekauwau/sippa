@@ -7,6 +7,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Get;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 
 trait Actions
 {
@@ -22,7 +23,11 @@ trait Actions
     // TODO:
     private function getBulkActions(): array
     {
-        return [];
+        return [
+            DeleteBulkAction::make()
+                ->modalHeading("Hapus Data yang Dipilih")
+                ->modalSubmitActionLabel("Ya, hapus"),
+        ];
     }
 
     // TODO:
