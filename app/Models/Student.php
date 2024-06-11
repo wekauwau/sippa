@@ -22,10 +22,9 @@ class Student extends Model
 
     public function getNameWithRoomAttribute()
     {
-        return nl2br(
+        return
             "{$this->user->name}\n" .
-                "{$this->room->name_with_room_group}"
-        );
+            "{$this->room->name_with_room_group}";
     }
 
     public function user(): BelongsTo

@@ -30,6 +30,9 @@ trait Columns
         return [
             TextColumn::make('student.name_with_room')
                 ->label("Santri")
+                ->formatStateUsing(
+                    fn (string $state): string => nl2br($state)
+                )
                 ->html()
                 ->searchable(
                     query: function (Builder $query, string $search): Builder {
