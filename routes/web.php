@@ -55,5 +55,9 @@ Route::middleware([
         Route::get('data-keuangan', function () {
             return view('finance-data');
         })->name('finance-data');
+
+        Route::get('data-kesehatan', function () {
+            return view('sick-data');
+        })->name('sick-data');
     });
 });

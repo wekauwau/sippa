@@ -18,6 +18,16 @@ class Student extends Model
         'grade_id',
     ];
 
+    protected $appends = ['name_with_room'];
+
+    public function getNameWithRoomAttribute()
+    {
+        return nl2br(
+            "{$this->user->name}\n" .
+                "{$this->room->name_with_room_group}"
+        );
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

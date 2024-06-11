@@ -1,4 +1,4 @@
-add /data-kesehatan
+/kesehatan R Sick: using SickData.Columns Trait
 
 add /data-madin
 add rights for Division = 'Pendidikan'

@@ -74,6 +74,9 @@
                                     <x-dropdown-link href="{{ route('finance-data') }}">
                                         Data Keuangan
                                     </x-dropdown-link>
+                                    <x-dropdown-link href="{{ route('sick-data') }}">
+                                        Data Kesehatan
+                                    </x-dropdown-link>
                                 </x-slot>
                             </x-nav-dropdown>
                         @endif
@@ -189,8 +192,11 @@
                     <x-responsive-nav-link href="{{ route('student-data') }}" :active="request()->routeIs('student-data')">
                         Data Santri
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('finance-data') }}" :active="request()->routeIs('student-data')">
+                    <x-responsive-nav-link href="{{ route('finance-data') }}" :active="request()->routeIs('finance-data')">
                         Data Keuangan
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('sick-data') }}" :active="request()->routeIs('sick-data')">
+                        Data Kesehatan
                     </x-responsive-nav-link>
                 @endif
             @endif
