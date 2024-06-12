@@ -6,6 +6,7 @@ use App\Traits\FilamentTable\HasDifferentColumnForManager;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 
 trait Actions
 {
@@ -27,7 +28,11 @@ trait Actions
 
     private function getActions(): array
     {
-        return [];
+        return [
+            DeleteAction::make()
+                ->modalHeading("Hapus Data Pelanggaran")
+                ->modalSubmitActionLabel("Ya, hapus"),
+        ];
     }
 
     private function getFormCreate(): array
