@@ -7,6 +7,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 
 trait Actions
@@ -24,7 +25,11 @@ trait Actions
 
     private function getBulkActions(): array
     {
-        return [];
+        return [
+            DeleteBulkAction::make()
+                ->modalHeading("Hapus Data yang Dipilih")
+                ->modalSubmitActionLabel("Ya, hapus"),
+        ];
     }
 
     private function getActions(): array
