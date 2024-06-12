@@ -20,10 +20,8 @@ class ViolationTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Violation::where('student_id', Auth::id());
-
         return $table
-            ->query($query)
+            ->query(Violation::where('student_id', Auth::user()->student->id))
             ->columns([
                 TextColumn::make('date')
                     ->label('Tanggal')
