@@ -3,6 +3,7 @@
 namespace App\Traits\SickTable;
 
 use App\Models\Student;
+use App\Traits\FilamentTable\HasDifferentColumnForManager;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -14,6 +15,8 @@ use Filament\Tables\Actions\EditAction;
 
 trait Actions
 {
+    use HasDifferentColumnForManager;
+
     private function getHeaderActions(): array
     {
         return [
@@ -46,36 +49,7 @@ trait Actions
 
     private function getFormCreate(): array
     {
-        $student_options = Student::whereRelation(
-            'user',
-            'active',
-            1
-        )->get()->pluck('name_with_room', 'id');
-
-        return [
-            Select::make('student_id')
-                ->label("Santri")
-                ->required()
-                ->native(false)
-                ->options($student_options)
-                ->searchable()
-                ->getSearchResultsUsing(
-                    function (string $search) use ($student_options): array {
-                        if ($search == '') return $student_options;
-                        return $student_options
-                            ->filter(function ($item) use ($search) {
-                                return false !== stripos($item, $search);
-                            })
-                            ->toArray();
-                    }
-                )
-                ->getOptionLabelUsing(
-                    function ($value) use ($student_options): string {
-                        return $student_options[$value];
-                    }
-                ),
-            ...$this->getFormEdit(),
-        ];
+        return $this->addSelectStudent();
     }
 
     private function getFormEdit(): array
