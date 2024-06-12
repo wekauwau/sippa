@@ -4,6 +4,6 @@
             Data Madin
         </x-slot>
 
-        {{-- <livewire:madin-data-table /> --}}
+        <livewire:madin-data-table />
     </x-header>
 </x-views.table>
