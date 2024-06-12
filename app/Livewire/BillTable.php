@@ -20,23 +20,20 @@ class BillTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Payment::with('bill')
-            ->where('student_id', Auth::id())
-            ->whereNull('paid');
-
         return $table
-            ->query($query)
+            ->query(
+                Payment::with('bill')
+                    ->where('student_id', Auth::user()->student->id)
+                    ->whereNull('paid')
+            )
             ->columns([
-                TextColumn::make('bill.name')
-                    ->label('Nama')
+                TextColumn::make('bill.name')->label('Nama')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('bill.deadline')
-                    ->label('Batas')
+                TextColumn::make('bill.deadline')->label('Batas')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('bill.amount')
-                    ->label('Jumlah')
+                TextColumn::make('bill.amount')->label('Jumlah')
                     ->sortable()
                     ->searchable(isIndividual: true),
             ]);
