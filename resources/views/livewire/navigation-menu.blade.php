@@ -77,6 +77,9 @@
                                     <x-dropdown-link href="{{ route('sick-data') }}">
                                         Data Kesehatan
                                     </x-dropdown-link>
+                                    <x-dropdown-link href="{{ route('violation-data') }}">
+                                        Data Pelanggaran
+                                    </x-dropdown-link>
                                 </x-slot>
                             </x-nav-dropdown>
                         @endif
@@ -197,6 +200,9 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="{{ route('sick-data') }}" :active="request()->routeIs('sick-data')">
                         Data Kesehatan
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('violation-data') }}" :active="request()->routeIs('violation-data')">
+                        Data Pelanggaran
                     </x-responsive-nav-link>
                 @endif
             @endif

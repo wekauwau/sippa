@@ -59,5 +59,9 @@ Route::middleware([
         Route::get('data-kesehatan', function () {
             return view('sick-data');
         })->name('sick-data');
+
+        Route::get('data-pelanggaran', function () {
+            return view('violation-data');
+        })->name('violation-data');
     });
 });

@@ -1,3 +1,6 @@
+feat: add route:violation-data
+refactor(route:violation): use App/Trait/ViolationTable/Columns
+
 add /data-madin
 
 ?Simplify /data-[] blade view as component
