@@ -18,6 +18,6 @@ change title based on route
 
 finish home page: UI, responsive
 
-remove username: login with phone, password
+?remove username: login with phone, password
 
-move active from User to Student
+?move active from User to Student
