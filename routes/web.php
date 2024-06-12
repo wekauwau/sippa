@@ -48,6 +48,10 @@ Route::middleware([
     Route::middleware([
         RedirectIfAManager::class
     ])->group(function () {
+        Route::get('data-madin', function () {
+            return view('madin-data');
+        })->name('madin-data');
+
         Route::get('data-santri', function () {
             return view('student-data');
         })->name('student-data');

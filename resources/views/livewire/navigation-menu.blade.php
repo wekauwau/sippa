@@ -68,6 +68,9 @@
                                     Pengurus
                                 </x-slot>
                                 <x-slot name="content">
+                                    <x-dropdown-link href="{{ route('madin-data') }}">
+                                        Data Madin
+                                    </x-dropdown-link>
                                     <x-dropdown-link href="{{ route('student-data') }}">
                                         Data Santri
                                     </x-dropdown-link>
@@ -192,6 +195,9 @@
                     </x-responsive-nav-link>
                 @endif
                 @if ($division_name)
+                    <x-responsive-nav-link href="{{ route('madin-data') }}" :active="request()->routeIs('madin-data')">
+                        Data Madin
+                    </x-responsive-nav-link>
                     <x-responsive-nav-link href="{{ route('student-data') }}" :active="request()->routeIs('student-data')">
                         Data Santri
                     </x-responsive-nav-link>
