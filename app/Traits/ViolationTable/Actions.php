@@ -19,6 +19,7 @@ trait Actions
         return [
             CreateAction::make()
                 ->label("Tambah")
+                ->modalHeading("Tambah Data Pelanggaran")
                 ->form($this->getFormCreate()),
         ];
     }
