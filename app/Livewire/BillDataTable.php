@@ -29,8 +29,6 @@ class BillDataTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Bill::query();
-
         if (
             $this->getDivisionName(Auth::user()) == 'Bendahara'
         ) {
@@ -40,7 +38,7 @@ class BillDataTable extends Component implements HasTable, HasForms
         }
 
         return $table
-            ->query($query)
+            ->query(Bill::query())
             ->columns([
                 TextColumn::make('name')
                     ->label('Nama')

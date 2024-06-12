@@ -22,28 +22,21 @@ class MadinTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = Madin::where('semester_id', 1)
-            ->with(['grade', 'madin_room', 'lesson', 'teacher']);
         $student = Auth::user()->student;
 
         return $table
-            ->query($query)
+            ->query(
+                Madin::where('semester_id', 1)->with(['grade', 'madin_room', 'lesson', 'teacher'])
+            )
             ->columns([
-                TextColumn::make('day')
-                    ->label('Hari'),
-                TextColumn::make('lesson.name')
-                    ->label('Pelajaran'),
-                TextColumn::make('teacher.user.name')
-                    ->label('Pengajar'),
-                TextColumn::make('madin_room.name')
-                    ->label('Tempat'),
+                TextColumn::make('day')->label('Hari'),
+                TextColumn::make('lesson.name')->label('Pelajaran'),
+                TextColumn::make('teacher.user.name')->label('Pengajar'),
+                TextColumn::make('madin_room.name')->label('Tempat'),
             ])
             ->filters([
-                SelectFilter::make('grade_id')
-                    ->label('Kelas')
-                    ->options(
-                        Grade::pluck('name', 'id')->toArray(),
-                    )
+                SelectFilter::make('grade_id')->label('Kelas')
+                    ->options(Grade::pluck('name', 'id')->toArray())
                     ->default($student ? $student->grade_id : 1)
                     ->selectablePlaceholder(false)
             ]);
