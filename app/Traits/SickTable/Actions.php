@@ -2,10 +2,8 @@
 
 namespace App\Traits\SickTable;
 
-use App\Models\Student;
 use App\Traits\FilamentTable\HasDifferentColumnForManager;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use Filament\Tables\Actions\CreateAction;
@@ -22,6 +20,7 @@ trait Actions
         return [
             CreateAction::make()
                 ->label("Tambah")
+                ->modalHeading("Tambah Data Kesehatan")
                 ->form($this->getFormCreate()),
         ];
     }
