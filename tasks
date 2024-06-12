@@ -26,5 +26,3 @@ add /data-madin
 
 check route:sick-data C modal
 refactor(route:sick-data): use HasDifferentColumnForManager
-
-feat(route:sick-data): add D action

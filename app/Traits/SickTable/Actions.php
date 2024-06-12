@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 
@@ -34,6 +35,9 @@ trait Actions
     private function getActions(): array
     {
         return [
+            DeleteAction::make()
+                ->modalHeading("Hapus Data Kesehatan")
+                ->modalSubmitActionLabel("Ya, hapus"),
             EditAction::make()
                 ->modalHeading("Ubah Data Kesehatan")
                 ->form($this->getFormEdit()),
