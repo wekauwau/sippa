@@ -1,5 +1,7 @@
-feat: add route:violation-data
 refactor(route:violation): use App/Trait/ViolationTable/Columns
+refactor(route:sick-data): use HasDifferentColumnForManager
+
+check route:sick-data C modal
 
 add /data-madin
 
