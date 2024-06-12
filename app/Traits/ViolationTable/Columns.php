@@ -2,11 +2,13 @@
 
 namespace App\Traits\ViolationTable;
 
+use App\Traits\FilamentTable\HasDifferentColumnForManager;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
 
 trait Columns
 {
+    use HasDifferentColumnForManager;
+
     private function getColumns(): array
     {
         return [
@@ -21,40 +23,8 @@ trait Columns
         ];
     }
 
-    private function getColumnsForManager(): array
+    private function getColumnsManager(): array
     {
-        return [
-            TextColumn::make('student.name_with_room')
-                ->label("Santri")
-                ->formatStateUsing(
-                    fn (string $state): string => nl2br($state)
-                )
-                ->html()
-                ->searchable(
-                    query: function (Builder $query, string $search): Builder {
-                        return $query
-                            ->whereRelation(
-                                'student.user',
-                                'name',
-                                'like',
-                                "%{$search}%"
-                            )
-                            ->orWhereRelation(
-                                'student.room',
-                                'name',
-                                'like',
-                                "%{$search}%"
-                            )
-                            ->orWhereRelation(
-                                'student.room.room_group',
-                                'name',
-                                'like',
-                                "%{$search}%"
-                            );
-                    },
-                    isIndividual: true,
-                ),
-            ...$this->getColumns(),
-        ];
+        return $this->addStudentNameRoom();
     }
 }

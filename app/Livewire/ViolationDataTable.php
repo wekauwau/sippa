@@ -38,7 +38,7 @@ class ViolationDataTable extends Component implements HasTable, HasForms
 
         return $table
             ->query(Violation::query())
-            ->columns($this->getColumnsForManager(),)
+            ->columns($this->getColumnsManager())
             ->defaultSort('id', 'desc');
     }
 
