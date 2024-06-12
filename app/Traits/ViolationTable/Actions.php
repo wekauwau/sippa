@@ -7,6 +7,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 
 trait Actions
 {
@@ -32,6 +33,9 @@ trait Actions
             DeleteAction::make()
                 ->modalHeading("Hapus Data Pelanggaran")
                 ->modalSubmitActionLabel("Ya, hapus"),
+            EditAction::make()
+                ->modalHeading("Ubah Data Pelanggaran")
+                ->form($this->getFormEdit()),
         ];
     }
 
