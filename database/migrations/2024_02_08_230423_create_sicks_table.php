@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained();
             $table->date('start');
-            $table->date('end');
+            $table->date('end')->nullable();
             $table->string('info');
             $table->timestamps();
         });
