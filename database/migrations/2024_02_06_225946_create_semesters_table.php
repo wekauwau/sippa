@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->year('start');
             $table->year('end');
-            $table->boolean('isEven');
+            $table->enum('semester', ['Ganjil', 'Genap']);
             $table->boolean('active');
             $table->timestamps();
         });

@@ -11,7 +11,7 @@ class Semester extends Model
     protected $fillable = [
         'start',
         'end',
-        'isEven',
+        'semester',
         'active',
     ];
 
@@ -19,10 +19,7 @@ class Semester extends Model
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                $result = "{$attributes['start']} - {$attributes['end']} ";
-
-                if ($attributes['isEven']) return "$result (Genap)";
-                return "$result (Ganjil)";
+                return "{$attributes['start']} - {$attributes['end']} {$attributes['semester']}";
             }
         );
     }
