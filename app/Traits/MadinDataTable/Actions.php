@@ -7,6 +7,9 @@ use App\Models\Teacher;
 use App\Traits\FilamentTable\HasDifferentColumnForManager;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 
 trait Actions
 {
@@ -18,21 +21,32 @@ trait Actions
             CreateAction::make()
                 ->label("Tambah")
                 ->modalHeading("Tambah Data Madin")
-                ->form($this->getFormCreate()),
+                ->form($this->getFormThis()),
         ];
     }
 
     private function getBulkActions(): array
     {
-        return [];
+        return [
+            DeleteBulkAction::make()
+                ->modalHeading("Hapus Data yang Dipilih")
+                ->modalSubmitActionLabel("Ya, hapus"),
+        ];
     }
 
     private function getActions(): array
     {
-        return [];
+        return [
+            DeleteAction::make()
+                ->modalHeading("Hapus Data Madin")
+                ->modalSubmitActionLabel("Ya, hapus"),
+            EditAction::make()
+                ->modalHeading("Ubah Data Madin")
+                ->form($this->getFormThis()),
+        ];
     }
 
-    private function getFormCreate(): array
+    private function getFormThis(): array
     {
         $semester_options = Semester::all()->pluck('full_name', 'id');
         $teacher_options = Teacher::all()->pluck('user.name', 'id');
@@ -104,10 +118,5 @@ trait Actions
                     }
                 ),
         ];
-    }
-
-    private function getFormEdit(): array
-    {
-        return [];
     }
 }
