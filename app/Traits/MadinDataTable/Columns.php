@@ -18,7 +18,7 @@ trait Columns
                         //     boolean('isEven')
                         // instead of:
                         //     string('<name>') = "Ganjil", "Genap"
-                        // or there is a way?
+                        // or there is a way? using collection?
                         return $query->whereRelation('semester', 'start', 'like', "%{$search}%")
                             ->orWhereRelation('semester', 'end', 'like', "%{$search}%");
                     },
