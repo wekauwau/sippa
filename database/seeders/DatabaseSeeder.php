@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
             MadinSeeder::class,
             ViolationSeeder::class,
             SickSeeder::class,
+            ServiceSeeder::class,
+            ServantSeeder::class,
             BillSeeder::class,
             PaymentSeeder::class,
             AbsentSeeder::class,
             PostSeeder::class,
             ImageSeeder::class,
-            ServiceSeeder::class,
-            ServantSeeder::class,
         ]);
     }
 }

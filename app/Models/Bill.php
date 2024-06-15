@@ -12,7 +12,7 @@ class Bill extends Model
         'info',
         'deadline',
         'amount',
-        'servant',
+        'recipient',
     ];
 
     public function payments(): HasMany
