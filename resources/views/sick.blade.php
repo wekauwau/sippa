@@ -1,4 +1,4 @@
-<x-views.table>
+<x-full-container>
     <x-header>
         <x-slot:title>
             Riwayat Sakit
@@ -6,4 +6,4 @@
 
         <livewire:sick-table />
     </x-header>
-</x-views.table>
+</x-full-container>

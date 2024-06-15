@@ -19,7 +19,6 @@ class AbsentTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-
         return $table
             ->query(Absent::where('student_id', Auth::user()->student->id))
             ->columns([
@@ -31,7 +30,8 @@ class AbsentTable extends Component implements HasTable, HasForms
                     ->searchable(isIndividual: true),
                 TextColumn::make('info')->label('Keterangan')
                     ->sortable()
-                    ->searchable(isIndividual: true),
+                    ->searchable(isIndividual: true)
+                    ->placeholder("Tanpa keterangan"),
             ]);
     }
 

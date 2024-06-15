@@ -1,4 +1,4 @@
-<x-views.table>
+<x-full-container>
     <x-header>
         <x-slot:title>
             Tagihan
@@ -14,4 +14,4 @@
 
         <livewire:payment-table />
     </x-header>
-</x-views.table>
+</x-full-container>

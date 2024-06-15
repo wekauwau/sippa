@@ -14,7 +14,7 @@ class Gallery extends Component
 
     public function __construct()
     {
-        $this->images = Image::all();
+        $this->images = Image::latest()->take(9)->get();
     }
 
     public function render(): View|Closure|string

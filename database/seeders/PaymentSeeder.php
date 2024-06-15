@@ -5,9 +5,6 @@ namespace Database\Seeders;
 use App\Models\Payment;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
-use function Laravel\Prompts\error;
 
 class PaymentSeeder extends Seeder
 {
@@ -113,6 +110,7 @@ class PaymentSeeder extends Seeder
                 1,
             ],
         ];
+
         $syahriah_ids = range(1, 14);
         $all_student = [5, 8];
         // Remove ziarah, iuran ramadhan

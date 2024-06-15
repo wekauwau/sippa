@@ -26,7 +26,8 @@ class MadinTable extends Component implements HasTable, HasForms
 
         return $table
             ->query(
-                Madin::where('semester_id', 1)->with(['grade', 'madin_room', 'lesson', 'teacher'])
+                Madin::where('semester_id', 1)
+                    ->with(['grade', 'madin_room', 'lesson', 'teacher'])
             )
             ->columns([
                 TextColumn::make('day')->label('Hari'),

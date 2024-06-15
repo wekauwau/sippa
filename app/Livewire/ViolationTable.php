@@ -23,12 +23,10 @@ class ViolationTable extends Component implements HasTable, HasForms
         return $table
             ->query(Violation::where('student_id', Auth::user()->student->id))
             ->columns([
-                TextColumn::make('date')
-                    ->label('Tanggal')
+                TextColumn::make('date')->label('Tanggal')
                     ->sortable()
                     ->searchable(isIndividual: true),
-                TextColumn::make('info')
-                    ->label('Keterangan')
+                TextColumn::make('info')->label('Keterangan')
                     ->sortable()
                     ->searchable(isIndividual: true),
             ]);
