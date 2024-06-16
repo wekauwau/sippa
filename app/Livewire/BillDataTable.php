@@ -56,52 +56,11 @@ class BillDataTable extends Component implements HasTable, HasForms
                     ->label('Jumlah')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('servant')
-                    ->label('Penerima')
-                    ->default('null')  // handling null value
-                    ->formatStateUsing(function (string $state): string {
-                        if ($state == 'null') {
-                            return "Santri";
-                        } elseif ($state == 0) {
-                            return "Santri non-abdi";
-                        } elseif ($state == 1) {
-                            return "Santri abdi";
-                        }
-                    }),
+                TextColumn::make('recipient')->label('Penerima')
+                    ->sortable()
+                    ->searchable(),
             ])
-            ->defaultSort('id', 'desc')
-            ->filters([
-                Filter::make('servant')
-                    ->form([
-                        ToggleButtons::make('recipient')
-                            ->label("Penerima")
-                            ->options([
-                                'null' => "Santri",
-                                0 => "Santri non-abdi",
-                                1 => "Santri abdi",
-                            ]),
-                    ])
-                    ->indicateUsing(function (array $data): ?string {
-                        if ($data['recipient'] == null) return null;
-
-                        $prefix = "Penerima:";
-                        switch ($data['recipient']) {
-                            case 'null':
-                                return "$prefix Santri";
-                            case 0:
-                                return "$prefix Santri non-abdi";
-                            case 1;
-                                return "$prefix Santri abdi";
-                        }
-                    })
-                    ->query(function (Builder $query, array $data): Builder {
-                        if ($data['recipient'] == null) return $query;
-                        if ($data['recipient'] == 'null') {
-                            $data['recipient'] = null;
-                        }
-                        return $query->where('servant', $data['recipient']);
-                    }),
-            ]);
+            ->defaultSort('id', 'desc');
     }
 
     public function render(): View

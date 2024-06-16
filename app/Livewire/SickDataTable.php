@@ -27,9 +27,7 @@ class SickDataTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        if (
-            $this->getDivisionName(Auth::user()) == "Kesehatan"
-        ) {
+        if ($this->getDivisionName(Auth::user()) == "Kesehatan") {
             $table
                 ->headerActions($this->getHeaderActions())
                 ->bulkActions($this->getBulkActions())

@@ -10,16 +10,13 @@ trait Columns
     private function getColumns(): array
     {
         return [
-            TextColumn::make('start')
-                ->label('Mulai')
+            TextColumn::make('start')->label('Mulai')
                 ->sortable()
                 ->searchable(isIndividual: true),
-            TextColumn::make('end')
-                ->label('Sembuh')
+            TextColumn::make('end')->label('Sembuh')
                 ->sortable()
                 ->searchable(isIndividual: true),
-            TextColumn::make('info')
-                ->label('Keterangan')
+            TextColumn::make('info')->label('Keterangan')
                 ->sortable()
                 ->searchable(isIndividual: true),
         ];

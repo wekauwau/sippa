@@ -55,8 +55,7 @@ trait HasDifferentColumnForManager
         )->get()->pluck('name_with_room', 'id');
 
         return [
-            Select::make('student_id')
-                ->label("Santri")
+            Select::make('student_id')->label("Santri")
                 ->required()
                 ->native(false)
                 ->options($student_options)

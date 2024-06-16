@@ -20,25 +20,20 @@ trait Actions
     private function getFormInputs(bool $with_recipient = true): array
     {
         $result = [
-            TextInput::make('name')
-                ->label("Nama")
+            TextInput::make('name')->label("Nama")
                 ->minLength(1)
                 ->maxLength(255)
                 ->required(),
-            TextInput::make('info')
-                ->label("Keterangan")
+            TextInput::make('info')->label("Keterangan")
                 ->minLength(1)
                 ->maxLength(255),
-            DatePicker::make('deadline')
-                ->label("Batas")
+            DatePicker::make('deadline')->label("Batas")
                 ->native(false)
                 ->required()
                 ->format('Y-m-d')
                 ->displayFormat('Y-m-d')
-                ->closeOnDateSelection()
-                ->minDate(now()),
-            TextInput::make('amount')
-                ->label("Jumlah")
+                ->closeOnDateSelection(),
+            TextInput::make('amount')->label("Jumlah")
                 ->inputMode('numeric')
                 ->mask(RawJs::make(<<<'JS'
                     $money($input,',','.',0)
@@ -46,25 +41,23 @@ trait Actions
                 ->required(),
         ];
 
-
         if ($with_recipient) {
             array_push(
                 $result,
-                ToggleButtons::make('recipient')
-                    ->label("Penerima")
+                ToggleButtons::make('recipient')->label("Penerima")
                     ->helperText(
                         "Santri abdi: pengurus, ustaz, pegawai usaha pondok, pengajar MTs dan TPA."
                     )
                     ->options([
-                        'all' => "Santri",
-                        'student' => "Santri non-abdi",
-                        'servant' => "Santri abdi",
+                        'Santri' => "Santri",
+                        'Santri non-abdi' => "Santri non-abdi",
+                        'Santri abdi' => "Santri abdi",
                     ])
                     ->default('all')
                     ->colors([
-                        'all' => 'success',
-                        'student' => 'info',
-                        'servant' => 'warning',
+                        'Santri' => 'success',
+                        'Santri non-abdi' => 'info',
+                        'Santri abdi' => 'warning',
                     ])
                     ->grouped()
             );
@@ -77,6 +70,7 @@ trait Actions
     {
         return [
             CreateAction::make()
+                ->model(Bill::class)
                 ->label("Tambah")
                 ->form($this->getFormInputs())
                 ->modalHeading("Tambah Tagihan")
@@ -92,30 +86,24 @@ trait Actions
                         "."
                     );
 
-                    $data['servant'] = null;
-                    if ($data['recipient'] == 'student') {
-                        $data['servant'] = 0;
-                    } elseif ($data['recipient'] == 'servant') {
-                        $data['servant'] = 1;
-                    }
-
                     return $data;
                 })
                 ->after(function (array $data, Bill $bill) {
-                    if ($data['recipient'] == "all") {
-                        $recipient_ids = Student::whereRelation('user', 'active', 1)
-                            ->pluck('id');
-                    } elseif ($data['recipient'] == "student") {
-                        $recipient_ids = Student::doesntHave('manager')
+                    $active_student_ids = Student::whereRelation('user', 'active', 1)->get();
+
+                    if ($data['recipient'] == "Santri") {
+                        $recipient_ids = $active_student_ids->pluck('id');
+                    } elseif ($data['recipient'] == "Santri non-abdi") {
+                        $recipient_ids = $active_student_ids->toQuery()
+                            ->doesntHave('manager')
                             ->doesntHave('servant')
                             ->doesntHave('user.teacher')
-                            ->whereRelation('user', 'active', 1)
                             ->pluck('id');
-                    } elseif ($data['recipient'] == "servant") {
-                        $recipient_ids = Student::orHas('manager')
+                    } elseif ($data['recipient'] == "Santri abdi") {
+                        $recipient_ids = $active_student_ids->toQuery()
+                            ->orHas('manager')
                             ->orHas('servant')
                             ->orHas('user.teacher')
-                            ->whereRelation('user', 'active', 1)
                             ->pluck('id');
                     }
 

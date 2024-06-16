@@ -18,8 +18,7 @@ trait Actions
     private function getHeaderActions(): array
     {
         return [
-            CreateAction::make()
-                ->label("Tambah")
+            CreateAction::make()->label("Tambah")
                 ->modalHeading("Tambah Data Kesehatan")
                 ->form($this->getFormCreate()),
         ];
