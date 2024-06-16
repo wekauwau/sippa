@@ -49,6 +49,7 @@ trait Actions
         return [
             DeleteAction::make()
                 ->modalHeading("Hapus Data Madin")
+                ->modalDescription("Apakah Anda yakin? Data terkait (kehadiran) juga akan dihapus.")
                 ->modalSubmitActionLabel("Ya, hapus")
                 ->before(function (DeleteAction $action) {
                     Absent::where('madin_id', $action->getRecord()->id)
