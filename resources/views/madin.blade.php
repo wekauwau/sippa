@@ -17,11 +17,13 @@
         <livewire:madin-table />
     </x-header>
 
-    <x-header>
-        <x-slot:title>
-            Ketidakhadiran
-        </x-slot>
+    @if (Auth::user()->student)
+        <x-header>
+            <x-slot:title>
+                Ketidakhadiran
+            </x-slot>
 
-        <livewire:absent-table />
-    </x-header>
+            <livewire:absent-table />
+        </x-header>
+    @endif
 </x-full-container>
