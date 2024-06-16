@@ -180,7 +180,57 @@ trait Actions
             DeleteBulkAction::make()
                 ->modalHeading("Hapus Data yang Dipilih")
                 ->modalDescription("Apakah Anda yakin? Data terkait (pembayaran, presensi, dll.) juga akan dihapus.")
-                ->modalSubmitActionLabel("Ya, hapus"),
+                ->modalSubmitActionLabel("Ya, hapus")
+                ->before(function (DeleteBulkAction $action) {
+                    $user_ids = $action->getRecords()->pluck('id');
+                    foreach ($user_ids as $user_id) {
+                        $user = User::find($user_id);
+                        $student = $user->student;
+                        $student?->student_data?->delete();
+                        $student?->manager?->delete();
+                        $student?->servant?->delete();
+                        $absents = $student?->absents;
+                        if ($absents) {
+                            foreach ($absents as $absent) {
+                                $absent->delete();
+                            }
+                        }
+                        $payments = $student?->payments;
+                        if ($payments) {
+                            foreach ($payments as $payment) {
+                                $payment->delete();
+                            }
+                        }
+                        $sicks = $student?->sicks;
+                        if ($sicks) {
+                            foreach ($sicks as $sick) {
+                                $sick->delete();
+                            }
+                        }
+                        $violations = $student?->violations;
+                        if ($violations) {
+                            foreach ($violations as $violation) {
+                                $violation->delete();
+                            }
+                        }
+                        $student?->delete();
+
+                        $user?->grade_leader?->update([
+                            'leader_user_id' => null,
+                        ]);
+
+                        $teacher = $user->teacher;
+                        $madins = $teacher?->madins;
+                        if ($madins) {
+                            foreach ($madins as $madin) {
+                                $madin->update([
+                                    'teacher_id' => null,
+                                ]);
+                            }
+                        }
+                        $teacher?->delete();
+                    }
+                })
         ];
     }
 
@@ -253,7 +303,53 @@ trait Actions
             DeleteAction::make()
                 ->modalHeading("Hapus Data Santri")
                 ->modalDescription("Apakah Anda yakin? Data terkait (pembayaran, presensi, dll.) juga akan dihapus.")
-                ->modalSubmitActionLabel("Ya, hapus"),
+                ->modalSubmitActionLabel("Ya, hapus")
+                ->before(function (User $user) {
+                    $student = $user->student;
+                    $student?->student_data?->delete();
+                    $student?->manager?->delete();
+                    $student?->servant?->delete();
+                    $absents = $student?->abaents;
+                    if ($absents) {
+                        foreach ($absents as $absent) {
+                            $absent->delete();
+                        }
+                    }
+                    $payments = $student?->payments;
+                    if ($payments) {
+                        foreach ($payments as $payment) {
+                            $payment->delete();
+                        }
+                    }
+                    $sicks = $student?->sicks;
+                    if ($sicks) {
+                        foreach ($sicks as $sick) {
+                            $sick->delete();
+                        }
+                    }
+                    $violations = $student?->violations;
+                    if ($violations) {
+                        foreach ($violations as $violation) {
+                            $violation->delete();
+                        }
+                    }
+                    $student?->delete();
+
+                    $user?->grade_leader?->update([
+                        'leader_user_id' => null,
+                    ]);
+
+                    $teacher = $user->teacher;
+                    $madins = $teacher?->madins;
+                    if ($madins) {
+                        foreach ($madins as $madin) {
+                            $madin->update([
+                                'teacher_id' => null,
+                            ]);
+                        }
+                    }
+                    $teacher?->delete();
+                })
         ];
     }
 }
