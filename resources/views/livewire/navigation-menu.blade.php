@@ -26,7 +26,7 @@
                             <x-nav-link class="hidden lg:inline-flex" href="{{ route('finance') }}" :active="request()->routeIs('finance')">
                                 Keuangan
                             </x-nav-link>
-                            <x-nav-link class="hidden lg:inline-flex" href="{{ route('sick') }}" :active="request()->routeIs('')">
+                            <x-nav-link class="hidden lg:inline-flex" href="{{ route('sick') }}" :active="request()->routeIs('sick')">
                                 Kesehatan
                             </x-nav-link>
                             <x-nav-link class="hidden lg:inline-flex" href="{{ route('violation') }}" :active="request()->routeIs('violation')">
