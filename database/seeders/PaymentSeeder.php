@@ -28,7 +28,7 @@ class PaymentSeeder extends Seeder
                     break;
                 case "Santri abdi":
                     $recipient_ids = $students->toQuery()
-                        ->orHas('manager')
+                        ->has('manager')
                         ->orHas('servant')
                         ->orHas('user.teacher')
                         ->pluck('id');

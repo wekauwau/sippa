@@ -101,7 +101,7 @@ trait Actions
                             ->pluck('id');
                     } elseif ($data['recipient'] == "Santri abdi") {
                         $recipient_ids = $active_student_ids->toQuery()
-                            ->orHas('manager')
+                            ->has('manager')
                             ->orHas('servant')
                             ->orHas('user.teacher')
                             ->pluck('id');
