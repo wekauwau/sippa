@@ -13,7 +13,7 @@ class Posts extends Component
     public function render()
     {
         return view('livewire.posts', [
-            'posts' => Post::orderBy('id', 'desc')->paginate(5),
+            'posts' => Post::latest()->paginate(5),
         ]);
     }
 }

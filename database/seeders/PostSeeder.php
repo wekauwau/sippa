@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -156,12 +157,17 @@ Wassalamualaikum Wr.Wb.',
             ],
         ];
 
+        $counter = 0;
         foreach ($records as $record) {
-            Post::create([
+            $post = Post::create([
                 'image' => $record[0],
                 'title' => $record[1],
                 'content' => $record[2],
             ]);
+
+            $modified_created_at = Carbon::createFromTimeString($post->created_at)->addMinutes($counter++);
+            $post->created_at = $modified_created_at;
+            $post->save();
         }
     }
 }
