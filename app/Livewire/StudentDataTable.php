@@ -31,8 +31,9 @@ class StudentDataTable extends Component implements HasTable, HasForms
 
     public function table(Table $table): Table
     {
-        $query = User::withWhereHas('student.student_data')
-            ->where('active', 1);
+        $table->query(
+            User::withWhereHas('student.student_data')->where('active', 1)
+        );
 
         // Add header actions for secretary
         if (
@@ -106,7 +107,6 @@ class StudentDataTable extends Component implements HasTable, HasForms
         ];
 
         return $table
-            ->query($query)
             ->columns($columns)
             ->defaultSort('id', 'desc');
     }

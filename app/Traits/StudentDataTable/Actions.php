@@ -40,11 +40,9 @@ trait Actions
     private function getFormInputs(): array
     {
         $user = [
-            $this->getTextInput('name')
-                ->label('Nama Lengkap')
+            $this->getTextInput('name')->label('Nama Lengkap')
                 ->required(),
-            $this->getPhoneInput('phone')
-                ->label('Nomor HP')
+            $this->getPhoneInput('phone')->label('Nomor HP')
                 ->required(),
             ToggleButtons::make('gender')
                 ->label('Jenis Kelamin')
@@ -60,13 +58,11 @@ trait Actions
                 ->grouped(),
         ];
 
-        $room_options = Room::all()
-            ->pluck('name_with_room_group', 'id');
+        $room_options = Room::all()->pluck('name_with_room_group', 'id');
         $grade_options = Grade::pluck('name', 'id');
 
         $student = [
-            Select::make('student.room_id')
-                ->label('Kamar')
+            Select::make('student.room_id')->label('Kamar')
                 ->native(false)
                 ->options($room_options)
                 ->searchable()
@@ -148,9 +144,9 @@ trait Actions
                 ->modalHeading('Tambah Santri')
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['name'] = trim($data['name']);
-                    $data['username'] = trim($data['username']);
+                    $data['username'] = "username";  // default username
                     $data['phone'] = $this->getPhoneData($data['phone']);
-                    $data['password'] = Hash::make($data['password']);
+                    $data['password'] = Hash::make("password");  // default password
 
                     $data['birth_date'] = data_get($data, 'student.student_data.birth_date');
                     $data['address'] = trim(data_get($data, 'student.student_data.address'));
