@@ -10,7 +10,7 @@ use Livewire\Component;
 class BlogPost extends Component
 {
     #[Url(history: true)]
-    public ?int $id = null;
+    public int $id;
 
     public function prev()
     {
@@ -62,9 +62,7 @@ class BlogPost extends Component
 
     public function render()
     {
-        // INFO: Using index bcs sometimes row is deleted
-        // INFO: ex: $ids = [1, 2, 4, 6, 7]
-        $posts_id_title = Post::select(['id', 'title'])->get();
+        $posts_id_title = Post::oldest()->get(['id', 'title']);
         $id_index = $posts_id_title->search(
             fn (Post $item) => $item->id == $this->id
         );
