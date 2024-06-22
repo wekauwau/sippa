@@ -17,7 +17,7 @@ class Grade extends Model
 
     public function leader(): BelongsTo
     {
-        return $this->belongsTo(User::class, null, 'leader_user_id');
+        return $this->belongsTo(User::class, 'leader_user_id');
     }
 
     public function students(): HasMany
