@@ -8,6 +8,7 @@ use App\Models\Semester;
 use App\Models\Teacher;
 use App\Traits\FilamentTable\HasDifferentColumnForManager;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
@@ -71,7 +72,22 @@ trait Actions
                 ->getOptionLabelFromRecordUsing(function (Semester $record): string {
                     return "$record->start - $record->end $record->semester";
                 })
-                ->searchable(),
+                ->searchable()
+                ->createOptionForm([
+                    TextInput::make('start')->label("Mulai")
+                        ->required()
+                        ->mask('9999'),
+                    TextInput::make('end')->label("Selesai")
+                        ->required()
+                        ->mask('9999'),
+                    Select::make('semester')->label("Semester")
+                        ->required()
+                        ->options([
+                            'Ganjil' => "Ganjil",
+                            'Genap' => "Genap",
+                        ])
+                        ->default('Ganjil'),
+                ]),
             Select::make('day')->label("Hari")
                 ->required()
                 ->native(false)

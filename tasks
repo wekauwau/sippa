@@ -25,8 +25,4 @@ finish home page: UI, responsive
 ?prevent double (day, ustaz)
 Madin (jadwal): based on Semester
 
-?refactor(accessor): using Semester's style accessor (as per docs)
-
-check if sorting work in table using relation column
-
-deploy: change sort('id', 'desc') to latest()
+C Madin
