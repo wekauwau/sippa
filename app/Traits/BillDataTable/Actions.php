@@ -53,7 +53,7 @@ trait Actions
                         'Santri non-abdi' => "Santri non-abdi",
                         'Santri abdi' => "Santri abdi",
                     ])
-                    ->default('all')
+                    ->default('Santri')
                     ->colors([
                         'Santri' => 'success',
                         'Santri non-abdi' => 'info',
