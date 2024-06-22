@@ -4,7 +4,7 @@
     </h1>
 
     <p class="mt-6 text-gray-500 leading-relaxed">
-        lorem ipsum
+        Membentuk generasi Islam yang berilmu, berakhlaqul karimah dan bertakwa kepada Allah SWT
     </p>
 </div>
 
