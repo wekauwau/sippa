@@ -8,6 +8,7 @@ use App\Models\Semester;
 use App\Models\Teacher;
 use App\Traits\FilamentTable\HasDifferentColumnForManager;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
@@ -100,19 +101,46 @@ trait Actions
                 ->native(false)
                 ->relationship(name: 'grade', titleAttribute: 'name')
                 ->preload()
-                ->searchable(),
+                ->searchable()
+                ->createOptionForm([
+                    TextInput::make('name')->label("Nama")
+                        ->required()
+                        ->minLength(1)
+                        ->maxLength(255),
+                    Select::make('leader_user_id')->label("Ketua")
+                        ->required()
+                        ->native(false)
+                        ->relationship(name: 'leader', titleAttribute: 'name')
+                        ->preload()
+                        ->searchable(),
+                ]),
             Select::make('madin_room_id')->label("Tempat")
                 ->required()
                 ->native(false)
                 ->relationship(name: 'madin_room', titleAttribute: 'name')
                 ->preload()
-                ->searchable(),
+                ->searchable()
+                ->createOptionForm([
+                    TextInput::make('name')->label("Nama")
+                        ->required()
+                        ->minLength(1)
+                        ->maxLength(255),
+                ]),
             Select::make('lesson_id')->label("Pelajaran")
                 ->required()
                 ->relationship(name: 'lesson', titleAttribute: 'name')
                 ->preload()
                 ->native(false)
-                ->searchable(),
+                ->searchable()
+                ->createOptionForm([
+                    TextInput::make('name')->label("Nama")
+                        ->required()
+                        ->minLength(1)
+                        ->maxLength(255),
+                    Textarea::make('info')->label("Keterangan")
+                        ->minLength(1)
+                        ->maxLength(255),
+                ]),
             Select::make('teacher_id')->label("Pengajar")
                 ->required()
                 ->native(false)
@@ -125,6 +153,12 @@ trait Actions
                     return $record->user['name'];
                 })
                 ->searchable()
+                ->createOptionForm([
+                    Select::make('user_id')->label('nama')
+                        ->required()
+                        ->relationship(name: 'user', titleAttribute: 'name')
+                        ->preload(),
+                ]),
         ];
     }
 }
