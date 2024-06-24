@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             AbsentSeeder::class,
             PostSeeder::class,
             ImageSeeder::class,
+            HeadSeeder::class,
         ]);
     }
 }
