@@ -13,7 +13,7 @@
         <div class="flex items-center">
             <i class="fa-solid fa-book-open text-lg text-gray-500"></i>
             <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                <a href="https://laravel.com/docs">Pendaftaran</a>
+                <a href="">Pendaftaran</a>
             </h2>
         </div>
 
@@ -22,7 +22,7 @@
         </p>
 
         <p class="mt-4 text-sm">
-            <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold text-indigo-700">
+            <a href="" class="inline-flex items-center font-semibold text-indigo-700">
                 Download brosur pendaftaran santri baru
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 w-5 h-5 fill-indigo-500">
@@ -38,7 +38,7 @@
         <div class="flex items-center">
             <i class="fa-solid fa-people-group text-lg text-gray-500"></i>
             <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                <a href="https://laracasts.com">Kegiatan Santri</a>
+                <a href="">Kegiatan Santri</a>
             </h2>
         </div>
 
@@ -47,7 +47,7 @@
         </p>
 
         <p class="mt-4 text-sm">
-            <a href="https://laracasts.com" class="inline-flex items-center font-semibold text-indigo-700">
+            <a href="" class="inline-flex items-center font-semibold text-indigo-700">
                 Lihat halaman kegiatan santri
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 w-5 h-5 fill-indigo-500">

@@ -1,6 +1,6 @@
 <section class="dark:bg-gray-800 dark:text-gray-100">
     <div class="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-        <a rel="noopener noreferrer" href="#"
+        <a rel="noopener noreferrer" href="{{ route('post', ['id' => $latest_post->id]) }}"
             class="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-900">
             <img src="{{ route('image', [$latest_post->image]) }}" alt=""
                 class="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:bg-gray-500">
@@ -18,7 +18,7 @@
         </a>
         <div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($posts as $post)
-                <a rel="noopener noreferrer" href="#"
+                <a rel="noopener noreferrer" href="{{ route('post', ['id' => $post->id]) }}"
                     class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900">
                     <img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500"
                         src="{{ route('image', [$post->image]) }}">

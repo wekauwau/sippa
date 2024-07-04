@@ -15,8 +15,7 @@ class PostsSection extends Component
 
     public function __construct()
     {
-        // WARNING: should be ordered by 'created_at' or latest() in prod
-        $records = Post::orderBy('id', 'desc')
+        $records = Post::latest()
             ->take(4)
             ->get();
 
